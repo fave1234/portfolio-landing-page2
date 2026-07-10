@@ -65,12 +65,8 @@ section,header,footer,nav{position:relative;z-index:2;}
 }
 .nav-logo-avatar.spin{animation:avatarSpin .6s cubic-bezier(.34,1.56,.64,1);}
 @keyframes avatarSpin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
-.nav-logo-avatar img{
-  width:100%;height:100%;object-fit:cover;display:block;
-}
-.nav-logo-avatar .fallback-icon{
-  width:18px;height:18px;color:var(--ink-soft);display:none;
-}
+.nav-logo-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+.nav-logo-avatar .fallback-icon{width:18px;height:18px;color:var(--ink-soft);display:none;}
 
 .nav-links{
   display:flex;gap:36px;list-style:none;
@@ -118,12 +114,8 @@ section,header,footer,nav{position:relative;z-index:2;}
   overflow:hidden;display:flex;align-items:center;justify-content:center;
   margin-bottom:20px;box-shadow:0 0 0 6px rgba(255,255,255,.04);
 }
-.hero-avatar img{
-  width:100%;height:100%;object-fit:cover;display:block;
-}
-.hero-avatar .fallback-icon{
-  width:40px;height:40px;color:var(--ink-soft);display:none;
-}
+.hero-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+.hero-avatar .fallback-icon{width:40px;height:40px;color:var(--ink-soft);display:none;}
 
 .hero-role{
   display:inline-flex;align-items:center;gap:8px;
@@ -152,8 +144,7 @@ section,header,footer,nav{position:relative;z-index:2;}
 }
 .hero-headline em{
   font-style:italic;font-family:'Fraunces',serif;font-weight:600;
-  color:rgba(255,255,255,.65);
-  display:block;
+  color:rgba(255,255,255,.65);display:block;
 }
 .hero-sub{
   font-size:1rem;line-height:1.75;color:var(--ink-soft);
@@ -174,7 +165,7 @@ section,header,footer,nav{position:relative;z-index:2;}
   font-size:14px;font-weight:600;color:var(--bg);
   background:var(--ink);border:none;border-radius:999px;
   padding:14px 28px;text-decoration:none;cursor:pointer;
-  transition:all .25s;border:none;
+  transition:all .25s;
 }
 .btn-light:hover{background:rgba(255,255,255,.85);transform:translateY(-2px);}
 
@@ -205,7 +196,6 @@ section,header,footer,nav{position:relative;z-index:2;}
 }
 .ticker-track{
   display:flex;
-  /* No hover effect — removed */
   animation:tickerL 35s linear infinite;
   width:max-content;
 }
@@ -216,13 +206,11 @@ section,header,footer,nav{position:relative;z-index:2;}
 }
 @keyframes tickerL{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 @keyframes tickerR{from{transform:translateX(-50%);}to{transform:translateX(0);}}
-
 .ticker-item{
   display:inline-flex;align-items:center;gap:16px;
   font-size:13px;font-weight:500;color:var(--ink-soft);
   padding:0 28px;white-space:nowrap;
-  user-select:none;-webkit-user-select:none;
-  pointer-events:none;
+  user-select:none;-webkit-user-select:none;pointer-events:none;
 }
 .ticker-item .sep{
   width:4px;height:4px;border-radius:50%;
@@ -244,15 +232,11 @@ section,header,footer,nav{position:relative;z-index:2;}
   font-family:'JetBrains Mono',monospace;
   font-size:11px;letter-spacing:.14em;color:var(--ink-soft);
 }
-
 .work-columns{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:14px;
-  padding:0 3vw;
-  height:115vh;
-  overflow:hidden;
-  width:100%;
+  gap:14px;padding:0 3vw;
+  height:115vh;overflow:hidden;width:100%;
 }
 .work-col{overflow:hidden;position:relative;border-radius:14px;}
 .work-col::before,.work-col::after{
@@ -275,14 +259,10 @@ section,header,footer,nav{position:relative;z-index:2;}
   box-shadow:0 12px 40px rgba(0,0,0,.6);
   transform:scale(1.02);
 }
-.work-card .card-fill{
-  width:100%;display:block;
-  background:var(--g,var(--bg-2));
-  transition:filter .4s;
+.work-card img{
+  width:100%;display:block;object-fit:cover;
 }
-.work-card img{width:100%;display:block;object-fit:cover;}
 .work-card video{width:100%;display:block;object-fit:cover;}
-.work-card:hover .card-fill{filter:brightness(1.1);}
 .card-overlay{
   position:absolute;inset:0;
   background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 50%);
@@ -294,8 +274,7 @@ section,header,footer,nav{position:relative;z-index:2;}
   font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.06em;
   color:#fff;background:rgba(0,0,0,.45);backdrop-filter:blur(6px);
   padding:5px 10px;border:1px solid rgba(255,255,255,.15);border-radius:999px;
-  opacity:0;transform:translateY(4px);transition:all .3s;
-  user-select:none;
+  opacity:0;transform:translateY(4px);transition:all .3s;user-select:none;
 }
 .work-card:hover .card-tag{opacity:1;transform:translateY(0);}
 .card-expand{
@@ -319,30 +298,19 @@ section,header,footer,nav{position:relative;z-index:2;}
 
 /* FLOATING SPEED BUTTON */
 .speed-btn{
-  position:fixed;
-  bottom:-120px;
-  left:50%;
+  position:fixed;bottom:-120px;left:50%;
   transform:translateX(-50%);
   z-index:200;
   display:flex;align-items:center;gap:10px;
   font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;
-  color:var(--ink);
-  background:rgba(15,15,15,.95);
+  color:var(--ink);background:rgba(15,15,15,.95);
   border:1px solid rgba(255,255,255,.2);
   backdrop-filter:blur(16px);
   padding:14px 26px;border-radius:999px;
-  cursor:pointer;
-  user-select:none;
-  transition:
-    bottom .5s cubic-bezier(.34,1.56,.64,1),
-    border-color .3s,
-    box-shadow .3s;
-  pointer-events:none;
+  cursor:pointer;user-select:none;pointer-events:none;
+  transition:bottom .5s cubic-bezier(.34,1.56,.64,1),border-color .3s,box-shadow .3s;
 }
-.speed-btn.visible{
-  bottom:32px;
-  pointer-events:all;
-}
+.speed-btn.visible{bottom:32px;pointer-events:all;}
 .speed-btn:hover{
   border-color:rgba(255,255,255,.5);
   box-shadow:0 12px 40px rgba(0,0,0,.7);
@@ -425,17 +393,15 @@ footer{
   font-size:clamp(1.8rem,4vw,3.4rem);
 }
 .foot-headline em{
-  display:block;
-  font-style:italic;font-family:'Fraunces',serif;font-weight:500;
-  color:rgba(255,255,255,.5);
+  display:block;font-style:italic;font-family:'Fraunces',serif;
+  font-weight:500;color:rgba(255,255,255,.5);
 }
 .foot-cta{
   display:inline-flex;align-items:center;gap:10px;
   font-size:14px;font-weight:600;color:var(--bg);
   background:var(--ink);padding:14px 28px;
   border-radius:999px;text-decoration:none;cursor:pointer;
-  border:none;
-  transition:all .25s;width:fit-content;
+  border:none;transition:all .25s;width:fit-content;
 }
 .foot-cta:hover{background:rgba(255,255,255,.85);transform:translateY(-2px);}
 .foot-meta{
@@ -492,25 +458,19 @@ footer{
 <nav class="navbar">
   <a class="nav-logo" href="index.html" id="logoLink">
     <div class="nav-logo-avatar" id="logoAvatar">
-      <img
-        src="images/favour-photo.jpg"
-        alt="Favour"
-        id="navAvatarImg"
-      >
+      <img src="images/favour-photo.jpg" alt="Favour" id="navAvatarImg">
       <svg class="fallback-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/>
       </svg>
     </div>
     Favour Onasanya TL
   </a>
-
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="about.html">About</a></li>
     <li><a id="contactNavLink" href="#contact">Contact</a></li>
   </ul>
-
   <button class="nav-cta" id="navBookBtn">Book a Call</button>
 </nav>
 
@@ -530,11 +490,7 @@ footer{
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-avatar hero-fade">
-    <img
-      src="images/favour-photo.jpg"
-      alt="Favour Onasanya TL"
-      id="heroAvatarImg"
-    >
+    <img src="images/favour-photo.jpg" alt="Favour Onasanya TL" id="heroAvatarImg">
     <svg class="fallback-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
       <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/>
     </svg>
@@ -645,20 +601,14 @@ footer{
 <footer id="contact">
   <div class="foot-top">
     <div class="foot-photo">
-      <img
-        src="images/favour-photo.jpg"
-        alt="Favour Onasanya TL"
-        id="footerPhotoImg"
-      >
+      <img src="images/favour-photo.jpg" alt="Favour Onasanya TL" id="footerPhotoImg">
       <svg class="fallback-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
         <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/>
       </svg>
     </div>
-    <div>
-      <div class="foot-headline">
-        Let's make something
-        <em>worth a second scroll.</em>
-      </div>
+    <div class="foot-headline">
+      Let's make something
+      <em>worth a second scroll.</em>
     </div>
   </div>
 
@@ -711,23 +661,22 @@ footer{
 
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 <script>
-// ══ IMAGE FALLBACK HANDLER ══
-// Shows SVG icon if image fails to load
-function setupImageFallback(imgEl) {
-  if (!imgEl) return;
-  imgEl.addEventListener('error', function() {
+// ══ IMAGE FALLBACKS ══
+function setupFallback(imgId) {
+  const img = document.getElementById(imgId);
+  if (!img) return;
+  img.addEventListener('error', function() {
     this.style.display = 'none';
-    const fallback = this.parentElement.querySelector('.fallback-icon');
-    if (fallback) fallback.style.display = 'block';
+    const fb = this.parentElement.querySelector('.fallback-icon');
+    if (fb) fb.style.display = 'block';
   });
-  // If already broken (cached error)
-  if (imgEl.complete && imgEl.naturalWidth === 0) {
-    imgEl.dispatchEvent(new Event('error'));
+  if (img.complete && img.naturalWidth === 0) {
+    img.dispatchEvent(new Event('error'));
   }
 }
-setupImageFallback(document.getElementById('navAvatarImg'));
-setupImageFallback(document.getElementById('heroAvatarImg'));
-setupImageFallback(document.getElementById('footerPhotoImg'));
+setupFallback('navAvatarImg');
+setupFallback('heroAvatarImg');
+setupFallback('footerPhotoImg');
 
 // ══ HERO FADE IN ══
 window.addEventListener('load', () => {
@@ -736,7 +685,7 @@ window.addEventListener('load', () => {
   }, 80);
 });
 
-// ══ LOGO SPIN + SCROLL TO TOP ══
+// ══ LOGO SPIN ══
 const logoAvatar = document.getElementById('logoAvatar');
 const logoLink   = document.getElementById('logoLink');
 logoLink.addEventListener('click', e => {
@@ -748,18 +697,17 @@ logoLink.addEventListener('click', e => {
   setTimeout(() => logoAvatar.classList.remove('spin'), 700);
 });
 
-// ══ CONTACT NAV → SCROLL TO FOOTER ══
+// ══ CONTACT SCROLL ══
 document.getElementById('contactNavLink').addEventListener('click', e => {
   e.preventDefault();
   document.getElementById('contact').scrollIntoView({behavior:'smooth'});
 });
 
 // ══ CALENDLY POPUP ══
-// All "Book a Call" buttons open Calendly popup
 function openCalendly() {
   if (window.Calendly) {
     Calendly.initPopupWidget({
-      url: 'https://calendly.com/favouronasanya22/30min?background_color=000000&text_color=ffffff&primary_color=ffffff'
+      url:'https://calendly.com/favouronasanya22/30min?background_color=000000&text_color=ffffff&primary_color=ffffff'
     });
   }
 }
@@ -768,41 +716,80 @@ document.getElementById('heroBookBtn').addEventListener('click', openCalendly);
 document.getElementById('footerBookBtn').addEventListener('click', openCalendly);
 
 // ══ CARDS DATA ══
+const SM  = 'images/works/Social Media/';
+const PR  = 'images/works/Prints/';
+const LB  = 'images/works/LinkedIn/';
+const RA  = 'images/works/Random/';
+const VID = 'Videos/';
+
 const cards = [
-  // ── Replace pt/g with src:"images/works/..." when you have real images ──
-  // Example with real image:
-  // {col:1, tag:"INSTAGRAM POST", type:"image", src:"images/works/social-media/sm-01.jpg"}
-  // Example with video:
-  // {col:4, tag:"VIDEO REEL",     type:"video", src:"videos/reel-01.mp4"}
+  // ── COLUMN 1 — Social Media (sm-1 to sm-12) ──
+  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-1.webp`},
+  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-2.webp`},
+  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-3.webp`},
+  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-4.webp`},
+  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-5.webp`},
+  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-6.webp`},
+  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-7.webp`},
+  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-8.webp`},
+  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-9.webp`},
+  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-10.webp`},
+  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-11.webp`},
+  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-12.webp`},
 
-  {col:1,tag:"INSTAGRAM POST · 1:1",     type:"image",pt:"100%",g:"linear-gradient(145deg,#141414,#242424)"},
-  {col:1,tag:"INSTAGRAM POST · 1:1",     type:"image",pt:"100%",g:"linear-gradient(145deg,#1c1c1c,#2c2c2c)"},
-  {col:1,tag:"INSTAGRAM STORY · 9:16",   type:"image",pt:"177%",g:"linear-gradient(150deg,#111,#222)"},
-  {col:1,tag:"SOCIAL CAROUSEL · 1:1",    type:"image",pt:"100%",g:"linear-gradient(135deg,#181818,#2a2a2a)"},
-  {col:1,tag:"FACEBOOK POST · 1:1",      type:"image",pt:"100%",g:"linear-gradient(135deg,#161616,#252525)"},
-  {col:1,tag:"TWITTER HEADER · 3:1",     type:"image",pt:"33%", g:"linear-gradient(135deg,#1a1a1a,#2d2d2d)"},
+  // ── COLUMN 2 — Social Media (sm-13 to sm-25) ──
+  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-13.webp`},
+  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-14.webp`},
+  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-15.webp`},
+  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-16.webp`},
+  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-18.webp`},
+  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-19.webp`},
+  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-20.webp`},
+  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-21.webp`},
+  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-22.webp`},
+  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-23.webp`},
+  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-24.webp`},
+  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-25.webp`},
 
-  {col:2,tag:"LINKEDIN BANNER · 4:1",    type:"image",pt:"25%", g:"linear-gradient(135deg,#1c1c1c,#2e2e2e)"},
-  {col:2,tag:"POSTER · 3:4",             type:"image",pt:"133%",g:"linear-gradient(160deg,#141414,#222)"},
-  {col:2,tag:"FLYER · A4",               type:"image",pt:"141%",g:"linear-gradient(140deg,#181818,#282828)"},
-  {col:2,tag:"BUSINESS CARD · 7:4",      type:"image",pt:"57%", g:"linear-gradient(135deg,#1a1a1a,#2d2d2d)"},
-  {col:2,tag:"PITCH DECK · 16:9",        type:"image",pt:"56%", g:"linear-gradient(135deg,#151515,#272727)"},
-  {col:2,tag:"EMAIL TEMPLATE · 1:2",     type:"image",pt:"200%",g:"linear-gradient(145deg,#181818,#262626)"},
+  // ── COLUMN 3 — Prints + LinkedIn + Social Media ──
+  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-1.webp`},
+  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-2.webp`},
+  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-3.webp`},
+  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-4.webp`},
+  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-5.webp`},
+  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-6.webp`},
+  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-7.webp`},
+  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-8.webp`},
+  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-9.webp`},
+  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-10.webp`},
+  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-11.webp`},
+  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-12.webp`},
+  {col:3, tag:'LINKEDIN BANNER',     type:'image', src:`${LB}Lb-1.webp`},
+  {col:3, tag:'LINKEDIN BANNER',     type:'image', src:`${LB}Lb-2.webp`},
+  {col:3, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-26.webp`},
+  {col:3, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-27.webp`},
 
-  {col:3,tag:"BRAND MARK · 1:1",         type:"image",pt:"100%",g:"linear-gradient(135deg,#1a1a1a,#303030)"},
-  {col:3,tag:"PACKAGING LABEL · 1:1",    type:"image",pt:"100%",g:"linear-gradient(120deg,#161616,#2a2a2a)"},
-  {col:3,tag:"LANDING PAGE MOCKUP",      type:"image",pt:"150%",g:"linear-gradient(135deg,#111,#222)"},
-  {col:3,tag:"WEBSITE DESIGN",           type:"image",pt:"133%",g:"linear-gradient(135deg,#1c1c1c,#2b2b2b)"},
-  {col:3,tag:"UI SCREENS",               type:"image",pt:"200%",g:"linear-gradient(145deg,#141414,#242424)"},
-  {col:3,tag:"BOOK COVER · 2:3",         type:"image",pt:"150%",g:"linear-gradient(135deg,#141414,#232323)"},
-
-  {col:4,tag:"VIDEO REEL",               type:"video",src:"videos/reel-01.mp4",pt:"177%"},
-  {col:4,tag:"BRAND VIDEO",              type:"video",src:"videos/reel-02.mp4",pt:"177%"},
-  {col:4,tag:"FULL PAGE MOCKUP",         type:"image",pt:"222%",g:"linear-gradient(135deg,#1c1c1c,#2b2b2b)"},
-  {col:4,tag:"WEB BANNER · 5:3",         type:"image",pt:"60%", g:"linear-gradient(120deg,#1a1a1a,#2c2c2c)"},
-  {col:4,tag:"YOUTUBE THUMBNAIL · 16:9", type:"image",pt:"56%", g:"linear-gradient(135deg,#1e1e1e,#2d2d2d)"},
+  // ── COLUMN 4 — Videos + Random + Prints + Social Media ──
+  {col:4, tag:'VIDEO REEL',          type:'video', src:`${VID}0108.webm`},
+  {col:4, tag:'VIDEO REEL',          type:'video', src:`${VID}0122-1.webm`},
+  {col:4, tag:'VIDEO REEL',          type:'video', src:`${VID}0414.webm`},
+  {col:4, tag:'VIDEO REEL',          type:'video', src:`${VID}1009.webm`},
+  {col:4, tag:'CREATIVE DESIGN',     type:'image', src:`${RA}ra-1.webp`},
+  {col:4, tag:'CREATIVE DESIGN',     type:'image', src:`${RA}ra-2.webp`},
+  {col:4, tag:'CREATIVE DESIGN',     type:'image', src:`${RA}ra-3.webp`},
+  {col:4, tag:'CREATIVE DESIGN',     type:'image', src:`${RA}ra-4.webp`},
+  {col:4, tag:'CREATIVE DESIGN',     type:'image', src:`${RA}ra-5.webp`},
+  {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-13.webp`},
+  {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-14.webp`},
+  {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-15.webp`},
+  {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-16.webp`},
+  {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-17.webp`},
+  {col:4, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-28.webp`},
+  {col:4, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-29.webp`},
+  {col:4, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-30.webp`},
 ];
 
+// ══ BUILD CARDS ══
 function makeCard(data) {
   const card = document.createElement('div');
   card.className   = 'work-card';
@@ -810,20 +797,15 @@ function makeCard(data) {
   card.dataset.type = data.type;
 
   if (data.type === 'video') {
-    if (data.src) {
-      const vid = document.createElement('video');
-      vid.src = data.src;
-      vid.autoplay = true; vid.muted = true;
-      vid.loop = true; vid.playsInline = true;
-      card.appendChild(vid);
-      card.dataset.src = data.src;
-    } else {
-      // placeholder for video
-      const fill = document.createElement('div');
-      fill.className = 'card-fill';
-      fill.style.cssText = `padding-top:${data.pt};background:#111;`;
-      card.appendChild(fill);
-    }
+    const vid = document.createElement('video');
+    vid.src = data.src;
+    vid.autoplay = true;
+    vid.muted    = true;
+    vid.loop     = true;
+    vid.playsInline = true;
+    card.appendChild(vid);
+    card.dataset.src = data.src;
+
     const snd = document.createElement('div');
     snd.className = 'card-sound';
     snd.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -832,31 +814,21 @@ function makeCard(data) {
     </svg>`;
     card.appendChild(snd);
   } else {
-    // Image card
-    if (data.src) {
-      // Real image
-      const img = document.createElement('img');
-      img.src = data.src;
-      img.alt = data.tag;
-      img.loading = 'lazy';
-      card.appendChild(img);
-      card.dataset.src = data.src;
-    } else {
-      // Placeholder gradient
-      const fill = document.createElement('div');
-      fill.className = 'card-fill';
-      fill.style.cssText = `padding-top:${data.pt};background:${data.g};`;
-      card.appendChild(fill);
-      card.dataset.gradient = data.g;
-      card.dataset.pt = data.pt;
-    }
+    const img = document.createElement('img');
+    img.src     = data.src;
+    img.alt     = data.tag;
+    img.loading = 'lazy';
+    card.appendChild(img);
+    card.dataset.src = data.src;
   }
 
   const overlay = document.createElement('div');
   overlay.className = 'card-overlay';
+
   const tag = document.createElement('span');
-  tag.className = 'card-tag';
+  tag.className   = 'card-tag';
   tag.textContent = data.tag;
+
   const expand = document.createElement('div');
   expand.className = 'card-expand';
   expand.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -865,6 +837,7 @@ function makeCard(data) {
     <line x1="21" y1="3" x2="14" y2="10"/>
     <line x1="3" y1="21" x2="10" y2="14"/>
   </svg>`;
+
   card.appendChild(overlay);
   card.appendChild(tag);
   card.appendChild(expand);
@@ -915,25 +888,17 @@ function animate() {
 animate();
 
 // ══ FLOATING SPEED BUTTON ══
-// Appears ONLY when work section is in view, disappears when past it
 const speedBtn    = document.getElementById('speedBtn');
 const workSection = document.getElementById('work');
 
 const workObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      speedBtn.classList.add('visible');
-    } else {
-      speedBtn.classList.remove('visible');
-    }
+    if (e.isIntersecting) speedBtn.classList.add('visible');
+    else                  speedBtn.classList.remove('visible');
   });
-}, {
-  threshold: 0.05,   // trigger when just 5% of section is visible
-  rootMargin: '0px'  // no extra margin — strict
-});
+}, {threshold:0.05});
 
 workObserver.observe(workSection);
-
 speedBtn.addEventListener('mouseenter', () => { speedBoosted = true; });
 speedBtn.addEventListener('mouseleave', () => { speedBoosted = false; });
 
@@ -952,30 +917,22 @@ function openLightbox(card) {
   lbSoundBtn.style.display = 'none';
   activeVideo = null;
 
-  if (card.dataset.type === 'video' && card.dataset.src) {
+  if (card.dataset.type === 'video') {
     const vid = document.createElement('video');
-    vid.src = card.dataset.src;
-    vid.autoplay = true; vid.muted = true;
-    vid.loop = true; vid.playsInline = true;
+    vid.src        = card.dataset.src;
+    vid.autoplay   = true;
+    vid.muted      = true;
+    vid.loop       = true;
+    vid.playsInline = true;
     lbImgWrap.appendChild(vid);
     activeVideo = vid;
     lbSoundBtn.style.display = 'flex';
-    lbSoundBtn.textContent = '🔇 TAP FOR SOUND';
-  } else if (card.dataset.src) {
-    // Real image
+    lbSoundBtn.textContent   = '🔇 TAP FOR SOUND';
+  } else {
     const img = document.createElement('img');
     img.src = card.dataset.src;
     img.alt = card.dataset.tag;
     lbImgWrap.appendChild(img);
-  } else {
-    // Gradient placeholder
-    const ph = document.createElement('div');
-    ph.style.cssText = `
-      background:${card.dataset.gradient};
-      padding-top:min(${card.dataset.pt}, 60vh);
-      width:100%;
-    `;
-    lbImgWrap.appendChild(ph);
   }
 
   lbTag.textContent = card.dataset.tag;
