@@ -30,7 +30,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overfl
 }
 section,header,footer,nav{position:relative;z-index:2;}
 
-/* ── HERO FADE IN ── */
+/* HERO FADE IN */
 .hero-fade{
   opacity:0;transform:translateY(28px);
   transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1);
@@ -42,7 +42,7 @@ section,header,footer,nav{position:relative;z-index:2;}
 .hero-fade-delay-4{transition-delay:.6s;}
 .hero-fade-delay-5{transition-delay:.75s;}
 
-/* ── NAV ── */
+/* NAV */
 .navbar{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;align-items:center;justify-content:space-between;
@@ -61,12 +61,16 @@ section,header,footer,nav{position:relative;z-index:2;}
   width:34px;height:34px;border-radius:50%;
   background:var(--bg-2);border:1.5px solid rgba(255,255,255,.15);
   overflow:hidden;display:flex;align-items:center;justify-content:center;
-  cursor:pointer;
+  cursor:pointer;flex-shrink:0;
 }
 .nav-logo-avatar.spin{animation:avatarSpin .6s cubic-bezier(.34,1.56,.64,1);}
 @keyframes avatarSpin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
-.nav-logo-avatar img{width:100%;height:100%;object-fit:cover;}
-.nav-logo-avatar svg{width:18px;height:18px;color:var(--ink-soft);}
+.nav-logo-avatar img{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.nav-logo-avatar .fallback-icon{
+  width:18px;height:18px;color:var(--ink-soft);display:none;
+}
 
 .nav-links{
   display:flex;gap:36px;list-style:none;
@@ -74,7 +78,7 @@ section,header,footer,nav{position:relative;z-index:2;}
 }
 .nav-links a{
   font-size:14px;font-weight:500;color:var(--ink-soft);
-  text-decoration:none;transition:color .25s;
+  text-decoration:none;transition:color .25s;cursor:pointer;
 }
 .nav-links a:hover{color:var(--ink);}
 .nav-cta{
@@ -85,7 +89,7 @@ section,header,footer,nav{position:relative;z-index:2;}
 }
 .nav-cta:hover{background:rgba(255,255,255,.85);transform:translateY(-1px);}
 
-/* ── SOCIAL DOCK ── */
+/* SOCIAL DOCK */
 .social-dock{
   position:fixed;bottom:28px;right:28px;z-index:50;
   display:flex;flex-direction:column;gap:10px;
@@ -102,7 +106,7 @@ section,header,footer,nav{position:relative;z-index:2;}
 .social-dock .dock-ig:hover{color:#fff;background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%);border-color:transparent;transform:translateY(-3px) scale(1.06);box-shadow:0 8px 26px rgba(214,36,159,.4);}
 .social-dock .dock-li:hover{color:#fff;background:#0A66C2;border-color:transparent;transform:translateY(-3px) scale(1.06);box-shadow:0 8px 26px rgba(10,102,194,.4);}
 
-/* ── HERO ── */
+/* HERO */
 .hero{
   min-height:100vh;display:flex;flex-direction:column;
   align-items:center;justify-content:center;
@@ -114,13 +118,17 @@ section,header,footer,nav{position:relative;z-index:2;}
   overflow:hidden;display:flex;align-items:center;justify-content:center;
   margin-bottom:20px;box-shadow:0 0 0 6px rgba(255,255,255,.04);
 }
-.hero-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
-.hero-avatar svg{width:40px;height:40px;color:var(--ink-soft);}
+.hero-avatar img{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.hero-avatar .fallback-icon{
+  width:40px;height:40px;color:var(--ink-soft);display:none;
+}
 
 .hero-role{
   display:inline-flex;align-items:center;gap:8px;
   font-size:13px;font-weight:500;color:var(--ink-soft);
-  background:var(--pill-bg,rgba(255,255,255,.08));
+  background:rgba(255,255,255,.08);
   border:1px solid var(--line);
   padding:7px 16px;border-radius:999px;
   margin-bottom:36px;backdrop-filter:blur(8px);
@@ -132,7 +140,7 @@ section,header,footer,nav{position:relative;z-index:2;}
 }
 @keyframes blink-green{
   0%,100%{opacity:1;box-shadow:0 0 8px rgba(34,197,94,.9),0 0 18px rgba(34,197,94,.5);}
-  50%{opacity:.35;box-shadow:none;}
+  50%{opacity:.3;box-shadow:none;}
 }
 
 .hero-headline{
@@ -165,7 +173,8 @@ section,header,footer,nav{position:relative;z-index:2;}
 .btn-light{
   font-size:14px;font-weight:600;color:var(--bg);
   background:var(--ink);border:none;border-radius:999px;
-  padding:14px 28px;text-decoration:none;cursor:pointer;transition:all .25s;
+  padding:14px 28px;text-decoration:none;cursor:pointer;
+  transition:all .25s;border:none;
 }
 .btn-light:hover{background:rgba(255,255,255,.85);transform:translateY(-2px);}
 
@@ -182,7 +191,7 @@ section,header,footer,nav{position:relative;z-index:2;}
 .stat-num{font-family:'Fraunces',serif;font-weight:600;font-size:1.8rem;color:var(--ink);}
 .stat-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--ink-soft);margin-top:6px;}
 
-/* ── TICKER ── */
+/* TICKER */
 .ticker-section{position:relative;z-index:2;}
 .ticker-wrap{
   width:100%;overflow:hidden;
@@ -195,14 +204,16 @@ section,header,footer,nav{position:relative;z-index:2;}
   padding:16px 0;background:var(--bg-1);
 }
 .ticker-track{
-  display:flex;animation:tickerL 35s linear infinite;
+  display:flex;
+  /* No hover effect — removed */
+  animation:tickerL 35s linear infinite;
   width:max-content;
 }
 .ticker-track-r{
-  display:flex;animation:tickerR 35s linear infinite;
+  display:flex;
+  animation:tickerR 35s linear infinite;
   width:max-content;
 }
-.ticker-track:hover,.ticker-track-r:hover{animation-duration:100s;}
 @keyframes tickerL{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 @keyframes tickerR{from{transform:translateX(-50%);}to{transform:translateX(0);}}
 
@@ -218,7 +229,7 @@ section,header,footer,nav{position:relative;z-index:2;}
   background:rgba(255,255,255,.25);display:inline-block;
 }
 
-/* ── WORK SECTION ── */
+/* WORK SECTION */
 .work-section{padding:80px 0 0;overflow:hidden;}
 .work-head{
   display:flex;justify-content:space-between;align-items:flex-end;
@@ -250,10 +261,9 @@ section,header,footer,nav{position:relative;z-index:2;}
 }
 .work-col::before{top:0;background:linear-gradient(to bottom,var(--bg),transparent);}
 .work-col::after{bottom:0;background:linear-gradient(to top,var(--bg),transparent);}
-
 .col-track{display:flex;flex-direction:column;gap:12px;will-change:transform;}
 
-/* Work Cards */
+/* Cards */
 .work-card{
   position:relative;overflow:hidden;
   border-radius:10px;border:1px solid var(--line);
@@ -307,31 +317,39 @@ section,header,footer,nav{position:relative;z-index:2;}
 }
 .card-sound svg{width:13px;height:13px;}
 
-/* ── FLOATING SPEED BUTTON ── */
+/* FLOATING SPEED BUTTON */
 .speed-btn{
-  position:fixed;bottom:-100px;left:50%;transform:translateX(-50%);
+  position:fixed;
+  bottom:-120px;
+  left:50%;
+  transform:translateX(-50%);
   z-index:200;
   display:flex;align-items:center;gap:10px;
   font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;
   color:var(--ink);
-  background:rgba(20,20,20,.92);
+  background:rgba(15,15,15,.95);
   border:1px solid rgba(255,255,255,.2);
   backdrop-filter:blur(16px);
   padding:14px 26px;border-radius:999px;
   cursor:pointer;
-  transition:bottom .5s cubic-bezier(.34,1.56,.64,1),
-             border-color .3s,box-shadow .3s,transform .3s;
   user-select:none;
+  transition:
+    bottom .5s cubic-bezier(.34,1.56,.64,1),
+    border-color .3s,
+    box-shadow .3s;
+  pointer-events:none;
 }
-.speed-btn.visible{bottom:32px;}
+.speed-btn.visible{
+  bottom:32px;
+  pointer-events:all;
+}
 .speed-btn:hover{
   border-color:rgba(255,255,255,.5);
-  box-shadow:0 12px 40px rgba(0,0,0,.6);
-  transform:translateX(-50%) translateY(-4px);
+  box-shadow:0 12px 40px rgba(0,0,0,.7);
 }
 .speed-btn svg{width:16px;height:16px;flex-shrink:0;}
 
-/* ── LIGHTBOX ── */
+/* LIGHTBOX */
 .lightbox{
   position:fixed;inset:0;z-index:300;
   display:flex;align-items:center;justify-content:center;
@@ -373,7 +391,7 @@ section,header,footer,nav{position:relative;z-index:2;}
   padding:8px 16px;border-radius:999px;
   background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
   color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:11px;
-  cursor:pointer;transition:all .25s;display:none;
+  cursor:pointer;transition:all .25s;display:none;align-items:center;
 }
 .lb-sound-btn:hover{background:rgba(255,255,255,.18);}
 .lb-close{
@@ -385,7 +403,7 @@ section,header,footer,nav{position:relative;z-index:2;}
 .lb-close:hover{background:rgba(255,255,255,.18);transform:rotate(90deg);}
 .lb-close svg{width:18px;height:18px;}
 
-/* ── FOOTER ── */
+/* FOOTER */
 footer{
   padding:80px 8vw 60px;
   border-top:1px solid var(--line);
@@ -400,7 +418,7 @@ footer{
   display:flex;align-items:center;justify-content:center;
 }
 .foot-photo img{width:100%;height:100%;object-fit:cover;display:block;}
-.foot-photo svg{width:40px;height:40px;color:var(--ink-mute);}
+.foot-photo .fallback-icon{width:36px;height:36px;color:var(--ink-mute);display:none;}
 .foot-headline{
   font-family:'Plus Jakarta Sans',sans-serif;
   font-weight:800;line-height:1.1;letter-spacing:-.02em;
@@ -415,7 +433,8 @@ footer{
   display:inline-flex;align-items:center;gap:10px;
   font-size:14px;font-weight:600;color:var(--bg);
   background:var(--ink);padding:14px 28px;
-  border-radius:999px;text-decoration:none;
+  border-radius:999px;text-decoration:none;cursor:pointer;
+  border:none;
   transition:all .25s;width:fit-content;
 }
 .foot-cta:hover{background:rgba(255,255,255,.85);transform:translateY(-2px);}
@@ -427,7 +446,7 @@ footer{
 .foot-meta a{
   color:var(--ink);text-decoration:none;
   border-bottom:1px solid var(--line);padding-bottom:2px;
-  transition:border-color .3s,color .3s;
+  transition:border-color .3s;
 }
 .foot-meta a:hover{border-color:rgba(255,255,255,.5);}
 .foot-social{display:flex;gap:12px;}
@@ -473,21 +492,26 @@ footer{
 <nav class="navbar">
   <a class="nav-logo" href="index.html" id="logoLink">
     <div class="nav-logo-avatar" id="logoAvatar">
-      <img src="images/favour-photo.jpg" alt="Favour"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-      <svg style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <img
+        src="images/favour-photo.jpg"
+        alt="Favour"
+        id="navAvatarImg"
+      >
+      <svg class="fallback-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/>
       </svg>
     </div>
     Favour Onasanya TL
   </a>
+
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="#contact" id="contactLink">Contact</a></li>
+    <li><a id="contactNavLink" href="#contact">Contact</a></li>
   </ul>
-  <a class="nav-cta" href="https://calendly.com/favouronasanya22/30min" target="_blank" rel="noopener">Book a Call</a>
+
+  <button class="nav-cta" id="navBookBtn">Book a Call</button>
 </nav>
 
 <!-- SOCIAL DOCK -->
@@ -506,9 +530,12 @@ footer{
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-avatar hero-fade">
-    <img src="images/favour-photo.jpg" alt="Favour Onasanya TL"
-         onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-    <svg style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+    <img
+      src="images/favour-photo.jpg"
+      alt="Favour Onasanya TL"
+      id="heroAvatarImg"
+    >
+    <svg class="fallback-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
       <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/>
     </svg>
   </div>
@@ -529,7 +556,7 @@ footer{
 
   <div class="hero-cta hero-fade hero-fade-delay-4">
     <a class="btn-dark" href="#work">See My Work</a>
-    <a class="btn-light" href="https://calendly.com/favouronasanya22/30min" target="_blank" rel="noopener">Book a Call</a>
+    <button class="btn-light" id="heroBookBtn">Book a Call</button>
   </div>
 
   <div class="stat-row hero-fade hero-fade-delay-5">
@@ -608,7 +635,8 @@ footer{
 <!-- FLOATING SPEED BUTTON -->
 <div class="speed-btn" id="speedBtn">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <polygon points="13 19 22 12 13 5 13 19"/><polygon points="2 19 11 12 2 5 2 19"/>
+    <polygon points="13 19 22 12 13 5 13 19"/>
+    <polygon points="2 19 11 12 2 5 2 19"/>
   </svg>
   HOVER TO SPEED UP
 </div>
@@ -617,9 +645,12 @@ footer{
 <footer id="contact">
   <div class="foot-top">
     <div class="foot-photo">
-      <img src="images/favour-photo.jpg" alt="Favour Onasanya TL"
-           onerror="this.style.display='none';this.parentElement.querySelector('svg').style.display='block'">
-      <svg style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+      <img
+        src="images/favour-photo.jpg"
+        alt="Favour Onasanya TL"
+        id="footerPhotoImg"
+      >
+      <svg class="fallback-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
         <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/>
       </svg>
     </div>
@@ -631,9 +662,9 @@ footer{
     </div>
   </div>
 
-  <a class="foot-cta" href="https://calendly.com/favouronasanya22/30min" target="_blank" rel="noopener">
+  <button class="foot-cta" id="footerBookBtn">
     📅 Book a Call — Let's Work Together
-  </a>
+  </button>
 
   <div class="foot-meta">
     <a href="mailto:favouronasanya22@gmail.com">favouronasanya22@gmail.com</a>
@@ -669,7 +700,8 @@ footer{
         <button class="lb-sound-btn" id="lbSoundBtn">🔇 TAP FOR SOUND</button>
         <button class="lb-close" id="lbClose" aria-label="Close">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
           </svg>
         </button>
       </div>
@@ -679,14 +711,32 @@ footer{
 
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 <script>
+// ══ IMAGE FALLBACK HANDLER ══
+// Shows SVG icon if image fails to load
+function setupImageFallback(imgEl) {
+  if (!imgEl) return;
+  imgEl.addEventListener('error', function() {
+    this.style.display = 'none';
+    const fallback = this.parentElement.querySelector('.fallback-icon');
+    if (fallback) fallback.style.display = 'block';
+  });
+  // If already broken (cached error)
+  if (imgEl.complete && imgEl.naturalWidth === 0) {
+    imgEl.dispatchEvent(new Event('error'));
+  }
+}
+setupImageFallback(document.getElementById('navAvatarImg'));
+setupImageFallback(document.getElementById('heroAvatarImg'));
+setupImageFallback(document.getElementById('footerPhotoImg'));
+
 // ══ HERO FADE IN ══
 window.addEventListener('load', () => {
   setTimeout(() => {
     document.querySelectorAll('.hero-fade').forEach(el => el.classList.add('visible'));
-  }, 100);
+  }, 80);
 });
 
-// ══ LOGO SPIN ══
+// ══ LOGO SPIN + SCROLL TO TOP ══
 const logoAvatar = document.getElementById('logoAvatar');
 const logoLink   = document.getElementById('logoLink');
 logoLink.addEventListener('click', e => {
@@ -694,59 +744,86 @@ logoLink.addEventListener('click', e => {
   logoAvatar.classList.remove('spin');
   void logoAvatar.offsetWidth;
   logoAvatar.classList.add('spin');
-  setTimeout(() => window.scrollTo({top:0,behavior:'smooth'}), 100);
+  setTimeout(() => window.scrollTo({top:0,behavior:'smooth'}), 80);
   setTimeout(() => logoAvatar.classList.remove('spin'), 700);
 });
 
-// ══ CONTACT SCROLL ══
-document.getElementById('contactLink').addEventListener('click', e => {
+// ══ CONTACT NAV → SCROLL TO FOOTER ══
+document.getElementById('contactNavLink').addEventListener('click', e => {
   e.preventDefault();
   document.getElementById('contact').scrollIntoView({behavior:'smooth'});
 });
 
+// ══ CALENDLY POPUP ══
+// All "Book a Call" buttons open Calendly popup
+function openCalendly() {
+  if (window.Calendly) {
+    Calendly.initPopupWidget({
+      url: 'https://calendly.com/favouronasanya22/30min?background_color=000000&text_color=ffffff&primary_color=ffffff'
+    });
+  }
+}
+document.getElementById('navBookBtn').addEventListener('click', openCalendly);
+document.getElementById('heroBookBtn').addEventListener('click', openCalendly);
+document.getElementById('footerBookBtn').addEventListener('click', openCalendly);
+
 // ══ CARDS DATA ══
 const cards = [
-  {col:1,tag:"INSTAGRAM POST · 1:1",    type:"image",pt:"100%",g:"linear-gradient(145deg,#141414,#242424)"},
-  {col:1,tag:"INSTAGRAM POST · 1:1",    type:"image",pt:"100%",g:"linear-gradient(145deg,#1c1c1c,#2c2c2c)"},
-  {col:1,tag:"INSTAGRAM STORY · 9:16",  type:"image",pt:"177%",g:"linear-gradient(150deg,#111,#222)"},
-  {col:1,tag:"SOCIAL CAROUSEL · 1:1",   type:"image",pt:"100%",g:"linear-gradient(135deg,#181818,#2a2a2a)"},
-  {col:1,tag:"FACEBOOK POST · 1:1",     type:"image",pt:"100%",g:"linear-gradient(135deg,#161616,#252525)"},
-  {col:1,tag:"TWITTER HEADER · 3:1",    type:"image",pt:"33%", g:"linear-gradient(135deg,#1a1a1a,#2d2d2d)"},
+  // ── Replace pt/g with src:"images/works/..." when you have real images ──
+  // Example with real image:
+  // {col:1, tag:"INSTAGRAM POST", type:"image", src:"images/works/social-media/sm-01.jpg"}
+  // Example with video:
+  // {col:4, tag:"VIDEO REEL",     type:"video", src:"videos/reel-01.mp4"}
 
-  {col:2,tag:"LINKEDIN BANNER · 4:1",   type:"image",pt:"25%", g:"linear-gradient(135deg,#1c1c1c,#2e2e2e)"},
-  {col:2,tag:"POSTER · 3:4",            type:"image",pt:"133%",g:"linear-gradient(160deg,#141414,#222)"},
-  {col:2,tag:"FLYER · A4",              type:"image",pt:"141%",g:"linear-gradient(140deg,#181818,#282828)"},
-  {col:2,tag:"BUSINESS CARD · 7:4",     type:"image",pt:"57%", g:"linear-gradient(135deg,#1a1a1a,#2d2d2d)"},
-  {col:2,tag:"PITCH DECK · 16:9",       type:"image",pt:"56%", g:"linear-gradient(135deg,#151515,#272727)"},
-  {col:2,tag:"EMAIL TEMPLATE · 1:2",    type:"image",pt:"200%",g:"linear-gradient(145deg,#181818,#262626)"},
+  {col:1,tag:"INSTAGRAM POST · 1:1",     type:"image",pt:"100%",g:"linear-gradient(145deg,#141414,#242424)"},
+  {col:1,tag:"INSTAGRAM POST · 1:1",     type:"image",pt:"100%",g:"linear-gradient(145deg,#1c1c1c,#2c2c2c)"},
+  {col:1,tag:"INSTAGRAM STORY · 9:16",   type:"image",pt:"177%",g:"linear-gradient(150deg,#111,#222)"},
+  {col:1,tag:"SOCIAL CAROUSEL · 1:1",    type:"image",pt:"100%",g:"linear-gradient(135deg,#181818,#2a2a2a)"},
+  {col:1,tag:"FACEBOOK POST · 1:1",      type:"image",pt:"100%",g:"linear-gradient(135deg,#161616,#252525)"},
+  {col:1,tag:"TWITTER HEADER · 3:1",     type:"image",pt:"33%", g:"linear-gradient(135deg,#1a1a1a,#2d2d2d)"},
 
-  {col:3,tag:"BRAND MARK · 1:1",        type:"image",pt:"100%",g:"linear-gradient(135deg,#1a1a1a,#303030)"},
-  {col:3,tag:"PACKAGING LABEL · 1:1",   type:"image",pt:"100%",g:"linear-gradient(120deg,#161616,#2a2a2a)"},
-  {col:3,tag:"LANDING PAGE MOCKUP",     type:"image",pt:"150%",g:"linear-gradient(135deg,#111,#222)"},
-  {col:3,tag:"WEBSITE DESIGN",          type:"image",pt:"133%",g:"linear-gradient(135deg,#1c1c1c,#2b2b2b)"},
-  {col:3,tag:"UI SCREENS",              type:"image",pt:"200%",g:"linear-gradient(145deg,#141414,#242424)"},
-  {col:3,tag:"BOOK COVER · 2:3",        type:"image",pt:"150%",g:"linear-gradient(135deg,#141414,#232323)"},
+  {col:2,tag:"LINKEDIN BANNER · 4:1",    type:"image",pt:"25%", g:"linear-gradient(135deg,#1c1c1c,#2e2e2e)"},
+  {col:2,tag:"POSTER · 3:4",             type:"image",pt:"133%",g:"linear-gradient(160deg,#141414,#222)"},
+  {col:2,tag:"FLYER · A4",               type:"image",pt:"141%",g:"linear-gradient(140deg,#181818,#282828)"},
+  {col:2,tag:"BUSINESS CARD · 7:4",      type:"image",pt:"57%", g:"linear-gradient(135deg,#1a1a1a,#2d2d2d)"},
+  {col:2,tag:"PITCH DECK · 16:9",        type:"image",pt:"56%", g:"linear-gradient(135deg,#151515,#272727)"},
+  {col:2,tag:"EMAIL TEMPLATE · 1:2",     type:"image",pt:"200%",g:"linear-gradient(145deg,#181818,#262626)"},
 
-  {col:4,tag:"VIDEO REEL",              type:"video",src:"videos/reel-01.mp4",pt:"177%"},
-  {col:4,tag:"BRAND VIDEO",             type:"video",src:"videos/reel-02.mp4",pt:"177%"},
-  {col:4,tag:"FULL PAGE MOCKUP",        type:"image",pt:"222%",g:"linear-gradient(135deg,#1c1c1c,#2b2b2b)"},
-  {col:4,tag:"WEB BANNER · 5:3",        type:"image",pt:"60%", g:"linear-gradient(120deg,#1a1a1a,#2c2c2c)"},
-  {col:4,tag:"YOUTUBE THUMBNAIL · 16:9",type:"image",pt:"56%", g:"linear-gradient(135deg,#1e1e1e,#2d2d2d)"},
+  {col:3,tag:"BRAND MARK · 1:1",         type:"image",pt:"100%",g:"linear-gradient(135deg,#1a1a1a,#303030)"},
+  {col:3,tag:"PACKAGING LABEL · 1:1",    type:"image",pt:"100%",g:"linear-gradient(120deg,#161616,#2a2a2a)"},
+  {col:3,tag:"LANDING PAGE MOCKUP",      type:"image",pt:"150%",g:"linear-gradient(135deg,#111,#222)"},
+  {col:3,tag:"WEBSITE DESIGN",           type:"image",pt:"133%",g:"linear-gradient(135deg,#1c1c1c,#2b2b2b)"},
+  {col:3,tag:"UI SCREENS",               type:"image",pt:"200%",g:"linear-gradient(145deg,#141414,#242424)"},
+  {col:3,tag:"BOOK COVER · 2:3",         type:"image",pt:"150%",g:"linear-gradient(135deg,#141414,#232323)"},
+
+  {col:4,tag:"VIDEO REEL",               type:"video",src:"videos/reel-01.mp4",pt:"177%"},
+  {col:4,tag:"BRAND VIDEO",              type:"video",src:"videos/reel-02.mp4",pt:"177%"},
+  {col:4,tag:"FULL PAGE MOCKUP",         type:"image",pt:"222%",g:"linear-gradient(135deg,#1c1c1c,#2b2b2b)"},
+  {col:4,tag:"WEB BANNER · 5:3",         type:"image",pt:"60%", g:"linear-gradient(120deg,#1a1a1a,#2c2c2c)"},
+  {col:4,tag:"YOUTUBE THUMBNAIL · 16:9", type:"image",pt:"56%", g:"linear-gradient(135deg,#1e1e1e,#2d2d2d)"},
 ];
 
 function makeCard(data) {
   const card = document.createElement('div');
-  card.className = 'work-card';
+  card.className   = 'work-card';
   card.dataset.tag  = data.tag;
   card.dataset.type = data.type;
 
-  if (data.type === 'video' && data.src) {
-    const vid = document.createElement('video');
-    vid.src = data.src; vid.autoplay = true;
-    vid.muted = true; vid.loop = true; vid.playsInline = true;
-    card.appendChild(vid);
-    card.dataset.src = data.src;
-
+  if (data.type === 'video') {
+    if (data.src) {
+      const vid = document.createElement('video');
+      vid.src = data.src;
+      vid.autoplay = true; vid.muted = true;
+      vid.loop = true; vid.playsInline = true;
+      card.appendChild(vid);
+      card.dataset.src = data.src;
+    } else {
+      // placeholder for video
+      const fill = document.createElement('div');
+      fill.className = 'card-fill';
+      fill.style.cssText = `padding-top:${data.pt};background:#111;`;
+      card.appendChild(fill);
+    }
     const snd = document.createElement('div');
     snd.className = 'card-sound';
     snd.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -755,22 +832,42 @@ function makeCard(data) {
     </svg>`;
     card.appendChild(snd);
   } else {
-    const fill = document.createElement('div');
-    fill.className = 'card-fill';
-    fill.style.cssText = `padding-top:${data.pt};background:${data.g};`;
-    card.appendChild(fill);
-    card.dataset.gradient = data.g;
-    card.dataset.pt = data.pt;
+    // Image card
+    if (data.src) {
+      // Real image
+      const img = document.createElement('img');
+      img.src = data.src;
+      img.alt = data.tag;
+      img.loading = 'lazy';
+      card.appendChild(img);
+      card.dataset.src = data.src;
+    } else {
+      // Placeholder gradient
+      const fill = document.createElement('div');
+      fill.className = 'card-fill';
+      fill.style.cssText = `padding-top:${data.pt};background:${data.g};`;
+      card.appendChild(fill);
+      card.dataset.gradient = data.g;
+      card.dataset.pt = data.pt;
+    }
   }
 
-  const overlay = document.createElement('div'); overlay.className = 'card-overlay';
-  const tag = document.createElement('span');    tag.className = 'card-tag'; tag.textContent = data.tag;
-  const expand = document.createElement('div');  expand.className = 'card-expand';
+  const overlay = document.createElement('div');
+  overlay.className = 'card-overlay';
+  const tag = document.createElement('span');
+  tag.className = 'card-tag';
+  tag.textContent = data.tag;
+  const expand = document.createElement('div');
+  expand.className = 'card-expand';
   expand.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
-    <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+    <polyline points="15 3 21 3 21 9"/>
+    <polyline points="9 21 3 21 3 15"/>
+    <line x1="21" y1="3" x2="14" y2="10"/>
+    <line x1="3" y1="21" x2="10" y2="14"/>
   </svg>`;
-  card.appendChild(overlay); card.appendChild(tag); card.appendChild(expand);
+  card.appendChild(overlay);
+  card.appendChild(tag);
+  card.appendChild(expand);
   return card;
 }
 
@@ -778,19 +875,19 @@ function makeCard(data) {
   const track = document.getElementById(`track${n}`);
   const col   = cards.filter(c => c.col === n);
   col.forEach(d => track.appendChild(makeCard(d)));
-  col.forEach(d => track.appendChild(makeCard(d)));
+  col.forEach(d => track.appendChild(makeCard(d))); // duplicate for infinite loop
 });
 
 // ══ SCROLL ENGINE ══
 const SPEED_NORMAL = 0.55;
 const SPEED_SLOW   = SPEED_NORMAL * 0.15;
-const SPEED_FAST   = SPEED_NORMAL * 4;
+const SPEED_FAST   = SPEED_NORMAL * 5;
 
 const colState = [
-  {id:'track1',speed:SPEED_NORMAL,pos:0,hovered:false},
-  {id:'track2',speed:SPEED_NORMAL,pos:0,hovered:false},
-  {id:'track3',speed:SPEED_NORMAL,pos:0,hovered:false},
-  {id:'track4',speed:SPEED_NORMAL,pos:0,hovered:false},
+  {id:'track1', pos:0, hovered:false},
+  {id:'track2', pos:0, hovered:false},
+  {id:'track3', pos:0, hovered:false},
+  {id:'track4', pos:0, hovered:false},
 ];
 let globalPaused = false;
 let speedBoosted  = false;
@@ -818,15 +915,23 @@ function animate() {
 animate();
 
 // ══ FLOATING SPEED BUTTON ══
-const speedBtn   = document.getElementById('speedBtn');
+// Appears ONLY when work section is in view, disappears when past it
+const speedBtn    = document.getElementById('speedBtn');
 const workSection = document.getElementById('work');
 
 const workObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) speedBtn.classList.add('visible');
-    else                  speedBtn.classList.remove('visible');
+    if (e.isIntersecting) {
+      speedBtn.classList.add('visible');
+    } else {
+      speedBtn.classList.remove('visible');
+    }
   });
-}, {threshold: 0.1});
+}, {
+  threshold: 0.05,   // trigger when just 5% of section is visible
+  rootMargin: '0px'  // no extra margin — strict
+});
+
 workObserver.observe(workSection);
 
 speedBtn.addEventListener('mouseenter', () => { speedBoosted = true; });
@@ -856,11 +961,23 @@ function openLightbox(card) {
     activeVideo = vid;
     lbSoundBtn.style.display = 'flex';
     lbSoundBtn.textContent = '🔇 TAP FOR SOUND';
+  } else if (card.dataset.src) {
+    // Real image
+    const img = document.createElement('img');
+    img.src = card.dataset.src;
+    img.alt = card.dataset.tag;
+    lbImgWrap.appendChild(img);
   } else {
+    // Gradient placeholder
     const ph = document.createElement('div');
-    ph.style.cssText = `background:${card.dataset.gradient};padding-top:min(${card.dataset.pt},60vh);width:100%;`;
+    ph.style.cssText = `
+      background:${card.dataset.gradient};
+      padding-top:min(${card.dataset.pt}, 60vh);
+      width:100%;
+    `;
     lbImgWrap.appendChild(ph);
   }
+
   lbTag.textContent = card.dataset.tag;
   lightbox.classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -885,7 +1002,9 @@ document.getElementById('workColumns').addEventListener('click', e => {
 });
 lbClose.addEventListener('click', closeLightbox);
 lbBackdrop.addEventListener('click', closeLightbox);
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+});
 </script>
 </body>
 </html>
