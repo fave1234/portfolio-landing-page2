@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Favour Onasanya TL</title>
+<link rel="icon" type="image/jpeg" href="favicon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0a;--bg-1:#111;--bg-2:#181818;
+  --ink:#fff;--ink-soft:rgba(255,255,255,.5);--ink-mute:rgba(255,255,255,.22);
+  --line:rgba(255,255,255,.09);--glass:rgba(255,255,255,.04);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden;}
+::selection{background:#fff;color:#000;}
+
+.bg-grid{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:64px 64px;
+}
+section,header,footer,nav{position:relative;z-index:2;}
+
+/* ── BACK BUTTON ── */
+.back-btn{
+  position:fixed;top:28px;left:32px;z-index:100;
+  display:flex;align-items:center;gap:10px;
+  text-decoration:none;color:var(--ink-soft);
+  font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;
+  background:var(--glass);border:1px solid var(--line);
+  backdrop-filter:blur(12px);
+  padding:10px 18px;border-radius:999px;
+  transition:all .3s ease;
+}
+.back-btn:hover{color:var(--ink);border-color:rgba(255,255,255,.25);transform:translateX(-3px);}
+.back-btn svg{width:14px;height:14px;transition:transform .3s;}
+.back-btn:hover svg{transform:translateX(-3px);}
+
+/* ── HERO ── */
+.about-hero{
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;
+  align-items:center;padding:100px 8vw 60px;
+}
+.hero-left{display:flex;flex-direction:column;gap:28px;}
+
+.hero-eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.28em;color:var(--ink-mute);
+}
+
+.hero-big{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:900;
+  font-size:clamp(3rem,5.5vw,5rem);
+  line-height:1.03;letter-spacing:-.03em;
+}
+.hero-big em{
+  font-style:italic;font-family:'Fraunces',serif;font-weight:600;
+  color:rgba(255,255,255,.55);display:block;
+}
+
+.hero-bio{
+  font-size:1.05rem;line-height:1.8;color:var(--ink-soft);max-width:52ch;
+}
+.hero-bio strong{color:var(--ink);font-weight:600;}
+
+.hero-resume{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Inter',sans-serif;font-size:14px;font-weight:600;
+  color:var(--bg);background:var(--ink);
+  padding:14px 28px;border-radius:999px;
+  text-decoration:none;width:fit-content;
+  transition:all .25s;
+}
+.hero-resume:hover{background:rgba(255,255,255,.85);transform:translateY(-2px);}
+.hero-resume svg{width:14px;height:14px;}
+
+/* Photo */
+.hero-right{display:flex;justify-content:center;align-items:center;}
+.about-photo-wrap{
+  position:relative;width:420px;max-width:100%;
+  aspect-ratio:4/5;border-radius:32px;overflow:hidden;
+  border:1px solid var(--line);
+  box-shadow:0 40px 80px rgba(0,0,0,.6);
+}
+.about-photo-wrap img{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.photo-ph{
+  width:100%;height:100%;
+  background:radial-gradient(ellipse at 50% 30%,#222,#0a0a0a);
+  display:flex;align-items:center;justify-content:center;
+}
+.photo-ph svg{width:80px;height:80px;color:rgba(255,255,255,.1);}
+.about-photo-label{
+  position:absolute;bottom:0;left:0;right:0;
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;
+  color:rgba(255,255,255,.7);text-align:center;
+  background:rgba(0,0,0,.5);backdrop-filter:blur(8px);
+  padding:12px;border-top:1px solid var(--line);
+}
+
+/* ── DIVIDER ── */
+.section-divider{
+  border:none;border-top:1px solid var(--line);
+  margin:0 8vw;
+}
+
+/* ── SECTION LABEL ── */
+.sec-label{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.24em;color:var(--ink-mute);
+  margin-bottom:40px;
+}
+.sec-label::before{content:"— ";}
+
+/* ── TOOLS ── */
+.tools-section{padding:80px 8vw;}
+.tools-grid{
+  display:flex;flex-wrap:wrap;gap:20px;
+}
+.tool-chip{
+  display:flex;align-items:center;gap:12px;
+  background:var(--glass);border:1px solid var(--line);
+  border-radius:14px;padding:14px 22px;
+  transition:all .35s ease;cursor:default;
+  filter:grayscale(1) brightness(.6);
+}
+.tool-chip:hover{
+  filter:grayscale(0) brightness(1);
+  border-color:rgba(255,255,255,.25);
+  transform:translateY(-3px);
+  box-shadow:0 12px 32px rgba(0,0,0,.5);
+}
+.tool-chip .t-icon{
+  width:28px;height:28px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.tool-chip .t-icon img{width:100%;height:100%;object-fit:contain;}
+.tool-chip .t-name{
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:var(--ink);
+}
+
+/* ── SKILLS ── */
+.skills-section{padding:80px 8vw;}
+.skills-grid{display:flex;flex-direction:column;gap:28px;max-width:680px;}
+.skill-item{}
+.skill-top{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:10px;
+}
+.skill-name{
+  font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:var(--ink);
+}
+.skill-pct{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.06em;color:var(--ink-soft);
+}
+.skill-bar-bg{
+  width:100%;height:4px;border-radius:999px;
+  background:rgba(255,255,255,.08);overflow:hidden;
+}
+.skill-bar-fill{
+  height:100%;border-radius:999px;
+  background:var(--ink);width:0;
+  transition:width 1.2s cubic-bezier(.2,.8,.2,1);
+}
+
+/* ── TIMELINE ── */
+.timeline-section{padding:80px 8vw;}
+.timeline{display:flex;flex-direction:column;gap:0;position:relative;}
+.timeline::before{
+  content:"";position:absolute;left:7px;top:8px;bottom:8px;
+  width:1px;background:var(--line);
+}
+.tl-item{
+  display:grid;grid-template-columns:32px 1fr;gap:24px;
+  padding-bottom:48px;
+  opacity:0;transform:translateY(24px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+.tl-item.in{opacity:1;transform:translateY(0);}
+.tl-dot{
+  width:16px;height:16px;border-radius:50%;
+  background:var(--bg-2);border:2px solid rgba(255,255,255,.3);
+  margin-top:4px;flex-shrink:0;position:relative;z-index:1;
+}
+.tl-item:first-child .tl-dot{
+  background:var(--ink);border-color:var(--ink);
+  box-shadow:0 0 16px rgba(255,255,255,.3);
+}
+.tl-body{}
+.tl-period{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:.1em;color:var(--ink-mute);margin-bottom:8px;
+}
+.tl-role{
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;
+  font-size:1.1rem;color:var(--ink);margin-bottom:4px;
+}
+.tl-company{
+  font-size:14px;color:var(--ink-soft);margin-bottom:14px;font-style:italic;
+}
+.tl-bullets{
+  list-style:none;display:flex;flex-direction:column;gap:8px;
+}
+.tl-bullets li{
+  font-size:14px;line-height:1.65;color:var(--ink-soft);
+  padding-left:16px;position:relative;
+}
+.tl-bullets li::before{
+  content:"";position:absolute;left:0;top:9px;
+  width:5px;height:1px;background:rgba(255,255,255,.3);
+}
+
+/* ── SPOTIFY / VIBE ── */
+.vibe-section{padding:80px 8vw;}
+.vibe-intro{
+  font-size:1rem;line-height:1.75;color:var(--ink-soft);
+  max-width:54ch;margin-bottom:48px;
+}
+.spotify-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:20px;
+}
+@media(max-width:700px){.spotify-grid{grid-template-columns:1fr;}}
+.spotify-card{
+  background:var(--bg-1);border:1px solid var(--line);
+  border-radius:18px;overflow:hidden;
+  transition:border-color .3s,transform .3s;
+}
+.spotify-card:hover{border-color:rgba(255,255,255,.2);transform:translateY(-3px);}
+
+/* ── CONNECT ── */
+.connect-section{
+  padding:80px 8vw 100px;
+  display:flex;flex-direction:column;gap:28px;
+}
+.connect-headline{
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;
+  font-size:clamp(2rem,4.5vw,3.6rem);line-height:1.05;letter-spacing:-.02em;
+}
+.connect-headline em{
+  font-style:italic;font-family:'Fraunces',serif;font-weight:500;
+  color:rgba(255,255,255,.5);
+}
+.connect-sub{
+  font-size:1rem;line-height:1.75;color:var(--ink-soft);max-width:50ch;
+}
+.connect-actions{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-white{
+  font-size:14px;font-weight:600;color:var(--bg);
+  background:var(--ink);border:none;border-radius:999px;
+  padding:14px 28px;text-decoration:none;
+  transition:all .25s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-white:hover{background:rgba(255,255,255,.85);transform:translateY(-2px);}
+.btn-outline{
+  font-size:14px;font-weight:600;color:var(--ink);
+  background:transparent;border:1px solid rgba(255,255,255,.2);
+  border-radius:999px;padding:14px 28px;text-decoration:none;
+  transition:all .25s;
+}
+.btn-outline:hover{border-color:rgba(255,255,255,.5);transform:translateY(-2px);}
+
+/* ── FOOTER ── */
+.about-footer{
+  padding:32px 8vw;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:16px;
+}
+.about-footer span{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.08em;color:var(--ink-mute);
+}
+.about-footer a{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.08em;color:var(--ink-soft);
+  text-decoration:none;border-bottom:1px solid var(--line);
+  transition:color .3s,border-color .3s;
+}
+.about-footer a:hover{color:var(--ink);border-color:rgba(255,255,255,.4);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:860px){
+  .about-hero{grid-template-columns:1fr;padding-top:120px;gap:48px;}
+  .hero-right{order:-1;}
+  .about-photo-wrap{width:280px;aspect-ratio:1/1;border-radius:50%;}
+  .about-photo-label{display:none;}
+}
+@media(max-width:540px){
+  .tools-grid{gap:12px;}
+  .tool-chip{padding:10px 16px;}
+}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+
+<!-- BACK -->
+<a class="back-btn" href="index.html">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <polyline points="15 18 9 12 15 6"/>
+  </svg>
+  HOME
+</a>
+
+<!-- HERO -->
+<section class="about-hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">FAVOUR ONASANYA TL — VISUAL DESIGNER</p>
+
+    <h1 class="hero-big">
+      The Mind Behind<br>
+      <em>the Work.</em>
+    </h1>
+
+    <p class="hero-bio">
+      I'm <strong>Favour Onasanya</strong> — a graphic and visual designer with <strong>5 years</strong> of hands-on experience building brands that don't just look good, but <em>perform</em>. I work with startups, personal brands, and growing businesses across social media, print, packaging, digital, and brand systems.<br><br>
+      I've had the privilege of working with companies like <strong>Justprints Limited (Plusfrica)</strong>, <strong>Frootify</strong>, <strong>Janna's Bowls</strong>, <strong>Teolyx Digital Solutions</strong>, and over <strong>100+ clients</strong> globally — delivering social media content, pitch decks, landing pages, packaging, and full brand identities.<br><br>
+      My philosophy? <strong>Design without strategy is just decoration.</strong> Everything I create is rooted in intention, built around your audience, and measured against results.
+    </p>
+
+    <a class="hero-resume" href="Favour_Onasanya_CV.pdf" download>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/>
+      </svg>
+      Download Résumé
+    </a>
+  </div>
+
+  <div class="hero-right">
+    <div class="about-photo-wrap">
+      <img src="images/favour-photo.jpg" alt="Favour Onasanya TL"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="photo-ph" style="display:none">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+          <circle cx="12" cy="8" r="5"/><path d="M3 21c0-5 3.5-8 9-8s9 3 9 8"/>
+        </svg>
+      </div>
+      <div class="about-photo-label">FAVOUR ONASANYA TL · IJEBU ODE, NIGERIA</div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- TOOLS -->
+<section class="tools-section reveal">
+  <p class="sec-label">TOOLS I USE</p>
+  <div class="tools-grid">
+
+    <div class="tool-chip">
+      <div class="t-icon">
+        <!-- Figma SVG icon -->
+        <svg viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 28.5A9.5 9.5 0 1 1 28.5 19 9.5 9.5 0 0 1 19 28.5z" fill="#1ABCFE"/>
+          <path d="M9.5 47.5A9.5 9.5 0 0 1 19 38h9.5v9.5a9.5 9.5 0 0 1-19 0z" fill="#0ACF83"/>
+          <path d="M19 0H9.5A9.5 9.5 0 0 0 9.5 19H19V0z" fill="#FF7262"/>
+          <path d="M28.5 0H19v19h9.5a9.5 9.5 0 0 0 0-19z" fill="#F24E1E"/>
+          <path d="M9.5 19a9.5 9.5 0 0 0 0 19H19V19H9.5z" fill="#A259FF"/>
+        </svg>
+      </div>
+      <span class="t-name">Figma</span>
+    </div>
+
+    <div class="tool-chip">
+      <div class="t-icon">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" rx="14" fill="#001E36"/>
+          <path d="M25.1 72.4V27.6h14.7c4.4 0 7.8.9 10.1 2.6 2.4 1.7 3.5 4.2 3.5 7.3 0 1.8-.5 3.4-1.4 4.7-.9 1.3-2.2 2.3-3.9 3 2 .5 3.6 1.5 4.7 3 1.1 1.5 1.7 3.3 1.7 5.4 0 3.4-1.2 6-3.5 7.8-2.3 1.8-5.6 2.7-9.8 2.7H25.1zm8.3-26.4h6.7c1.9 0 3.4-.4 4.4-1.2 1-.8 1.5-2 1.5-3.6 0-1.7-.5-3-1.6-3.8-1.1-.8-2.7-1.2-4.8-1.2h-6.2v9.8zm0 6.4v13.3h7.5c2 0 3.5-.5 4.6-1.4 1.1-.9 1.6-2.3 1.6-4.1 0-5.2-2.1-7.8-6.2-7.8H33.4zM65 72.4V27.6h8.3v44.8H65z" fill="#31A8FF"/>
+        </svg>
+      </div>
+      <span class="t-name">Adobe Photoshop</span>
+    </div>
+
+    <div class="tool-chip">
+      <div class="t-icon">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" rx="14" fill="#330000"/>
+          <path d="M22 72.4V27.6h8.3l19.6 29.2V27.6h8v44.8h-8L30 43.1v29.3H22zM80 72.4V27.6h8.3v44.8H80z" fill="#FF9A00"/>
+        </svg>
+      </div>
+      <span class="t-name">Adobe Illustrator</span>
+    </div>
+
+    <div class="tool-chip">
+      <div class="t-icon">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" rx="14" fill="#00005B"/>
+          <path d="M24 72.4V27.6h8.3v18.9L49.5 27.6h10.2L42.1 46.2 60.5 72.4H50.3L36.5 52l-4.2 4.4v16H24zM72 72.4V27.6h8.3v44.8H72z" fill="#9999FF"/>
+        </svg>
+      </div>
+      <span class="t-name">Adobe XD</span>
+    </div>
+
+    <div class="tool-chip">
+      <div class="t-icon">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" rx="14" fill="#00C4CC"/>
+          <text x="50" y="68" font-size="52" font-weight="900" font-family="Arial" text-anchor="middle" fill="white">C</text>
+        </svg>
+      </div>
+      <span class="t-name">Canva</span>
+    </div>
+
+    <div class="tool-chip">
+      <div class="t-icon">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" rx="14" fill="#000"/>
+          <text x="50" y="68" font-size="40" font-weight="900" font-family="Arial" text-anchor="middle" fill="white">CC</text>
+        </svg>
+      </div>
+      <span class="t-name">CapCut</span>
+    </div>
+
+    <div class="tool-chip">
+      <div class="t-icon">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" rx="14" fill="#1E1F26"/>
+          <path d="M50 20L22 38v24l28 18 28-18V38L50 20zm0 8.5l20 12.8v18.4L50 71.5 30 59.7V41.3L50 28.5z" fill="#4AB4FF"/>
+        </svg>
+      </div>
+      <span class="t-name">Midjourney</span>
+    </div>
+
+    <div class="tool-chip">
+      <div class="t-icon">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" rx="14" fill="#4A154B"/>
+          <path d="M36.3 55.5a7.3 7.3 0 1 1-14.6 0 7.3 7.3 0 0 1 14.6 0zm0-22a7.3 7.3 0 1 1-14.6 0 7.3 7.3 0 0 1 14.6 0zm22 22a7.3 7.3 0 1 1-14.6 0 7.3 7.3 0 0 1 14.6 0zm0-22a7.3 7.3 0 1 1-14.6 0 7.3 7.3 0 0 1 14.6 0zm22 22a7.3 7.3 0 1 1-14.6 0 7.3 7.3 0 0 1 14.6 0zm0-22a7.3 7.3 0 1 1-14.6 0 7.3 7.3 0 0 1 14.6 0z" fill="#E01E5A"/>
+        </svg>
+      </div>
+      <span class="t-name">Slack</span>
+    </div>
+
+    <div class="tool-chip">
+      <div class="t-icon">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" rx="14" fill="#0052CC"/>
+          <path d="M18.8 60.4c-1 1.8.1 4 2.1 4h18.4l3.8-10.7-13.5-13.5-10.8 20.2zM81.2 60.4L70.4 40.2 56.9 53.7l3.8 10.7h18.4c2 0 3.1-2.2 2.1-4zM50 30L38.4 53.7l11.6 11.6 11.6-11.6L50 30z" fill="white"/>
+        </svg>
+      </div>
+      <span class="t-name">Trello</span>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- SKILLS -->
+<section class="skills-section reveal">
+  <p class="sec-label">SKILLS</p>
+  <div class="skills-grid" id="skillsGrid">
+
+    <div class="skill-item">
+      <div class="skill-top">
+        <span class="skill-name">Brand Identity</span>
+        <span class="skill-pct">95%</span>
+      </div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="95"></div></div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-top">
+        <span class="skill-name">Social Media Design</span>
+        <span class="skill-pct">98%</span>
+      </div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="98"></div></div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-top">
+        <span class="skill-name">Print & Packaging</span>
+        <span class="skill-pct">90%</span>
+      </div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="90"></div></div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-top">
+        <span class="skill-name">Video Editing</span>
+        <span class="skill-pct">82%</span>
+      </div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="82"></div></div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-top">
+        <span class="skill-name">UI/UX Design</span>
+        <span class="skill-pct">85%</span>
+      </div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="85"></div></div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-top">
+        <span class="skill-name">Copywriting</span>
+        <span class="skill-pct">78%</span>
+      </div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="78"></div></div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-top">
+        <span class="skill-name">Website Design</span>
+        <span class="skill-pct">80%</span>
+      </div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="80"></div></div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- EXPERIENCE TIMELINE -->
+<section class="timeline-section">
+  <p class="sec-label reveal">EXPERIENCE</p>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-body">
+        <p class="tl-period">2026 — PRESENT</p>
+        <p class="tl-role">Creative Lead / Graphic Designer</p>
+        <p class="tl-company">Justprints Limited (by Plusfrica)</p>
+        <ul class="tl-bullets">
+          <li>Deliver social media designs and print-ready client jobs for a premium printing and branding company.</li>
+          <li>Led a 20-design content production sprint, building structured creative briefs and AI-assisted workflows (Midjourney, FLUX.1, Adobe Firefly).</li>
+          <li>Built reusable prompt templates for layout-preserving design generation, reducing turnaround time on repeat requests.</li>
+          <li>Work directly with clients to confirm print specs, brand guidelines, and final artwork sign-off.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-body">
+        <p class="tl-period">JAN 2022 — PRESENT</p>
+        <p class="tl-role">Freelance Graphic Designer & Brand Strategist</p>
+        <p class="tl-company">Favour TL — Self-Employed</p>
+        <ul class="tl-bullets">
+          <li>Completed design projects for 100+ clients, including tech and e-commerce startups.</li>
+          <li>Designed website sales funnels and landing pages to support product launches and marketing campaigns.</li>
+          <li>Produced posters, social media graphics, and email templates contributing to a 20% increase in brand recognition and 10% rise in conversion rates.</li>
+          <li>Delivered brand identity and logo design projects for clients such as Janna's Bowls and Teolyx Digital Solutions.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-body">
+        <p class="tl-period">NOV 2023 — 2025</p>
+        <p class="tl-role">Brand Design Lead / UI Designer</p>
+        <p class="tl-company">Frootify</p>
+        <ul class="tl-bullets">
+          <li>Led the design team for a health and wellness brand, producing assets for both digital and print use.</li>
+          <li>Increased brand recognition by 15% through strategic design decisions across platforms.</li>
+          <li>Designed the brand's app screens and website — wireframes, prototypes, and mockups.</li>
+          <li>Collaborated with marketing and engineering teams to maintain visual consistency across all products.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- EDUCATION -->
+<section class="skills-section reveal">
+  <p class="sec-label">EDUCATION & CERTIFICATIONS</p>
+  <div style="display:flex;flex-direction:column;gap:24px;max-width:640px;">
+
+    <div style="background:var(--glass);border:1px solid var(--line);border-radius:16px;padding:24px 28px;">
+      <p style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1rem;color:var(--ink);margin-bottom:8px;">B.A. Graphics Design (Final Year)</p>
+      <p style="font-size:13px;color:var(--ink-soft);font-style:italic;">Olabisi Onabanjo University, Ibogun Campus</p>
+    </div>
+
+    <div style="background:var(--glass);border:1px solid var(--line);border-radius:16px;padding:24px 28px;">
+      <p style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.9rem;color:var(--ink);margin-bottom:14px;">Certifications</p>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+        <li style="font-size:13px;color:var(--ink-soft);padding-left:16px;position:relative;">
+          <span style="position:absolute;left:0;top:8px;width:5px;height:1px;background:rgba(255,255,255,.3);display:block;"></span>
+          GB Digitals Graphic Design Academy — Certificate
+        </li>
+        <li style="font-size:13px;color:var(--ink-soft);padding-left:16px;position:relative;">
+          <span style="position:absolute;left:0;top:8px;width:5px;height:1px;background:rgba(255,255,255,.3);display:block;"></span>
+          Chisom Ogbonna's D&E Course: Design With the Billionaire
+        </li>
+        <li style="font-size:13px;color:var(--ink-soft);padding-left:16px;position:relative;">
+          <span style="position:absolute;left:0;top:8px;width:5px;height:1px;background:rgba(255,255,255,.3);display:block;"></span>
+          GB Digitals' Flyer for Profit
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- VIBE WHEN WORKING -->
+<section class="vibe-section reveal">
+  <p class="sec-label">VIBE WHEN WORKING</p>
+  <p class="vibe-intro">
+    Every great design session has a soundtrack. Here's what's usually playing when I'm in the zone — feel free to listen in.
+  </p>
+  <div class="spotify-grid">
+    <div class="spotify-card">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2jStgsgQWFNIKdloTLJd6F?utm_source=generator&theme=0&si=209a38ea5fe44563" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+    <div class="spotify-card">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4KiMR2stFyYXenTQPonWTV?utm_source=generator&si=f568a2766a5c4b52" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+    <div class="spotify-card">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4KtT8dN9QaCPNwxtJwhKmB?utm_source=generator&si=66c30b6f3d4d4448" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+    <div class="spotify-card">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5denxHwiQxVrZSANjsDh8C?utm_source=generator&si=8bf938cad328422a" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- CONNECT -->
+<section class="connect-section reveal">
+  <h2 class="connect-headline">
+    Let's Connect.<br>
+    <em>Say hello.</em>
+  </h2>
+  <p class="connect-sub">
+    Whether you have a project in mind or just want to say hello — I'm always open to a conversation.
+  </p>
+  <div class="connect-actions">
+    <a class="btn-white" href="https://calendly.com/favouronasanya22/30min" target="_blank" rel="noopener">
+      📅 Book a Call
+    </a>
+    <a class="btn-outline" href="mailto:favouronasanya22@gmail.com">Send an Email</a>
+    <a class="btn-outline" href="https://wa.link/wd8bjt" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="about-footer">
+  <span>© 2025 FAVOUR ONASANYA TL</span>
+  <a href="index.html">← Back to Portfolio</a>
+</footer>
+
+<script>
+// ── Intersection Observer for reveal + skill bars + timeline ──
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+
+      // Animate skill bars
+      e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        bar.style.width = bar.dataset.w + '%';
+      });
+
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: .18 });
+
+document.querySelectorAll('.reveal, .tl-item').forEach(el => io.observe(el));
+
+// Trigger skill bars if already in view on load
+document.querySelectorAll('#skillsGrid .skill-bar-fill').forEach(bar => {
+  const rect = bar.getBoundingClientRect();
+  if (rect.top < window.innerHeight) bar.style.width = bar.dataset.w + '%';
+});
+</script>
+</body>
+</html>
