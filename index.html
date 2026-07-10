@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Favour Onasanya — Visual Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #0a0a0a;
+    --bg-1:     #111111;
+    --bg-2:     #181818;
+    --ink:      #ffffff;
+    --ink-soft: rgba(255,255,255,.5);
+    --ink-mute: rgba(255,255,255,.25);
+    --line:     rgba(255,255,255,.09);
+    --glass:    rgba(255,255,255,.04);
+    --pill-bg:  rgba(255,255,255,.08);
+  }
+
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  ::selection { background:#fff; color:#000; }
+
+  /* ── GRID BACKGROUND ── */
+  .bg-grid {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  section, header, footer, nav { position: relative; z-index: 2; }
+
+  /* ══════════════════════════════════════
+     NAV
+  ══════════════════════════════════════ */
+  .navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 68px;
+    background: rgba(10,10,10,.75);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; color: var(--ink);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: -.01em;
+  }
+
+  .nav-logo-avatar {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--bg-2);
+    border: 1.5px solid rgba(255,255,255,.15);
+    overflow: hidden; display: flex; align-items: center; justify-content: center;
+  }
+
+  .nav-logo-avatar svg { width: 18px; height: 18px; color: var(--ink-soft); }
+
+  .nav-links {
+    display: flex; gap: 36px; list-style: none;
+    position: absolute; left: 50%; transform: translateX(-50%);
+  }
+
+  .nav-links a {
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500;
+    color: var(--ink-soft); text-decoration: none;
+    transition: color .25s ease;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  .nav-cta {
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+    color: var(--bg); background: var(--ink);
+    border: none; border-radius: 999px;
+    padding: 10px 22px; cursor: pointer; text-decoration: none;
+    transition: background .25s, transform .25s;
+  }
+  .nav-cta:hover { background: rgba(255,255,255,.85); transform: translateY(-1px); }
+
+  /* ══════════════════════════════════════
+     HERO
+  ══════════════════════════════════════ */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    gap: 0;
+  }
+
+  /* Avatar */
+  .hero-avatar {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: var(--bg-2);
+    border: 2px solid rgba(255,255,255,.15);
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+    box-shadow: 0 0 0 6px rgba(255,255,255,.04);
+  }
+  .hero-avatar svg { width: 40px; height: 40px; color: var(--ink-soft); }
+  .hero-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Role pill */
+  .hero-role {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
+    color: var(--ink-soft);
+    background: var(--pill-bg); border: 1px solid var(--line);
+    padding: 7px 16px; border-radius: 999px;
+    margin-bottom: 36px; backdrop-filter: blur(8px);
+  }
+  .hero-role .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(255,255,255,.6);
+  }
+
+  /* Headline */
+  .hero-headline {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.8rem, 6.5vw, 5.4rem);
+    line-height: 1.04; letter-spacing: -.03em;
+    color: var(--ink);
+    max-width: 16ch;
+    margin-bottom: 24px;
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    color: rgba(255,255,255,.7);
+  }
+
+  /* Sub */
+  .hero-sub {
+    font-size: 1rem; line-height: 1.75;
+    color: var(--ink-soft); max-width: 46ch;
+    margin-bottom: 40px;
+  }
+
+  /* CTA row */
+  .hero-cta {
+    display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+    margin-bottom: 56px;
+  }
+
+  .btn-dark {
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+    color: var(--ink); background: var(--bg-2);
+    border: 1px solid rgba(255,255,255,.14);
+    padding: 14px 28px; border-radius: 999px;
+    text-decoration: none; cursor: pointer;
+    transition: background .25s, border-color .25s, transform .25s;
+  }
+  .btn-dark:hover { background: var(--bg-1); border-color: rgba(255,255,255,.3); transform: translateY(-2px); }
+
+  .btn-light {
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+    color: var(--bg); background: var(--ink);
+    border: none; border-radius: 999px;
+    padding: 14px 28px; text-decoration: none; cursor: pointer;
+    transition: background .25s, transform .25s;
+  }
+  .btn-light:hover { background: rgba(255,255,255,.85); transform: translateY(-2px); }
+
+  /* Stats */
+  .stat-row {
+    display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+  }
+
+  .stat-chip {
+    background: var(--glass); border: 1px solid var(--line);
+    border-radius: 16px; backdrop-filter: blur(12px);
+    padding: 18px 26px; min-width: 140px; text-align: center;
+    animation: float 6s ease-in-out infinite;
+  }
+  .stat-chip:nth-child(2) { animation-delay: -2s; }
+  .stat-chip:nth-child(3) { animation-delay: -4s; }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-7px); }
+  }
+
+  .stat-num {
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.8rem;
+    color: var(--ink);
+  }
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: .1em; color: var(--ink-soft); margin-top: 6px;
+  }
+
+  /* ══════════════════════════════════════
+     TICKER
+  ══════════════════════════════════════ */
+  .ticker-wrap {
+    width: 100%; overflow: hidden;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 18px 0;
+    background: var(--bg-1);
+    position: relative; z-index: 2;
+  }
+
+  .ticker-track {
+    display: flex; gap: 0;
+    animation: tickerScroll 28s linear infinite;
+    width: max-content;
+  }
+  .ticker-track:hover { animation-play-state: paused; }
+
+  @keyframes tickerScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .ticker-item {
+    display: inline-flex; align-items: center; gap: 20px;
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
+    color: var(--ink-soft); padding: 0 32px; white-space: nowrap;
+  }
+
+  .ticker-item .sep {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: rgba(255,255,255,.3);
+    display: inline-block;
+  }
+
+  /* ══════════════════════════════════════
+     WORK SECTION — INFINITE VERTICAL SCROLL
+  ══════════════════════════════════════ */
+  .work-section {
+    padding: 80px 0 0;
+    overflow: hidden;
+  }
+
+  .work-head {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    border-bottom: 1px solid var(--line);
+    padding: 0 8vw 22px; margin-bottom: 48px;
+  }
+
+  .work-head h2 {
+    font-family: 'Fraunces', serif; font-weight: 600; font-style: italic;
+    font-size: clamp(1.6rem, 3vw, 2.4rem); color: var(--ink);
+  }
+
+  .work-head span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: .14em; color: var(--ink-soft);
+  }
+
+  /* Columns container */
+  .work-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 0 8vw;
+    height: 85vh;
+    overflow: hidden;
+  }
+
+  .work-col {
+    overflow: hidden;
+    position: relative;
+    border-radius: 18px;
+  }
+
+  /* Fade edges top & bottom */
+  .work-col::before,
+  .work-col::after {
+    content: ""; position: absolute; left: 0; right: 0; z-index: 10;
+    pointer-events: none; height: 80px;
+  }
+  .work-col::before {
+    top: 0;
+    background: linear-gradient(to bottom, var(--bg), transparent);
+  }
+  .work-col::after {
+    bottom: 0;
+    background: linear-gradient(to top, var(--bg), transparent);
+  }
+
+  /* The scrolling inner track */
+  .col-track {
+    display: flex; flex-direction: column; gap: 16px;
+    animation: scrollUp var(--dur, 30s) linear infinite;
+    will-change: transform;
+  }
+
+  .work-col:nth-child(1) .col-track { --dur: 32s; }
+  .work-col:nth-child(2) .col-track { --dur: 28s; animation-direction: normal; }
+  .work-col:nth-child(3) .col-track { --dur: 35s; }
+
+  /* Hover — slow down */
+  .work-col:hover .col-track {
+    animation-duration: 90s;
+  }
+
+  @keyframes scrollUp {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-50%); }
+  }
+
+  /* Individual card */
+  .work-card {
+    position: relative; overflow: hidden;
+    border-radius: 14px; border: 1px solid var(--line);
+    cursor: pointer; flex-shrink: 0;
+    transition: border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+  }
+
+  .work-card:hover {
+    border-color: rgba(255,255,255,.28);
+    box-shadow: 0 12px 40px rgba(0,0,0,.6);
+    transform: scale(1.02);
+  }
+
+  .work-card .card-fill {
+    width: 100%; display: block;
+    background: var(--g, var(--bg-2));
+    transition: filter .4s ease;
+  }
+
+  .work-card:hover .card-fill { filter: brightness(1.1); }
+
+  .work-card .card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.65) 0%, transparent 50%);
+    pointer-events: none;
+    opacity: 0; transition: opacity .3s ease;
+  }
+  .work-card:hover .card-overlay { opacity: 1; }
+
+  .work-card .card-tag {
+    position: absolute; left: 12px; bottom: 12px; z-index: 2;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .07em;
+    color: #fff; background: rgba(0,0,0,.4); backdrop-filter: blur(6px);
+    padding: 6px 12px; border: 1px solid rgba(255,255,255,.18); border-radius: 999px;
+    opacity: 0; transform: translateY(6px);
+    transition: opacity .3s ease, transform .3s ease;
+  }
+  .work-card:hover .card-tag { opacity: 1; transform: translateY(0); }
+
+  .work-card .card-expand {
+    position: absolute; top: 12px; right: 12px; z-index: 2;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(0,0,0,.45); backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,.2);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: scale(.85);
+    transition: opacity .3s ease, transform .3s ease;
+  }
+  .work-card:hover .card-expand { opacity: 1; transform: scale(1); }
+  .work-card .card-expand svg { width: 14px; height: 14px; color: #fff; }
+
+  /* ══════════════════════════════════════
+     LIGHTBOX
+  ══════════════════════════════════════ */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity .35s ease;
+  }
+  .lightbox.open { opacity: 1; pointer-events: all; }
+
+  .lb-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,.82);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+  }
+
+  .lb-content {
+    position: relative; z-index: 2;
+    max-width: min(90vw, 900px);
+    width: 100%;
+    transform: scale(.94) translateY(20px);
+    transition: transform .4s cubic-bezier(.2,.8,.2,1);
+  }
+  .lightbox.open .lb-content { transform: scale(1) translateY(0); }
+
+  .lb-img-wrap {
+    border-radius: 20px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,.1);
+    box-shadow: 0 40px 100px rgba(0,0,0,.8);
+    background: var(--bg-2);
+    min-height: 200px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .lb-img-wrap .lb-ph {
+    width: 100%; display: block;
+  }
+
+  .lb-img-wrap img {
+    width: 100%; display: block;
+    border-radius: 20px;
+  }
+
+  .lb-meta {
+    margin-top: 18px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .lb-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .08em;
+    color: var(--ink-soft);
+  }
+
+  .lb-close {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: var(--ink);
+    transition: background .25s, transform .25s;
+  }
+  .lb-close:hover { background: rgba(255,255,255,.18); transform: rotate(90deg); }
+  .lb-close svg { width: 18px; height: 18px; }
+
+  /* ══════════════════════════════════════
+     SOCIAL DOCK
+  ══════════════════════════════════════ */
+  .social-dock {
+    position: fixed; bottom: 28px; right: 28px; z-index: 50;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+
+  .social-dock a {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--glass); border: 1px solid var(--line);
+    backdrop-filter: blur(10px); color: var(--ink-soft);
+    text-decoration: none;
+    transition: all .3s ease;
+  }
+
+  .social-dock a:hover {
+    color: var(--bg); background: var(--ink);
+    border-color: transparent; transform: translateY(-3px) scale(1.06);
+    box-shadow: 0 8px 26px rgba(255,255,255,.15);
+  }
+  .social-dock svg { width: 18px; height: 18px; }
+
+  /* ══════════════════════════════════════
+     FOOTER
+  ══════════════════════════════════════ */
+  footer {
+    padding: 80px 8vw 60px;
+    border-top: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 32px;
+    margin-top: 80px;
+  }
+
+  .foot-headline {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800; font-size: clamp(1.8rem, 4vw, 3.4rem);
+    line-height: 1.1; letter-spacing: -.02em; max-width: 18ch;
+  }
+
+  .foot-headline em {
+    font-style: italic; font-family: 'Fraunces', serif; font-weight: 500;
+    color: rgba(255,255,255,.55);
+  }
+
+  .foot-meta {
+    display: flex; flex-wrap: wrap; gap: 24px; align-items: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    letter-spacing: .06em; color: var(--ink-soft);
+  }
+
+  .foot-meta a {
+    color: var(--ink); text-decoration: none;
+    border-bottom: 1px solid var(--line); padding-bottom: 2px;
+    transition: border-color .3s, color .3s;
+  }
+  .foot-meta a:hover { border-color: rgba(255,255,255,.5); color: var(--ink); }
+
+  .foot-social { display: flex; gap: 12px; }
+  .foot-social a {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line); background: var(--glass);
+    text-decoration: none; color: var(--ink-soft);
+    transition: all .3s ease;
+  }
+  .foot-social a:hover {
+    background: var(--ink); border-color: transparent;
+    color: var(--bg); transform: translateY(-3px);
+  }
+  .foot-social svg { width: 16px; height: 16px; }
+
+  .foot-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+    border-top: 1px solid var(--line); padding-top: 28px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: .08em; color: var(--ink-mute);
+  }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════════════ */
+  @media (max-width: 860px) {
+    .work-columns { grid-template-columns: repeat(2, 1fr); height: 80vh; }
+    .work-col:nth-child(3) { display: none; }
+    .nav-links { display: none; }
+    .navbar { padding: 0 24px; }
+  }
+
+  @media (max-width: 540px) {
+    .work-columns { grid-template-columns: 1fr; height: 75vh; }
+    .work-col:nth-child(2) { display: none; }
+    .hero-headline { font-size: 2.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<!-- ══ NAV ══ -->
+<nav class="navbar">
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-avatar">
+      <!-- Replace with: <img src="your-photo.jpg" alt="Favour"> -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/>
+      </svg>
+    </div>
+    Favour TL
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="mailto:favouronasanya22@gmail.com">Contact</a></li>
+  </ul>
+
+  <a class="nav-cta" href="mailto:favouronasanya22@gmail.com">Book a Call</a>
+</nav>
+
+<!-- ══ SOCIAL DOCK ══ -->
+<div class="social-dock">
+  <a href="https://wa.link/wd8bjt" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5-.1-.1-.6-1.4-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2 0-.2-.2-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3c-.9-1.4-1.3-3-1.3-4.6 0-4.6 3.8-8.4 8.4-8.4 2.2 0 4.3.9 5.9 2.5 1.6 1.6 2.5 3.7 2.5 5.9.1 4.7-3.7 8.5-8.3 8.5z"/></svg>
+  </a>
+  <a href="https://www.instagram.com/favour_onasanya/" target="_blank" rel="noopener" aria-label="Instagram">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+  </a>
+  <a href="https://www.linkedin.com/in/favour-onasanya-tl-05808222a/" target="_blank" rel="noopener" aria-label="LinkedIn">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V23h-4v-6.8c0-1.62-.03-3.7-2.25-3.7-2.26 0-2.6 1.77-2.6 3.6V23h-4V8z"/></svg>
+  </a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-avatar">
+    <!-- Replace with: <img src="your-photo.jpg" alt="Favour Onasanya"> -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+      <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/>
+    </svg>
+  </div>
+
+  <div class="hero-role"><span class="dot"></span>Visual Designer</div>
+
+  <h1 class="hero-headline">
+    Visual work with enough presence to make people <em>stop and stare.</em>
+  </h1>
+
+  <p class="hero-sub">
+    Favour brings brands to life through design, vision, and creative excellence. Based in Nigeria — working with clients everywhere.
+  </p>
+
+  <div class="hero-cta">
+    <a class="btn-dark" href="#work">See My Work</a>
+    <a class="btn-light" href="mailto:favouronasanya22@gmail.com">Book a Call</a>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-chip">
+      <div class="stat-num">100+</div>
+      <div class="stat-label">CLIENTS SERVED</div>
+    </div>
+    <div class="stat-chip">
+      <div class="stat-num">20%</div>
+      <div class="stat-label">AVG. BRAND GROWTH</div>
+    </div>
+    <div class="stat-chip">
+      <div class="stat-num">4+ yrs</div>
+      <div class="stat-label">IN DESIGN</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TICKER ══ -->
+<div class="ticker-wrap" id="services">
+  <div class="ticker-track">
+    <!-- Set 1 -->
+    <span class="ticker-item">UI/UX Design<span class="sep"></span></span>
+    <span class="ticker-item">Video Production<span class="sep"></span></span>
+    <span class="ticker-item">Social Media Design<span class="sep"></span></span>
+    <span class="ticker-item">Creative Thinking<span class="sep"></span></span>
+    <span class="ticker-item">Website Copywriting<span class="sep"></span></span>
+    <span class="ticker-item">Brand Identity<span class="sep"></span></span>
+    <span class="ticker-item">Packaging Design<span class="sep"></span></span>
+    <span class="ticker-item">Print Design<span class="sep"></span></span>
+    <span class="ticker-item">Pitch Decks<span class="sep"></span></span>
+    <span class="ticker-item">Motion Graphics<span class="sep"></span></span>
+    <!-- Set 2 — duplicate for seamless loop -->
+    <span class="ticker-item">UI/UX Design<span class="sep"></span></span>
+    <span class="ticker-item">Video Production<span class="sep"></span></span>
+    <span class="ticker-item">Social Media Design<span class="sep"></span></span>
+    <span class="ticker-item">Creative Thinking<span class="sep"></span></span>
+    <span class="ticker-item">Website Copywriting<span class="sep"></span></span>
+    <span class="ticker-item">Brand Identity<span class="sep"></span></span>
+    <span class="ticker-item">Packaging Design<span class="sep"></span></span>
+    <span class="ticker-item">Print Design<span class="sep"></span></span>
+    <span class="ticker-item">Pitch Decks<span class="sep"></span></span>
+    <span class="ticker-item">Motion Graphics<span class="sep"></span></span>
+  </div>
+</div>
+
+<!-- ══ WORK SECTION ══ -->
+<section class="work-section" id="work">
+  <div class="work-head">
+    <h2>The Catalogue</h2>
+    <span>2022 — 2026</span>
+  </div>
+
+  <div class="work-columns">
+
+    <!-- COLUMN 1 -->
+    <div class="work-col" id="col1">
+      <div class="col-track" id="track1">
+        <!-- Cards injected by JS -->
+      </div>
+    </div>
+
+    <!-- COLUMN 2 -->
+    <div class="work-col" id="col2">
+      <div class="col-track" id="track2">
+      </div>
+    </div>
+
+    <!-- COLUMN 3 -->
+    <div class="work-col" id="col3">
+      <div class="col-track" id="track3">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="foot-headline">
+    Let's make something <em>worth a second scroll.</em>
+  </div>
+
+  <div class="foot-meta">
+    <a href="mailto:favouronasanya22@gmail.com">favouronasanya22@gmail.com</a>
+    <a href="tel:+2348062283254">+234 806 228 3254</a>
+    <span>REMOTE / NIGERIA</span>
+    <div class="foot-social">
+      <a href="https://wa.link/wd8bjt" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5-.1-.1-.6-1.4-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2 0-.2-.2-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3c-.9-1.4-1.3-3-1.3-4.6 0-4.6 3.8-8.4 8.4-8.4 2.2 0 4.3.9 5.9 2.5 1.6 1.6 2.5 3.7 2.5 5.9.1 4.7-3.7 8.5-8.3 8.5z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/favour_onasanya/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/favour-onasanya-tl-05808222a/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V23h-4v-6.8c0-1.62-.03-3.7-2.25-3.7-2.26 0-2.6 1.77-2.6 3.6V23h-4V8z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="foot-bottom">
+    <span>© 2025 FAVOUR ONASANYA. ALL RIGHTS RESERVED.</span>
+    <a href="Favour_Onasanya_CV.pdf" download style="color:inherit; border-bottom:1px solid var(--line); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.08em;">
+      DOWNLOAD RÉSUMÉ ↓
+    </a>
+  </div>
+</footer>
+
+<!-- ══ LIGHTBOX ══ -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-backdrop" id="lbBackdrop"></div>
+  <div class="lb-content">
+    <div class="lb-img-wrap" id="lbImgWrap">
+      <!-- image injected here -->
+    </div>
+    <div class="lb-meta">
+      <span class="lb-tag" id="lbTag"></span>
+      <button class="lb-close" id="lbClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════
+// WORK CARDS DATA
+// Each card: { tag, ratio (padding-top %), gradient }
+// Replace gradient with src:"your-image.jpg" when ready
+// ══════════════════════════════════════════════════
+const cards = [
+  // Column 1
+  { col:1, tag:"LINKEDIN BANNER · 4:1",      pt:"25%",  g:"linear-gradient(135deg,#1a1a1a,#2d2d2d)" },
+  { col:1, tag:"INSTAGRAM POST · 1:1",        pt:"100%", g:"linear-gradient(145deg,#111,#222)" },
+  { col:1, tag:"POSTER · 3:4",                pt:"133%", g:"linear-gradient(160deg,#1c1c1c,#2a2a2a)" },
+  { col:1, tag:"BUSINESS CARD · 7:4",         pt:"57%",  g:"linear-gradient(135deg,#181818,#2e2e2e)" },
+  { col:1, tag:"BRAND MARK · 1:1",            pt:"100%", g:"linear-gradient(135deg,#1a1a1a,#303030)" },
+  { col:1, tag:"WEB BANNER · 5:3",            pt:"60%",  g:"linear-gradient(120deg,#202020,#282828)" },
+
+  // Column 2
+  { col:2, tag:"INSTAGRAM STORY · 9:16",      pt:"177%", g:"linear-gradient(150deg,#181818,#252525)" },
+  { col:2, tag:"SOCIAL CAROUSEL · 1:1",       pt:"100%", g:"linear-gradient(135deg,#1e1e1e,#2c2c2c)" },
+  { col:2, tag:"PITCH DECK SLIDE · 16:9",     pt:"56%",  g:"linear-gradient(135deg,#151515,#272727)" },
+  { col:2, tag:"PACKAGING LABEL · 1:1",       pt:"100%", g:"linear-gradient(120deg,#1a1a1a,#2e2e2e)" },
+  { col:2, tag:"LANDING PAGE · 2:3",          pt:"150%", g:"linear-gradient(135deg,#111,#232323)" },
+
+  // Column 3
+  { col:3, tag:"FULL PAGE MOCKUP · 9:20",     pt:"222%", g:"linear-gradient(135deg,#1c1c1c,#2b2b2b)" },
+  { col:3, tag:"EMAIL TEMPLATE · 1:2",        pt:"200%", g:"linear-gradient(145deg,#181818,#262626)" },
+  { col:3, tag:"FLYER · 3:4",                 pt:"133%", g:"linear-gradient(160deg,#141414,#222)" },
+  { col:3, tag:"YOUTUBE THUMBNAIL · 16:9",    pt:"56%",  g:"linear-gradient(135deg,#1e1e1e,#2d2d2d)" },
+  { col:3, tag:"BOOK COVER · 2:3",            pt:"150%", g:"linear-gradient(135deg,#111,#1e1e1e)" },
+];
+
+// ══════════════════════════════════════════════════
+// BUILD CARDS & DUPLICATE FOR INFINITE SCROLL
+// ══════════════════════════════════════════════════
+function makeCard(data) {
+  const card = document.createElement('div');
+  card.className = 'work-card';
+  card.dataset.tag = data.tag;
+
+  const fill = document.createElement('div');
+  fill.className = 'card-fill';
+  fill.style.cssText = `padding-top:${data.pt}; background:${data.g};`;
+
+  // If you have a real image src, use:
+  // const img = document.createElement('img');
+  // img.src = data.src; img.alt = data.tag;
+  // card.appendChild(img);
+
+  const overlay = document.createElement('div');
+  overlay.className = 'card-overlay';
+
+  const tag = document.createElement('span');
+  tag.className = 'card-tag';
+  tag.textContent = data.tag;
+
+  const expand = document.createElement('div');
+  expand.className = 'card-expand';
+  expand.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
+    <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+  </svg>`;
+
+  card.appendChild(fill);
+  card.appendChild(overlay);
+  card.appendChild(tag);
+  card.appendChild(expand);
+
+  // Store fill info for lightbox
+  card.dataset.gradient = data.g;
+  card.dataset.pt = data.pt;
+
+  return card;
+}
+
+[1,2,3].forEach(colNum => {
+  const track = document.getElementById(`track${colNum}`);
+  const colCards = cards.filter(c => c.col === colNum);
+
+  // Original set
+  colCards.forEach(data => track.appendChild(makeCard(data)));
+  // Duplicate set for seamless loop
+  colCards.forEach(data => track.appendChild(makeCard(data)));
+});
+
+// ══════════════════════════════════════════════════
+// JAVASCRIPT-DRIVEN SMOOTH SCROLL
+// (More reliable than CSS animation for pause/resume)
+// ══════════════════════════════════════════════════
+const colState = [
+  { id:'track1', speed:0.4,  pos:0, paused:false, hovered:false },
+  { id:'track2', speed:0.35, pos:0, paused:false, hovered:false },
+  { id:'track3', speed:0.45, pos:0, paused:false, hovered:false },
+];
+
+// Remove CSS animation — we control it with JS
+document.querySelectorAll('.col-track').forEach(t => {
+  t.style.animation = 'none';
+});
+
+let globalPaused = false;
+let rafId;
+
+function animate() {
+  colState.forEach(state => {
+    const track = document.getElementById(state.id);
+    if (!track) return;
+
+    if (!state.paused && !globalPaused) {
+      const effectiveSpeed = state.hovered ? state.speed * 0.18 : state.speed;
+      state.pos += effectiveSpeed;
+
+      // Reset when we've scrolled exactly half (the duplicate)
+      const halfH = track.scrollHeight / 2;
+      if (state.pos >= halfH) state.pos = 0;
+
+      track.style.transform = `translateY(-${state.pos}px)`;
+    }
+  });
+
+  rafId = requestAnimationFrame(animate);
+}
+
+// Hover events per column
+[1,2,3].forEach((colNum, i) => {
+  const col = document.getElementById(`col${colNum}`);
+  col.addEventListener('mouseenter', () => { colState[i].hovered = true; });
+  col.addEventListener('mouseleave', () => { colState[i].hovered = false; });
+});
+
+animate();
+
+// ══════════════════════════════════════════════════
+// LIGHTBOX
+// ══════════════════════════════════════════════════
+const lightbox   = document.getElementById('lightbox');
+const lbImgWrap  = document.getElementById('lbImgWrap');
+const lbTag      = document.getElementById('lbTag');
+const lbClose    = document.getElementById('lbClose');
+const lbBackdrop = document.getElementById('lbBackdrop');
+
+function openLightbox(card) {
+  // Pause all columns
+  globalPaused = true;
+
+  // Build content
+  lbImgWrap.innerHTML = '';
+
+  // If card has real img src:
+  // const img = document.createElement('img');
+  // img.src = card.dataset.src; img.alt = card.dataset.tag;
+  // lbImgWrap.appendChild(img);
+
+  // Placeholder fill
+  const ph = document.createElement('div');
+  ph.className = 'lb-ph';
+  ph.style.cssText = `
+    background:${card.dataset.gradient};
+    padding-top:${card.dataset.pt};
+    max-height:75vh; overflow:hidden;
+  `;
+  lbImgWrap.appendChild(ph);
+
+  lbTag.textContent = card.dataset.tag;
+
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+  // Small delay so close animation plays before resuming
+  setTimeout(() => { globalPaused = false; }, 350);
+}
+
+// Delegate click on work cards
+document.querySelector('.work-columns').addEventListener('click', e => {
+  const card = e.target.closest('.work-card');
+  if (card) openLightbox(card);
+});
+
+lbClose.addEventListener('click', closeLightbox);
+lbBackdrop.addEventListener('click', closeLightbox);
+
+// ESC key
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+});
+</script>
+</body>
+</html>
