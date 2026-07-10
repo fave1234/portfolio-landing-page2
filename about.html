@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0a0a0a;--bg-1:#111;--bg-2:#181818;
+  --bg:#0a0a0a;--bg-1:#111;--bg-2:#181818;--bg-card:#141414;
   --ink:#fff;--ink-soft:rgba(255,255,255,.5);--ink-mute:rgba(255,255,255,.22);
-  --line:rgba(255,255,255,.09);--glass:rgba(255,255,255,.04);
+  --line:rgba(255,255,255,.09);--glass:rgba(255,255,255,.06);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -26,252 +26,259 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overfl
     linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
   background-size:64px 64px;
 }
-section,header,footer,nav{position:relative;z-index:2;}
+.page-wrap{position:relative;z-index:2;padding:32px 5vw 80px;}
 
 /* ── BACK BUTTON ── */
 .back-btn{
-  position:fixed;top:28px;left:32px;z-index:100;
-  display:flex;align-items:center;gap:10px;
+  display:inline-flex;align-items:center;gap:10px;
   text-decoration:none;color:var(--ink-soft);
   font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;
-  background:var(--glass);border:1px solid var(--line);
-  backdrop-filter:blur(12px);
+  background:var(--bg-card);border:1px solid var(--line);
   padding:10px 18px;border-radius:999px;
-  transition:all .3s ease;
+  transition:all .3s ease;margin-bottom:40px;
 }
 .back-btn:hover{color:var(--ink);border-color:rgba(255,255,255,.25);transform:translateX(-3px);}
-.back-btn svg{width:14px;height:14px;transition:transform .3s;}
-.back-btn:hover svg{transform:translateX(-3px);}
+.back-btn svg{width:14px;height:14px;}
 
-/* ── HERO ── */
-.about-hero{
-  min-height:100vh;
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;
-  align-items:center;padding:100px 8vw 60px;
-}
-.hero-left{display:flex;flex-direction:column;gap:28px;}
-
-.hero-eyebrow{
-  font-family:'JetBrains Mono',monospace;font-size:11px;
-  letter-spacing:.28em;color:var(--ink-mute);
-}
-
-.hero-big{
+/* ── PAGE HEADLINE ── */
+.page-headline{
   font-family:'Plus Jakarta Sans',sans-serif;
   font-weight:900;
-  font-size:clamp(3rem,5.5vw,5rem);
-  line-height:1.03;letter-spacing:-.03em;
+  font-size:clamp(3rem,7vw,6rem);
+  line-height:1.02;letter-spacing:-.035em;
+  margin-bottom:40px;
 }
-.hero-big em{
+.page-headline em{
   font-style:italic;font-family:'Fraunces',serif;font-weight:600;
-  color:rgba(255,255,255,.55);display:block;
+  color:rgba(255,255,255,.5);
 }
 
-.hero-bio{
-  font-size:1.05rem;line-height:1.8;color:var(--ink-soft);max-width:52ch;
+/* ── BENTO GRID ── */
+.bento{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:auto;
+  gap:16px;
 }
-.hero-bio strong{color:var(--ink);font-weight:600;}
 
-.hero-resume{
+/* Card base */
+.card{
+  background:var(--bg-card);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:32px;
+  position:relative;
+  overflow:hidden;
+}
+.card-label{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:.22em;color:var(--ink-mute);
+  margin-bottom:28px;
+}
+
+/* Intro card — spans 2 rows visually */
+.card-intro{
+  grid-column:1/2;
+  display:flex;flex-direction:column;gap:20px;
+}
+.card-photo{
+  grid-column:2/3;
+  grid-row:1/3;
+  padding:0;overflow:hidden;
+  min-height:480px;
+}
+.card-photo img{
+  width:100%;height:100%;object-fit:cover;display:block;border-radius:22px;
+}
+.card-photo .photo-ph{
+  width:100%;height:100%;min-height:480px;
+  background:radial-gradient(ellipse at 50% 30%,#1e1e1e,var(--bg-card));
+  display:flex;align-items:center;justify-content:center;border-radius:22px;
+}
+.card-photo .photo-ph svg{width:80px;height:80px;color:rgba(255,255,255,.1);}
+
+.intro-tagline{
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;
+  font-size:1.25rem;color:var(--ink);
+}
+.intro-bio{
+  font-size:14px;line-height:1.8;color:var(--ink-soft);
+}
+.intro-bio strong{color:var(--ink);}
+
+/* Resume card */
+.card-resume{
+  grid-column:1/2;
+  display:flex;flex-direction:column;justify-content:space-between;
+  gap:24px;min-height:200px;
+}
+.resume-text{
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;
+  font-size:1.3rem;line-height:1.3;color:var(--ink);max-width:22ch;
+}
+.resume-btn{
   display:inline-flex;align-items:center;gap:10px;
-  font-family:'Inter',sans-serif;font-size:14px;font-weight:600;
-  color:var(--bg);background:var(--ink);
-  padding:14px 28px;border-radius:999px;
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:600;
+  color:var(--ink);background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.18);
+  padding:12px 22px;border-radius:999px;
   text-decoration:none;width:fit-content;
   transition:all .25s;
 }
-.hero-resume:hover{background:rgba(255,255,255,.85);transform:translateY(-2px);}
-.hero-resume svg{width:14px;height:14px;}
+.resume-btn:hover{background:rgba(255,255,255,.18);transform:translateY(-2px);}
+.resume-btn svg{width:14px;height:14px;}
 
-/* Photo */
-.hero-right{display:flex;justify-content:center;align-items:center;}
-.about-photo-wrap{
-  position:relative;width:420px;max-width:100%;
-  aspect-ratio:4/5;border-radius:32px;overflow:hidden;
-  border:1px solid var(--line);
-  box-shadow:0 40px 80px rgba(0,0,0,.6);
+/* Experience card */
+.card-experience{
+  grid-column:2/3;
 }
-.about-photo-wrap img{
-  width:100%;height:100%;object-fit:cover;display:block;
+.tl-simple{display:flex;flex-direction:column;gap:0;}
+.tl-row{
+  display:grid;grid-template-columns:90px 1fr;gap:16px;
+  padding:16px 0;border-bottom:1px solid var(--line);
 }
-.photo-ph{
-  width:100%;height:100%;
-  background:radial-gradient(ellipse at 50% 30%,#222,#0a0a0a);
-  display:flex;align-items:center;justify-content:center;
-}
-.photo-ph svg{width:80px;height:80px;color:rgba(255,255,255,.1);}
-.about-photo-label{
-  position:absolute;bottom:0;left:0;right:0;
-  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;
-  color:rgba(255,255,255,.7);text-align:center;
-  background:rgba(0,0,0,.5);backdrop-filter:blur(8px);
-  padding:12px;border-top:1px solid var(--line);
-}
-
-/* ── DIVIDER ── */
-.section-divider{
-  border:none;border-top:1px solid var(--line);
-  margin:0 8vw;
-}
-
-/* ── SECTION LABEL ── */
-.sec-label{
-  font-family:'JetBrains Mono',monospace;font-size:11px;
-  letter-spacing:.24em;color:var(--ink-mute);
-  margin-bottom:40px;
-}
-.sec-label::before{content:"— ";}
-
-/* ── TOOLS ── */
-.tools-section{padding:80px 8vw;}
-.tools-grid{
-  display:flex;flex-wrap:wrap;gap:20px;
-}
-.tool-chip{
-  display:flex;align-items:center;gap:12px;
-  background:var(--glass);border:1px solid var(--line);
-  border-radius:14px;padding:14px 22px;
-  transition:all .35s ease;cursor:default;
-  filter:grayscale(1) brightness(.6);
-}
-.tool-chip:hover{
-  filter:grayscale(0) brightness(1);
-  border-color:rgba(255,255,255,.25);
-  transform:translateY(-3px);
-  box-shadow:0 12px 32px rgba(0,0,0,.5);
-}
-.tool-chip .t-icon{
-  width:28px;height:28px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.tool-chip .t-icon img{width:100%;height:100%;object-fit:contain;}
-.tool-chip .t-name{
-  font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:var(--ink);
-}
-
-/* ── SKILLS ── */
-.skills-section{padding:80px 8vw;}
-.skills-grid{display:flex;flex-direction:column;gap:28px;max-width:680px;}
-.skill-item{}
-.skill-top{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:10px;
-}
-.skill-name{
-  font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:var(--ink);
-}
-.skill-pct{
-  font-family:'JetBrains Mono',monospace;font-size:11px;
-  letter-spacing:.06em;color:var(--ink-soft);
-}
-.skill-bar-bg{
-  width:100%;height:4px;border-radius:999px;
-  background:rgba(255,255,255,.08);overflow:hidden;
-}
-.skill-bar-fill{
-  height:100%;border-radius:999px;
-  background:var(--ink);width:0;
-  transition:width 1.2s cubic-bezier(.2,.8,.2,1);
-}
-
-/* ── TIMELINE ── */
-.timeline-section{padding:80px 8vw;}
-.timeline{display:flex;flex-direction:column;gap:0;position:relative;}
-.timeline::before{
-  content:"";position:absolute;left:7px;top:8px;bottom:8px;
-  width:1px;background:var(--line);
-}
-.tl-item{
-  display:grid;grid-template-columns:32px 1fr;gap:24px;
-  padding-bottom:48px;
-  opacity:0;transform:translateY(24px);
-  transition:opacity .7s ease,transform .7s ease;
-}
-.tl-item.in{opacity:1;transform:translateY(0);}
-.tl-dot{
-  width:16px;height:16px;border-radius:50%;
-  background:var(--bg-2);border:2px solid rgba(255,255,255,.3);
-  margin-top:4px;flex-shrink:0;position:relative;z-index:1;
-}
-.tl-item:first-child .tl-dot{
-  background:var(--ink);border-color:var(--ink);
-  box-shadow:0 0 16px rgba(255,255,255,.3);
-}
-.tl-body{}
-.tl-period{
+.tl-row:last-child{border-bottom:none;}
+.tl-period-s{
   font-family:'JetBrains Mono',monospace;font-size:10px;
-  letter-spacing:.1em;color:var(--ink-mute);margin-bottom:8px;
+  letter-spacing:.06em;color:var(--ink-mute);padding-top:3px;
+  white-space:nowrap;
 }
-.tl-role{
+.tl-role-s{
   font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;
-  font-size:1.1rem;color:var(--ink);margin-bottom:4px;
+  font-size:.95rem;color:var(--ink);margin-bottom:3px;
 }
-.tl-company{
-  font-size:14px;color:var(--ink-soft);margin-bottom:14px;font-style:italic;
+.tl-company-s{
+  font-size:12px;color:var(--ink-soft);font-style:italic;
 }
-.tl-bullets{
-  list-style:none;display:flex;flex-direction:column;gap:8px;
+
+/* Education sub-section inside experience card */
+.edu-block{margin-top:28px;padding-top:24px;border-top:1px solid var(--line);}
+.edu-title{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:.22em;color:var(--ink-mute);margin-bottom:16px;
 }
-.tl-bullets li{
-  font-size:14px;line-height:1.65;color:var(--ink-soft);
-  padding-left:16px;position:relative;
+.edu-item{margin-bottom:14px;}
+.edu-name{
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;
+  font-size:.9rem;color:var(--ink);margin-bottom:3px;
 }
-.tl-bullets li::before{
-  content:"";position:absolute;left:0;top:9px;
+.edu-place{font-size:12px;color:var(--ink-soft);font-style:italic;}
+.cert-list{
+  display:flex;flex-direction:column;gap:8px;margin-top:14px;
+}
+.cert-item{
+  font-size:12px;color:var(--ink-soft);
+  padding-left:14px;position:relative;
+}
+.cert-item::before{
+  content:"";position:absolute;left:0;top:8px;
   width:5px;height:1px;background:rgba(255,255,255,.3);
 }
 
-/* ── SPOTIFY / VIBE ── */
-.vibe-section{padding:80px 8vw;}
-.vibe-intro{
-  font-size:1rem;line-height:1.75;color:var(--ink-soft);
-  max-width:54ch;margin-bottom:48px;
+/* Tools card */
+.card-tools{grid-column:1/2;}
+.tools-row{
+  display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;
 }
-.spotify-grid{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:20px;
+.tool-item{
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  cursor:default;
 }
-@media(max-width:700px){.spotify-grid{grid-template-columns:1fr;}}
-.spotify-card{
-  background:var(--bg-1);border:1px solid var(--line);
-  border-radius:18px;overflow:hidden;
-  transition:border-color .3s,transform .3s;
+.tool-icon-wrap{
+  width:48px;height:48px;border-radius:12px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  filter:grayscale(1) brightness(.55);
+  transition:filter .35s ease,transform .35s ease;
 }
-.spotify-card:hover{border-color:rgba(255,255,255,.2);transform:translateY(-3px);}
+.tool-item:hover .tool-icon-wrap{
+  filter:grayscale(0) brightness(1);
+  transform:translateY(-4px) scale(1.08);
+}
+.tool-icon-wrap svg{width:48px;height:48px;}
+.tool-name{
+  font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:.06em;color:var(--ink-mute);
+  transition:color .3s;
+}
+.tool-item:hover .tool-name{color:var(--ink-soft);}
 
-/* ── CONNECT ── */
-.connect-section{
-  padding:80px 8vw 100px;
-  display:flex;flex-direction:column;gap:28px;
+/* Skills card */
+.card-skills{grid-column:2/3;}
+.skills-list{display:flex;flex-direction:column;gap:20px;}
+.skill-item{}
+.skill-top{
+  display:flex;justify-content:space-between;
+  margin-bottom:8px;
 }
+.skill-name{font-size:13px;font-weight:600;color:var(--ink);}
+.skill-pct{
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);
+}
+.skill-bar-bg{
+  width:100%;height:3px;border-radius:999px;
+  background:rgba(255,255,255,.08);overflow:hidden;
+}
+.skill-bar-fill{
+  height:100%;border-radius:999px;background:var(--ink);
+  width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1);
+}
+
+/* Connect card — full width */
+.card-connect{
+  grid-column:1/3;
+  display:flex;flex-wrap:wrap;gap:32px;align-items:center;
+  justify-content:space-between;
+}
+.connect-text{}
 .connect-headline{
   font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;
-  font-size:clamp(2rem,4.5vw,3.6rem);line-height:1.05;letter-spacing:-.02em;
+  font-size:clamp(1.6rem,3.5vw,2.8rem);
+  line-height:1.05;letter-spacing:-.02em;margin-bottom:12px;
 }
 .connect-headline em{
   font-style:italic;font-family:'Fraunces',serif;font-weight:500;
   color:rgba(255,255,255,.5);
 }
-.connect-sub{
-  font-size:1rem;line-height:1.75;color:var(--ink-soft);max-width:50ch;
-}
-.connect-actions{display:flex;gap:14px;flex-wrap:wrap;}
-.btn-white{
-  font-size:14px;font-weight:600;color:var(--bg);
+.connect-sub{font-size:14px;line-height:1.7;color:var(--ink-soft);max-width:48ch;}
+.connect-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;}
+.btn-w{
+  font-size:13px;font-weight:600;color:var(--bg);
   background:var(--ink);border:none;border-radius:999px;
-  padding:14px 28px;text-decoration:none;
+  padding:12px 24px;text-decoration:none;
   transition:all .25s;display:inline-flex;align-items:center;gap:8px;
 }
-.btn-white:hover{background:rgba(255,255,255,.85);transform:translateY(-2px);}
-.btn-outline{
-  font-size:14px;font-weight:600;color:var(--ink);
-  background:transparent;border:1px solid rgba(255,255,255,.2);
-  border-radius:999px;padding:14px 28px;text-decoration:none;
+.btn-w:hover{background:rgba(255,255,255,.85);transform:translateY(-2px);}
+.btn-o{
+  font-size:13px;font-weight:600;color:var(--ink);
+  background:transparent;border:1px solid rgba(255,255,255,.18);
+  border-radius:999px;padding:12px 24px;text-decoration:none;
   transition:all .25s;
 }
-.btn-outline:hover{border-color:rgba(255,255,255,.5);transform:translateY(-2px);}
+.btn-o:hover{border-color:rgba(255,255,255,.45);transform:translateY(-2px);}
 
-/* ── FOOTER ── */
+/* Vibe / Spotify */
+.vibe-section{margin-top:16px;}
+.vibe-header{
+  display:flex;align-items:center;gap:12px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:700;font-size:1.1rem;
+  margin-bottom:20px;
+}
+.vibe-header svg{width:22px;height:22px;color:var(--ink-soft);}
+.spotify-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+}
+.spotify-card{
+  background:var(--bg-card);border:1px solid var(--line);
+  border-radius:18px;overflow:hidden;
+  transition:border-color .3s,transform .3s;
+}
+.spotify-card:hover{border-color:rgba(255,255,255,.2);transform:translateY(-3px);}
+
+/* Footer */
 .about-footer{
-  padding:32px 8vw;border-top:1px solid var(--line);
+  margin-top:40px;padding-top:28px;
+  border-top:1px solid var(--line);
   display:flex;justify-content:space-between;align-items:center;
   flex-wrap:wrap;gap:16px;
 }
@@ -287,60 +294,60 @@ section,header,footer,nav{position:relative;z-index:2;}
 }
 .about-footer a:hover{color:var(--ink);border-color:rgba(255,255,255,.4);}
 
-/* ── RESPONSIVE ── */
-@media(max-width:860px){
-  .about-hero{grid-template-columns:1fr;padding-top:120px;gap:48px;}
-  .hero-right{order:-1;}
-  .about-photo-wrap{width:280px;aspect-ratio:1/1;border-radius:50%;}
-  .about-photo-label{display:none;}
-}
-@media(max-width:540px){
-  .tools-grid{gap:12px;}
-  .tool-chip{padding:10px 16px;}
-}
-
-/* Scroll reveal */
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s ease;}
+/* Reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease;}
 .reveal.in{opacity:1;transform:translateY(0);}
+
+@media(max-width:860px){
+  .bento{grid-template-columns:1fr;}
+  .card-photo{grid-column:1;grid-row:auto;min-height:320px;}
+  .card-intro,.card-resume{grid-column:1;}
+  .card-experience,.card-tools,.card-skills,.card-connect{grid-column:1;}
+  .spotify-grid{grid-template-columns:1fr;}
+  .connect-card{flex-direction:column;}
+}
+@media(max-width:600px){
+  .page-wrap{padding:24px 4vw 60px;}
+  .spotify-grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
 <div class="bg-grid"></div>
 
-<!-- BACK -->
-<a class="back-btn" href="index.html">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <polyline points="15 18 9 12 15 6"/>
-  </svg>
-  HOME
-</a>
+<div class="page-wrap">
 
-<!-- HERO -->
-<section class="about-hero">
-  <div class="hero-left">
-    <p class="hero-eyebrow">FAVOUR ONASANYA TL — VISUAL DESIGNER</p>
+  <!-- BACK -->
+  <a class="back-btn" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+    HOME
+  </a>
 
-    <h1 class="hero-big">
-      The Mind Behind<br>
-      <em>the Work.</em>
-    </h1>
+  <!-- PAGE TITLE -->
+  <h1 class="page-headline">
+    The Mind Behind<br>
+    <em>the Work.</em>
+  </h1>
 
-    <p class="hero-bio">
-      I'm <strong>Favour Onasanya</strong> — a graphic and visual designer with <strong>5 years</strong> of hands-on experience building brands that don't just look good, but <em>perform</em>. I work with startups, personal brands, and growing businesses across social media, print, packaging, digital, and brand systems.<br><br>
-      I've had the privilege of working with companies like <strong>Justprints Limited (Plusfrica)</strong>, <strong>Frootify</strong>, <strong>Janna's Bowls</strong>, <strong>Teolyx Digital Solutions</strong>, and over <strong>100+ clients</strong> globally — delivering social media content, pitch decks, landing pages, packaging, and full brand identities.<br><br>
-      My philosophy? <strong>Design without strategy is just decoration.</strong> Everything I create is rooted in intention, built around your audience, and measured against results.
-    </p>
+  <!-- BENTO GRID -->
+  <div class="bento">
 
-    <a class="hero-resume" href="Favour_Onasanya_CV.pdf" download>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/>
-      </svg>
-      Download Résumé
-    </a>
-  </div>
+    <!-- INTRO CARD -->
+    <div class="card card-intro reveal">
+      <p class="card-label">ABOUT ME</p>
+      <p class="intro-tagline">Graphic Designer. Brand Strategist. Creator.</p>
+      <p class="intro-bio">
+        I'm <strong>Favour Onasanya TL</strong> — a visual designer with <strong>5 years</strong> of hands-on experience building brands that don't just look good, but <em>perform</em>. I work with startups, personal brands, and businesses across social media, print, packaging, digital, and full brand systems.<br><br>
+        I've worked with <strong>Justprints Limited</strong>, <strong>Frootify</strong>, <strong>Janna's Bowls</strong>, <strong>Teolyx Digital Solutions</strong>, and over <strong>100+ clients</strong> globally — delivering content, pitch decks, landing pages, packaging, and brand identities.<br><br>
+        <strong>TL stands for Tree of Life.</strong> Everything created under this name is built to grow, breathe, and stand the test of time.<br><br>
+        My philosophy? <strong>Design without strategy is just decoration.</strong> Every pixel is intentional.
+      </p>
+    </div>
 
-  <div class="hero-right">
-    <div class="about-photo-wrap">
+    <!-- PHOTO CARD -->
+    <div class="card card-photo reveal">
       <img src="images/favour-photo.jpg" alt="Favour Onasanya TL"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="photo-ph" style="display:none">
@@ -348,343 +355,226 @@ section,header,footer,nav{position:relative;z-index:2;}
           <circle cx="12" cy="8" r="5"/><path d="M3 21c0-5 3.5-8 9-8s9 3 9 8"/>
         </svg>
       </div>
-      <div class="about-photo-label">FAVOUR ONASANYA TL · IJEBU ODE, NIGERIA</div>
+    </div>
+
+    <!-- RESUME CARD -->
+    <div class="card card-resume reveal">
+      <p class="card-label">RESUME</p>
+      <p class="resume-text">Download my full CV and creative portfolio.</p>
+      <a class="resume-btn" href="Favour_Onasanya_CV.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/>
+        </svg>
+        Download CV
+      </a>
+    </div>
+
+    <!-- EXPERIENCE CARD -->
+    <div class="card card-experience reveal">
+      <p class="card-label">EXPERIENCE</p>
+      <div class="tl-simple">
+        <div class="tl-row">
+          <span class="tl-period-s">2026 — Now</span>
+          <div>
+            <p class="tl-role-s">Creative Lead / Graphic Designer</p>
+            <p class="tl-company-s">Justprints Limited (by Plusfrica)</p>
+          </div>
+        </div>
+        <div class="tl-row">
+          <span class="tl-period-s">2022 — Now</span>
+          <div>
+            <p class="tl-role-s">Freelance Designer & Brand Strategist</p>
+            <p class="tl-company-s">Favour TL — Self-Employed</p>
+          </div>
+        </div>
+        <div class="tl-row">
+          <span class="tl-period-s">2023 — 2025</span>
+          <div>
+            <p class="tl-role-s">Brand Design Lead / UI Designer</p>
+            <p class="tl-company-s">Frootify</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="edu-block">
+        <p class="edu-title">EDUCATION & CERTIFICATIONS</p>
+        <div class="edu-item">
+          <p class="edu-name">B.A. Graphics Design (Final Year)</p>
+          <p class="edu-place">Olabisi Onabanjo University, Ibogun Campus</p>
+        </div>
+        <div class="cert-list">
+          <span class="cert-item">GB Digitals Graphic Design Academy — Certificate</span>
+          <span class="cert-item">Chisom Ogbonna's D&E Course: Design With the Billionaire</span>
+          <span class="cert-item">GB Digitals' Flyer for Profit</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOOLS CARD -->
+    <div class="card card-tools reveal">
+      <p class="card-label">TOOLS I USE</p>
+      <div class="tools-row">
+
+        <!-- Figma -->
+        <div class="tool-item">
+          <div class="tool-icon-wrap">
+            <svg width="48" height="48" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#fig1)"><rect width="1081" height="1081" rx="217" fill="black"/><path d="M437.825 251.913C440.607 251.281 453.618 251.529 457.316 251.53L498.272 251.55L594.828 251.571C608.676 251.563 635.639 250.799 648.559 252.513C662.117 254.302 675.126 259.017 686.68 266.331C708.444 279.976 723.816 301.793 729.337 326.88C734.864 351.911 730.149 378.111 716.254 399.65C702.263 421.331 680.136 436.468 654.86 441.648C651.048 442.448 646.971 443.08 643.111 443.707C636.393 443.416 629.669 443.52 622.967 444.018C615.594 443.195 600.829 443.536 592.945 443.538L539.573 443.585C505.336 443.033 470.253 443.744 435.852 443.458C413.79 440.549 396.495 434.193 379.586 419.137C360.402 402 348.917 377.868 347.716 352.173C346.524 326.923 355.336 302.22 372.241 283.426C389.014 264.582 412.631 253.234 437.825 251.913Z" fill="#FE7238"/><path d="M435.852 443.461C413.79 440.552 396.495 434.196 379.586 419.139C360.402 402.003 348.917 377.871 347.716 352.176C346.524 326.926 355.336 302.223 372.241 283.429C389.014 264.585 412.631 253.237 437.825 251.916C447.493 252.497 461.87 251.918 472.047 251.917L539.583 251.895L539.625 369.524C539.625 394.043 539.884 419.11 539.573 443.588C505.336 443.036 470.253 443.747 435.852 443.461Z" fill="#FE3737"/><path d="M435.855 443.461C470.255 443.747 505.338 443.036 539.575 443.588C539.564 469.649 538.99 498.264 539.744 524.119C539.359 532.64 539.264 546.461 539.744 554.957C538.784 580.18 539.575 609.896 539.554 635.53C506.249 635.815 469.629 634.554 436.748 635.672C418.314 632.603 406.895 630.446 390.66 619.694C369.22 605.508 354.359 583.318 349.396 558.095C344.468 532.877 349.832 506.74 364.294 485.505C376.744 467.158 395.203 453.728 416.491 447.528C422.873 445.674 429.333 444.714 435.855 443.461Z" fill="#854FFE"/><path d="M539.55 635.528L539.582 701.657C539.582 717.319 540.499 738.012 537.261 752.799C534.298 765.75 528.687 777.953 520.78 788.637C505.671 809.188 482.971 822.835 457.737 826.553C432.341 830.35 406.484 823.8 385.957 808.37C365.49 793.014 352.01 770.111 348.518 744.757C344.973 719.17 351.89 693.23 367.706 672.801C385.625 649.582 408.37 639.272 436.744 635.67C469.625 634.552 506.246 635.813 539.55 635.528Z" fill="#22CC71"/><path d="M539.571 443.588L592.944 443.541C600.827 443.539 615.593 443.197 622.965 444.02C629.668 443.523 636.391 443.419 643.11 443.709C671.75 447.893 694.42 458.751 712.049 482.598C727.353 503.386 733.665 529.449 729.573 554.935C725.465 580.147 711.496 602.697 690.75 617.599C669.878 632.592 643.859 638.588 618.53 634.232C593.144 629.865 570.574 615.479 555.903 594.312C546.812 581.255 543.347 570.091 539.74 554.956C539.26 546.461 539.355 532.639 539.74 524.119C538.986 498.264 539.561 469.648 539.571 443.588Z" fill="#00B6FE"/></g><defs><clipPath id="fig1"><rect width="1080" height="1080" fill="white"/></clipPath></defs></svg>
+          </div>
+          <span class="tool-name">Figma</span>
+        </div>
+
+        <!-- Photoshop -->
+        <div class="tool-item">
+          <div class="tool-icon-wrap">
+            <svg width="48" height="48" viewBox="0 0 1105 1105" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#ps1)"><path d="M186.306 0H918.547C923.819 1.29339 929.279 0.862601 934.556 1.65453C940.734 2.5804 947.37 3.94287 953.44 5.44784C1003.2 17.463 1046.38 48.255 1073.95 91.381C1090.35 116.852 1101.19 147.321 1103.94 177.514C1104.2 180.321 1104.31 183.491 1105 186.208V919.162C1103.82 924.153 1104.17 928.993 1103.47 933.968C1102.62 940.124 1101.22 946.885 1099.72 952.949C1087.88 1002.49 1057.43 1045.57 1014.68 1073.26C989.202 1089.88 958.204 1101.17 927.752 1103.95C925.346 1104.17 921.925 1104.33 919.648 1105H185.879C182.685 1104.27 179.674 1104.22 176.435 1103.89C145.49 1100.79 113.949 1088.98 88.3374 1071.93C46.7585 1044.3 17.152 1001.98 5.44844 953.456C4.05509 947.802 2.72421 941.527 1.83018 935.775C0.953214 930.132 1.26028 924.207 0 918.553V186.391C0.703062 183.215 0.754357 180.469 1.04687 177.255C3.84546 146.498 15.72 114.478 32.5955 89.0356C60.189 47.1698 102.625 17.318 151.353 5.49522C157.328 4.02941 163.551 2.79733 169.634 1.90788C175.116 1.10631 180.894 1.2024 186.306 0Z" fill="#001F37"/><path d="M171 295.273L300.765 295.251C377.534 295.255 456.637 289.438 524.081 333.584C558.823 356.113 583.059 391.649 591.352 432.216C605.186 499.57 588.698 571.967 532.401 615.083C507.277 634.323 476.23 648.605 445.234 654.853C406.462 663.971 353.357 661.743 312.393 661.603L312.394 804.745L171.008 804.772L171 295.273Z" fill="#30A8FE"/><path d="M328.062 414.341L372.67 414.315C399.333 414.308 426.438 412.225 447.337 432.223C463.448 447.639 466.448 472.242 462.553 493.212C460.356 505.036 455.341 513.194 447.146 521.654C423.745 540.661 400.268 538.637 372.056 538.619L328.074 538.658L328.062 414.341Z" fill="#001F37"/><path d="M767.819 401.423C815.272 398.522 861.08 404.303 905.243 422.078L904.779 534.755C899.297 532.065 894.781 529.373 888.943 526.805C859.764 514.067 828.578 506.542 796.798 504.572C785.781 503.99 769.157 504.35 760.562 512.389C752.339 520.078 756.337 532.646 765.51 537.769C775.443 543.317 786.903 546.42 797.759 549.905C836.337 562.277 878.815 573.047 907.951 603.132C928.481 624.406 935.576 654.039 934.88 682.807C934.098 715.035 921.256 746.679 897.203 768.639C856.429 805.879 803.499 812.888 750.893 811.242C716.065 809.246 683.482 804.476 650.747 791.71C640.62 787.755 634.059 783.946 624.692 779.57L625.491 661.754C666.119 687.07 716.092 705.161 764.506 704.746C778.605 705.048 801.228 700.704 799.674 682.02C798.255 664.91 763.875 656.461 750.564 652.485C690.501 634.528 625.804 610.038 621.903 536.618C617.16 447.323 688.71 406.614 767.819 401.423Z" fill="#30A8FE"/></g><defs><clipPath id="ps1"><rect width="1105" height="1105" fill="white"/></clipPath></defs></svg>
+          </div>
+          <span class="tool-name">Photoshop</span>
+        </div>
+
+        <!-- Adobe XD -->
+        <div class="tool-item">
+          <div class="tool-icon-wrap">
+            <svg width="48" height="48" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#xd1)"><rect width="1081" height="1081" rx="217" fill="black"/><path d="M287.613 165.24C298.229 164.15 313.419 164.927 324.314 164.941L388.064 164.987L591.87 164.978L731.519 164.937C786.845 164.896 832.129 158.662 877.528 197.059C905.026 220.419 922.153 253.73 925.151 289.694C926.148 301.909 925.777 316.05 925.761 328.43L925.695 387.888L925.711 579.001L925.736 720.358C925.752 741.095 926.996 781.633 923.948 800.67C919.904 825.606 909.112 848.966 892.751 868.215C867.387 897.936 833.076 912.199 794.794 915.207C786.408 916.237 773.837 915.594 765.113 915.586L711.237 915.52H535.177L365.998 915.553C341.138 915.578 291.403 916.954 269.459 913.279C243.773 908.805 219.866 897.178 200.48 879.742C173.826 855.311 157.91 821.33 156.206 785.209C155.613 773.6 155.976 759.631 155.987 747.774L156.055 680.78L156 475.092L155.987 351.66C155.99 332.213 154.922 295.908 158.036 278.113C162.573 252.253 174.362 228.215 192.03 208.798C217.226 181.078 250.581 167.032 287.613 165.24Z" fill="#FE25BD"/><path d="M293.79 198.162C299.023 197.326 311.102 197.536 316.716 197.544L355.135 197.626L488.743 197.64L690.6 197.629L751.313 197.561C763.423 197.549 778.548 197.091 790.394 198.441C809.498 200.578 827.753 207.554 843.413 218.71C868.613 236.434 885.707 263.477 890.897 293.848C894.299 314.862 892.989 363.963 892.972 387.807L892.956 555.138L892.981 705.057C892.981 726.785 893.747 749.111 892.808 770.765C890.18 831.574 847.886 873.268 789.842 882.496C755.029 883.881 713.081 882.834 677.839 882.834L468.589 882.826H351.093C335.831 882.842 301.37 883.782 287.8 881.944C268.212 879.101 249.674 871.298 233.948 859.276C209.378 840.432 193.349 812.548 189.421 781.826C187.955 769.948 188.329 756.553 188.339 744.487L188.404 693.061L188.4 517.433L188.367 371.076L188.339 327.677C188.338 318.96 188.021 306.798 189.151 298.378C191.943 278.035 200.077 258.796 212.723 242.621C233.57 215.999 260.688 202.263 293.79 198.162Z" fill="#2F001F"/><path d="M712.41 348.086C727.897 347.245 752.257 347.812 767.975 348.038C768.848 372.578 768.131 402.012 768.131 426.914L768.115 578.184C768.106 606.43 766.673 651.727 769.96 677.966C766.253 680.275 760.503 682.862 756.367 684.514C717.237 700.132 670.042 704.15 630.632 687.624C579.755 664.039 562.142 610.214 565.882 557.713C571.78 474.862 631.909 430.92 711.059 436.075C711.034 425.464 709.856 352.554 712.41 348.086Z" fill="#FED9F3"/><path d="M691.738 483.309C698.551 483.507 704.35 484.452 710.949 486.056L710.965 645.208C710.792 645.267 710.619 645.324 710.446 645.383C692.142 651.034 672.338 649.042 655.532 639.861C633.339 626.95 625.876 600.574 624.245 576.619C621.057 529.675 639.057 486.119 691.738 483.309Z" fill="#2F001F"/><path d="M426.796 480.933C434.323 463.293 481.698 355.864 488.571 349.049C491.654 345.992 539.894 347.617 547.151 347.968C542.209 360.362 525.453 390.751 518.606 403.974L460.441 516.298L521.474 633.528C530.791 651.415 540.306 669.561 549.648 687.457C550.924 689.908 550.694 689.77 550.422 692.149C547.926 694.094 548.989 693.501 545.199 693.871C533.312 693.747 497.624 695.315 488.679 692.346C482.989 687.495 429.612 573.702 422.558 558.912C409.182 588.871 395.438 618.663 381.328 648.283C375.906 659.749 365.679 682.711 359.585 692.827C350.634 694.051 308.771 693.74 298.984 693.037C300.95 688.141 306.009 679.036 308.577 674.119L327.977 637.148L388.676 521.612L333.088 410.963C323.561 391.989 313.81 372.76 304.414 353.698C303.066 350.964 303.057 350.596 303.63 348.053C320.703 347.264 347.329 347.618 364.557 348.081C371.427 360.332 379.328 378.295 385.456 391.261C399.554 421.004 413.335 450.896 426.796 480.933Z" fill="#FED9F3"/></g><defs><clipPath id="xd1"><rect width="1080" height="1080" fill="white"/></clipPath></defs></svg>
+          </div>
+          <span class="tool-name">Adobe XD</span>
+        </div>
+
+        <!-- Canva -->
+        <div class="tool-item">
+          <div class="tool-icon-wrap">
+            <svg width="48" height="48" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#cv1)"><rect width="1081" height="1081" rx="217" fill="black"/><path d="M992 540.5C992 789.857 789.857 992 540.5 992C291.143 992 89 789.857 89 540.5C89 291.143 291.143 89 540.5 89C789.857 89 992 291.143 992 540.5Z" fill="url(#cvg1)"/><path d="M227.81 444.912C253.404 425.759 284.889 416.518 316.324 425.392C345.023 433.493 356.844 461.701 343.787 488.107C339.396 496.982 332.057 504.97 322.591 508.332C299.625 515.13 311.37 497.241 315.947 486.418C324.278 469.084 321.08 440.025 296.792 439.147C265.986 438.033 239.391 468.498 225.839 493.172C208.732 524.32 204.336 562.344 213.637 596.538C217.206 609.659 226.471 624.144 239.011 630.418C284.357 651.951 322.716 609.031 339.214 570.911C343.296 561.552 345.74 553.345 350.475 544.07C361.696 522.082 389.221 494.442 416.055 507.796C422.361 510.934 425.709 517.759 427.436 524.462C434.234 512.81 441.971 504.565 456.615 505.296C463.779 505.654 467.263 509.275 465.499 516.436C458.734 543.91 449.018 570.808 446.222 599.174C445.801 603.451 444.289 619.915 452.48 619.783C466.909 617.157 476.295 598.593 481.9 586.921C493.744 562.26 499.459 538.584 500.242 511.359C500.674 511.01 501.115 510.675 501.568 510.354C503.378 509.048 505.728 507.649 507.868 506.972C542.073 496.159 530.133 542.818 526.814 559.395C538.022 538.706 560.357 504.876 586.411 504.309C592.108 505.399 596.896 507.19 600.399 512.123C607.799 522.533 605.332 539.939 603.09 551.554C600.877 563.015 588.939 602.048 595.659 611.31C596.559 612.557 597.876 613.434 599.423 613.589C603.709 614.011 608.736 610.062 611.775 607.323C625.303 595.108 634.298 572.394 637.918 554.903C641.149 539.315 637.721 517.098 653.74 507.703C658.063 505.166 663.503 503.901 668.52 504.18C670.949 504.315 674.335 504.773 676.07 506.686C676.975 507.681 677.261 509.072 677.219 510.38C677.018 516.852 675.766 523.375 675.541 529.913C675.217 539.429 674.213 611.389 686.87 612.622C689.843 612.913 692.717 610.329 694.644 608.388C697.139 605.879 700.262 602.517 701.964 599.422C711.488 587.858 719.334 570.808 726.204 557.706C714.288 550.152 707.915 542.349 704.525 528.046C700.145 509.531 708.098 483.92 728.708 479.359C734.011 478.185 742.93 478.878 747.3 482.244C761.12 492.89 756.21 516.448 752.257 530.785C750.593 536.834 747.971 543.245 746.119 549.463C768.463 549.468 775.413 539.089 789.083 523.267C797.8 513.177 811.943 504.181 825.617 504.344C840.13 504.274 847.145 510.934 851.872 523.952C856.805 515.592 862.849 508.437 872.65 505.921C876.945 504.817 882.628 504.513 886.605 506.813C887.937 507.582 889.123 508.784 889.517 510.307C891.454 517.82 884.537 534.729 882.422 542.429C879.323 553.712 862.259 612.876 873.625 620.018C875.3 621.073 877.377 621.279 879.262 620.736C886.76 618.578 893.104 607.732 896.354 601.27C898.352 597.298 901.752 586.64 904.908 584.29C909.461 583.92 911.06 589.097 910.999 592.881C910.802 605.284 904.551 616.257 896.12 625.072C883.688 638.071 860.519 646.437 845.828 632.229C840.712 627.277 837.879 619.155 835.905 612.364C830.409 622.732 818.789 634.906 807.295 637.983C757.022 651.427 757.008 583.615 770.011 554.903C761.092 560.272 750.653 563.038 740.234 561.678C727.16 587.483 710.649 613.917 687.812 632.149C670.56 645.916 661.126 639.408 652.774 621.673C647.513 607.441 644.126 592.581 642.706 577.477C637.13 592.665 628.909 608.811 618.448 621.157C610.936 630.015 601.117 638.423 589.009 639.3C582.594 639.764 574.641 637.804 570.027 633.298C552.639 616.318 563.17 581.632 567.457 560.961C568.957 553.721 570.739 546.518 570.561 539.048C570.519 537.21 569.97 535.812 568.638 534.612C567.414 534.138 566.533 534.063 565.286 534.466C549.126 539.666 525.412 589.42 519.58 605.495C517.968 609.941 516.325 614.419 515.01 618.958C513.407 624.501 512.469 630.55 509.75 635.67C509.662 635.839 509.568 636.003 509.477 636.172C503.308 639.487 493.971 641.499 488.276 636.224C481.717 630.146 481.376 619.703 480.943 611.38C480.707 611.774 480.468 612.168 480.227 612.557C469.69 629.621 446.637 647.994 425.693 635.404C418.49 631.075 413.599 620.646 412.074 612.571C411.539 613.415 411 614.255 410.457 615.089C399.031 632.646 376.404 648.346 354.889 634.93C342.987 627.511 340.794 612.093 338.146 599.31C326.979 622.039 303.233 646.671 279.3 654.723C238.051 668.153 192.857 650.109 178.632 607.422C159.042 548.637 177.773 482.358 227.81 444.912Z" fill="#FEFEFE"/></g><defs><linearGradient id="cvg1" x1="383.5" y1="124" x2="780" y2="959" gradientUnits="userSpaceOnUse"><stop offset="0.221154" stop-color="#0DB3CF"/><stop offset="0.668269" stop-color="#4B5AE8"/><stop offset="0.995192" stop-color="#7828ED"/></linearGradient><clipPath id="cv1"><rect width="1080" height="1080" fill="white"/></clipPath></defs></svg>
+          </div>
+          <span class="tool-name">Canva</span>
+        </div>
+
+        <!-- CapCut -->
+        <div class="tool-item">
+          <div class="tool-icon-wrap">
+            <svg width="48" height="48" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#cc1)"><rect width="1081" height="1081" rx="217" fill="white"/><path fill-rule="evenodd" clip-rule="evenodd" d="M348.476 309.43C352.861 308.666 379.624 309.152 385.452 309.154L677.164 309.12C685.303 309.122 697.759 308.784 705.712 309.552C718.815 310.885 731.431 315.208 742.6 322.188C762.464 334.786 776.442 354.83 781.396 377.824C794.992 370.056 818.723 359.118 833.199 351.955L865.197 336.1C870.564 333.442 875.926 330.482 881.426 328.129C883.667 327.171 887.228 325.662 889.618 326.077C890.333 326.201 890.523 326.723 890.83 327.314C893.421 332.312 892.792 379.153 892.129 387.198C891.96 389.262 891.471 391.132 890.857 393.1C885.637 398.84 852.65 414.034 844.061 418.245L598.836 540.003L820.726 649.713C840.452 659.51 869.737 673.265 889.426 684.535C893.172 686.681 892.357 704.563 892.357 710.052L892.314 741.223C892.346 745.467 893.204 752.223 888.181 753.685C883.205 752.8 855.516 738.786 849.078 735.411C828.06 724.385 802.32 713.231 781.878 701.638C774.132 731.066 755.041 755.407 725.544 765.442C719.928 767.408 714.025 769.326 708.022 769.638C689.832 770.576 671.346 770.174 653.124 770.174L383.177 770.195C366.014 770.206 344.312 771.546 328.359 766.46C307.024 759.778 289.218 744.895 278.86 725.084C274.933 717.544 272.163 709.453 270.645 701.087C269.128 692.423 267.866 642.905 270.64 634.819C271.848 631.301 274.07 629.833 277.113 627.941C283.844 623.755 291.461 620.486 298.572 616.973L454.745 539.701C418.03 522.615 379.31 502.244 342.736 484.178L300.607 463.372C291.712 458.971 280.435 454.11 272.65 448.119C270.531 446.426 269.597 441.103 269.626 438.444C270.016 403.433 263.434 367.976 288.907 339.413C305.908 320.349 324.039 311.496 348.476 309.43Z" fill="black"/></g><defs><clipPath id="cc1"><rect width="1080" height="1080" fill="white"/></clipPath></defs></svg>
+          </div>
+          <span class="tool-name">CapCut</span>
+        </div>
+
+        <!-- Trello -->
+        <div class="tool-item">
+          <div class="tool-icon-wrap">
+            <svg width="48" height="48" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#tr1)"><rect width="1081" height="1081" rx="217" fill="#116AE6"/><path d="M281.623 265.016L383.811 265.003L414.203 264.969C424.523 264.96 434.138 264.683 444.383 266.512C457.073 268.78 467.008 278.342 471.488 290.212C473.734 296.165 473.72 302.408 473.773 308.655L473.904 628.429L473.91 729.714L473.979 759.578C474.027 775.345 474.909 790.758 462.723 802.826C453.414 812.045 443.776 813.986 431.232 814.004L320.917 813.981L290.619 814.028C284.221 814.037 275.365 814.53 269.29 813.278C250.687 809.434 238.833 793.742 238.718 775.043C238.646 763.343 238.588 752.178 238.604 740.758L238.632 679.649L238.692 490.321L238.746 363.463L238.738 322.955C238.735 306.716 236.698 290.401 248.642 277.653C258.122 267.533 268.227 265.463 281.623 265.016Z" fill="#FEFEFE"/><path d="M651.884 265.011L753.458 264.993L783.992 264.973C800.075 264.973 816.955 263.375 829.348 275.789C837.473 283.922 840.815 292.638 840.843 304.111C840.894 325.058 840.857 346.023 840.847 366.98L840.889 478.565L840.922 534.254C840.931 543.669 841.29 555.427 840.401 564.553C839.8 570.715 834.839 581.218 830.139 585.677C818.477 596.734 809.751 596.72 795.017 596.874L687.635 596.809L659.26 596.892C651.959 596.916 643.81 597.097 636.661 595.999C631.184 595.157 622.616 591.187 618.693 587.431C609.46 578.608 605.848 568.23 605.76 555.646C605.616 536.386 605.676 517.119 605.681 497.891L605.69 388.266L605.667 330.179C605.658 320.11 605.337 308.278 606.207 298.366C606.872 290.797 610.698 282.711 615.994 277.174C626.4 266.296 637.685 265.407 651.884 265.011Z" fill="#FEFEFE"/></g><defs><clipPath id="tr1"><rect width="1080" height="1080" fill="white"/></clipPath></defs></svg>
+          </div>
+          <span class="tool-name">Trello</span>
+        </div>
+
+        <!-- Slack -->
+        <div class="tool-item">
+          <div class="tool-icon-wrap">
+            <svg width="48" height="48" viewBox="0 0 124 124" xmlns="http://www.w3.org/2000/svg"><path d="M26.1 77.5c0 7.1-5.8 12.9-12.9 12.9S.3 84.6.3 77.5s5.8-12.9 12.9-12.9H26.1v12.9z" fill="#E01E5A"/><path d="M32.6 77.5c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9v32.3c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V77.5z" fill="#E01E5A"/><path d="M45.5 26.1c-7.1 0-12.9-5.8-12.9-12.9S38.4.3 45.5.3s12.9 5.8 12.9 12.9V26.1H45.5z" fill="#36C5F0"/><path d="M45.5 32.6c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H13.2C6.1 58.4.3 52.6.3 45.5S6.1 32.6 13.2 32.6H45.5z" fill="#36C5F0"/><path d="M97 45.5c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9-5.8 12.9-12.9 12.9H97V45.5z" fill="#2EB67D"/><path d="M90.5 45.5c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V13.2C64.7 6.1 70.5.3 77.6.3S90.5 6.1 90.5 13.2V45.5z" fill="#2EB67D"/><path d="M77.6 97c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9-12.9-5.8-12.9-12.9V97H77.6z" fill="#ECB22E"/><path d="M77.6 90.5c-7.1 0-12.9-5.8-12.9-12.9s5.8-12.9 12.9-12.9h32.3c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H77.6z" fill="#ECB22E"/></svg>
+          </div>
+          <span class="tool-name">Slack</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SKILLS CARD -->
+    <div class="card card-skills reveal" id="skillsCard">
+      <p class="card-label">SKILLS</p>
+      <div class="skills-list">
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Social Media Design</span><span class="skill-pct">98%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="98"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Brand Identity</span><span class="skill-pct">95%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="95"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Print & Packaging</span><span class="skill-pct">90%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="90"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Website Design</span><span class="skill-pct">90%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="90"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">UI/UX Design</span><span class="skill-pct">85%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="85"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">AI Tools Proficiency</span><span class="skill-pct">84%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="84"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Video Editing</span><span class="skill-pct">82%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="82"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Copywriting</span><span class="skill-pct">78%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="78"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONNECT CARD -->
+    <div class="card card-connect reveal">
+      <div class="connect-text">
+        <p class="card-label">LET'S CONNECT</p>
+        <h2 class="connect-headline">
+          Let's Connect.<br><em>Say hello.</em>
+        </h2>
+        <p class="connect-sub">Whether you have a project in mind or just want to say hello — I'm always open to a conversation.</p>
+        <div class="connect-btns">
+          <a class="btn-w" href="https://calendly.com/favouronasanya22/30min" target="_blank" rel="noopener">📅 Book a Call</a>
+          <a class="btn-o" href="mailto:favouronasanya22@gmail.com">Send an Email</a>
+          <a class="btn-o" href="https://wa.link/wd8bjt" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end bento -->
+
+  <!-- VIBE SECTION -->
+  <div class="vibe-section reveal">
+    <div class="vibe-header">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+      </svg>
+      Vibe while hustling
+    </div>
+    <div class="spotify-grid">
+      <div class="spotify-card">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2jStgsgQWFNIKdloTLJd6F?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+      <div class="spotify-card">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4KtT8dN9QaCPNwxtJwhKmB?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+      <div class="spotify-card">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5denxHwiQxVrZSANjsDh8C?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
     </div>
   </div>
-</section>
 
-<hr class="section-divider">
+  <!-- FOOTER -->
+  <footer class="about-footer">
+    <span>© 2025 FAVOUR ONASANYA TL</span>
+    <a href="index.html">← Back to Portfolio</a>
+  </footer>
 
-<!-- TOOLS -->
-<section class="tools-section reveal">
-  <p class="sec-label">TOOLS I USE</p>
-  <div class="tools-grid">
-
-    <div class="tool-chip">
-      <div class="t-icon">
-        <!-- Figma SVG icon -->
-        <svg viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M19 28.5A9.5 9.5 0 1 1 28.5 19 9.5 9.5 0 0 1 19 28.5z" fill="#1ABCFE"/>
-          <path d="M9.5 47.5A9.5 9.5 0 0 1 19 38h9.5v9.5a9.5 9.5 0 0 1-19 0z" fill="#0ACF83"/>
-          <path d="M19 0H9.5A9.5 9.5 0 0 0 9.5 19H19V0z" fill="#FF7262"/>
-          <path d="M28.5 0H19v19h9.5a9.5 9.5 0 0 0 0-19z" fill="#F24E1E"/>
-          <path d="M9.5 19a9.5 9.5 0 0 0 0 19H19V19H9.5z" fill="#A259FF"/>
-        </svg>
-      </div>
-      <span class="t-name">Figma</span>
-    </div>
-
-    <div class="tool-chip">
-      <div class="t-icon">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <rect width="100" height="100" rx="14" fill="#001E36"/>
-          <path d="M25.1 72.4V27.6h14.7c4.4 0 7.8.9 10.1 2.6 2.4 1.7 3.5 4.2 3.5 7.3 0 1.8-.5 3.4-1.4 4.7-.9 1.3-2.2 2.3-3.9 3 2 .5 3.6 1.5 4.7 3 1.1 1.5 1.7 3.3 1.7 5.4 0 3.4-1.2 6-3.5 7.8-2.3 1.8-5.6 2.7-9.8 2.7H25.1zm8.3-26.4h6.7c1.9 0 3.4-.4 4.4-1.2 1-.8 1.5-2 1.5-3.6 0-1.7-.5-3-1.6-3.8-1.1-.8-2.7-1.2-4.8-1.2h-6.2v9.8zm0 6.4v13.3h7.5c2 0 3.5-.5 4.6-1.4 1.1-.9 1.6-2.3 1.6-4.1 0-5.2-2.1-7.8-6.2-7.8H33.4zM65 72.4V27.6h8.3v44.8H65z" fill="#31A8FF"/>
-        </svg>
-      </div>
-      <span class="t-name">Adobe Photoshop</span>
-    </div>
-
-    <div class="tool-chip">
-      <div class="t-icon">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <rect width="100" height="100" rx="14" fill="#330000"/>
-          <path d="M22 72.4V27.6h8.3l19.6 29.2V27.6h8v44.8h-8L30 43.1v29.3H22zM80 72.4V27.6h8.3v44.8H80z" fill="#FF9A00"/>
-        </svg>
-      </div>
-      <span class="t-name">Adobe Illustrator</span>
-    </div>
-
-    <div class="tool-chip">
-      <div class="t-icon">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <rect width="100" height="100" rx="14" fill="#00005B"/>
-          <path d="M24 72.4V27.6h8.3v18.9L49.5 27.6h10.2L42.1 46.2 60.5 72.4H50.3L36.5 52l-4.2 4.4v16H24zM72 72.4V27.6h8.3v44.8H72z" fill="#9999FF"/>
-        </svg>
-      </div>
-      <span class="t-name">Adobe XD</span>
-    </div>
-
-    <div class="tool-chip">
-      <div class="t-icon">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <rect width="100" height="100" rx="14" fill="#00C4CC"/>
-          <text x="50" y="68" font-size="52" font-weight="900" font-family="Arial" text-anchor="middle" fill="white">C</text>
-        </svg>
-      </div>
-      <span class="t-name">Canva</span>
-    </div>
-
-    <div class="tool-chip">
-      <div class="t-icon">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <rect width="100" height="100" rx="14" fill="#000"/>
-          <text x="50" y="68" font-size="40" font-weight="900" font-family="Arial" text-anchor="middle" fill="white">CC</text>
-        </svg>
-      </div>
-      <span class="t-name">CapCut</span>
-    </div>
-
-    <div class="tool-chip">
-      <div class="t-icon">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <rect width="100" height="100" rx="14" fill="#1E1F26"/>
-          <path d="M50 20L22 38v24l28 18 28-18V38L50 20zm0 8.5l20 12.8v18.4L50 71.5 30 59.7V41.3L50 28.5z" fill="#4AB4FF"/>
-        </svg>
-      </div>
-      <span class="t-name">Midjourney</span>
-    </div>
-
-    <div class="tool-chip">
-      <div class="t-icon">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <rect width="100" height="100" rx="14" fill="#4A154B"/>
-          <path d="M36.3 55.5a7.3 7.3 0 1 1-14.6 0 7.3 7.3 0 0 1 14.6 0zm0-22a7.3 7.3 0 1 1-14.6 0 7.3 7.3 0 0 1 14.6 0zm22 22a7.3 7.3 0 1 1-14.6 0 7.3 7.3 0 0 1 14.6 0zm0-22a7.3 7.3 0 1 1-14.6 0 7.3 7.3 0 0 1 14.6 0zm22 22a7.3 7.3 0 1 1-14.6 0 7.3 7.3 0 0 1 14.6 0zm0-22a7.3 7.3 0 1 1-14.6 0 7.3 7.3 0 0 1 14.6 0z" fill="#E01E5A"/>
-        </svg>
-      </div>
-      <span class="t-name">Slack</span>
-    </div>
-
-    <div class="tool-chip">
-      <div class="t-icon">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <rect width="100" height="100" rx="14" fill="#0052CC"/>
-          <path d="M18.8 60.4c-1 1.8.1 4 2.1 4h18.4l3.8-10.7-13.5-13.5-10.8 20.2zM81.2 60.4L70.4 40.2 56.9 53.7l3.8 10.7h18.4c2 0 3.1-2.2 2.1-4zM50 30L38.4 53.7l11.6 11.6 11.6-11.6L50 30z" fill="white"/>
-        </svg>
-      </div>
-      <span class="t-name">Trello</span>
-    </div>
-
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- SKILLS -->
-<section class="skills-section reveal">
-  <p class="sec-label">SKILLS</p>
-  <div class="skills-grid" id="skillsGrid">
-
-    <div class="skill-item">
-      <div class="skill-top">
-        <span class="skill-name">Brand Identity</span>
-        <span class="skill-pct">95%</span>
-      </div>
-      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="95"></div></div>
-    </div>
-
-    <div class="skill-item">
-      <div class="skill-top">
-        <span class="skill-name">Social Media Design</span>
-        <span class="skill-pct">98%</span>
-      </div>
-      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="98"></div></div>
-    </div>
-
-    <div class="skill-item">
-      <div class="skill-top">
-        <span class="skill-name">Print & Packaging</span>
-        <span class="skill-pct">90%</span>
-      </div>
-      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="90"></div></div>
-    </div>
-
-    <div class="skill-item">
-      <div class="skill-top">
-        <span class="skill-name">Video Editing</span>
-        <span class="skill-pct">82%</span>
-      </div>
-      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="82"></div></div>
-    </div>
-
-    <div class="skill-item">
-      <div class="skill-top">
-        <span class="skill-name">UI/UX Design</span>
-        <span class="skill-pct">85%</span>
-      </div>
-      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="85"></div></div>
-    </div>
-
-    <div class="skill-item">
-      <div class="skill-top">
-        <span class="skill-name">Copywriting</span>
-        <span class="skill-pct">78%</span>
-      </div>
-      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="78"></div></div>
-    </div>
-
-    <div class="skill-item">
-      <div class="skill-top">
-        <span class="skill-name">Website Design</span>
-        <span class="skill-pct">80%</span>
-      </div>
-      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="80"></div></div>
-    </div>
-
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- EXPERIENCE TIMELINE -->
-<section class="timeline-section">
-  <p class="sec-label reveal">EXPERIENCE</p>
-  <div class="timeline">
-
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-body">
-        <p class="tl-period">2026 — PRESENT</p>
-        <p class="tl-role">Creative Lead / Graphic Designer</p>
-        <p class="tl-company">Justprints Limited (by Plusfrica)</p>
-        <ul class="tl-bullets">
-          <li>Deliver social media designs and print-ready client jobs for a premium printing and branding company.</li>
-          <li>Led a 20-design content production sprint, building structured creative briefs and AI-assisted workflows (Midjourney, FLUX.1, Adobe Firefly).</li>
-          <li>Built reusable prompt templates for layout-preserving design generation, reducing turnaround time on repeat requests.</li>
-          <li>Work directly with clients to confirm print specs, brand guidelines, and final artwork sign-off.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-body">
-        <p class="tl-period">JAN 2022 — PRESENT</p>
-        <p class="tl-role">Freelance Graphic Designer & Brand Strategist</p>
-        <p class="tl-company">Favour TL — Self-Employed</p>
-        <ul class="tl-bullets">
-          <li>Completed design projects for 100+ clients, including tech and e-commerce startups.</li>
-          <li>Designed website sales funnels and landing pages to support product launches and marketing campaigns.</li>
-          <li>Produced posters, social media graphics, and email templates contributing to a 20% increase in brand recognition and 10% rise in conversion rates.</li>
-          <li>Delivered brand identity and logo design projects for clients such as Janna's Bowls and Teolyx Digital Solutions.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-body">
-        <p class="tl-period">NOV 2023 — 2025</p>
-        <p class="tl-role">Brand Design Lead / UI Designer</p>
-        <p class="tl-company">Frootify</p>
-        <ul class="tl-bullets">
-          <li>Led the design team for a health and wellness brand, producing assets for both digital and print use.</li>
-          <li>Increased brand recognition by 15% through strategic design decisions across platforms.</li>
-          <li>Designed the brand's app screens and website — wireframes, prototypes, and mockups.</li>
-          <li>Collaborated with marketing and engineering teams to maintain visual consistency across all products.</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- EDUCATION -->
-<section class="skills-section reveal">
-  <p class="sec-label">EDUCATION & CERTIFICATIONS</p>
-  <div style="display:flex;flex-direction:column;gap:24px;max-width:640px;">
-
-    <div style="background:var(--glass);border:1px solid var(--line);border-radius:16px;padding:24px 28px;">
-      <p style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1rem;color:var(--ink);margin-bottom:8px;">B.A. Graphics Design (Final Year)</p>
-      <p style="font-size:13px;color:var(--ink-soft);font-style:italic;">Olabisi Onabanjo University, Ibogun Campus</p>
-    </div>
-
-    <div style="background:var(--glass);border:1px solid var(--line);border-radius:16px;padding:24px 28px;">
-      <p style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.9rem;color:var(--ink);margin-bottom:14px;">Certifications</p>
-      <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
-        <li style="font-size:13px;color:var(--ink-soft);padding-left:16px;position:relative;">
-          <span style="position:absolute;left:0;top:8px;width:5px;height:1px;background:rgba(255,255,255,.3);display:block;"></span>
-          GB Digitals Graphic Design Academy — Certificate
-        </li>
-        <li style="font-size:13px;color:var(--ink-soft);padding-left:16px;position:relative;">
-          <span style="position:absolute;left:0;top:8px;width:5px;height:1px;background:rgba(255,255,255,.3);display:block;"></span>
-          Chisom Ogbonna's D&E Course: Design With the Billionaire
-        </li>
-        <li style="font-size:13px;color:var(--ink-soft);padding-left:16px;position:relative;">
-          <span style="position:absolute;left:0;top:8px;width:5px;height:1px;background:rgba(255,255,255,.3);display:block;"></span>
-          GB Digitals' Flyer for Profit
-        </li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- VIBE WHEN WORKING -->
-<section class="vibe-section reveal">
-  <p class="sec-label">VIBE WHEN WORKING</p>
-  <p class="vibe-intro">
-    Every great design session has a soundtrack. Here's what's usually playing when I'm in the zone — feel free to listen in.
-  </p>
-  <div class="spotify-grid">
-    <div class="spotify-card">
-      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2jStgsgQWFNIKdloTLJd6F?utm_source=generator&theme=0&si=209a38ea5fe44563" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    </div>
-    <div class="spotify-card">
-      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4KiMR2stFyYXenTQPonWTV?utm_source=generator&si=f568a2766a5c4b52" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    </div>
-    <div class="spotify-card">
-      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4KtT8dN9QaCPNwxtJwhKmB?utm_source=generator&si=66c30b6f3d4d4448" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    </div>
-    <div class="spotify-card">
-      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5denxHwiQxVrZSANjsDh8C?utm_source=generator&si=8bf938cad328422a" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- CONNECT -->
-<section class="connect-section reveal">
-  <h2 class="connect-headline">
-    Let's Connect.<br>
-    <em>Say hello.</em>
-  </h2>
-  <p class="connect-sub">
-    Whether you have a project in mind or just want to say hello — I'm always open to a conversation.
-  </p>
-  <div class="connect-actions">
-    <a class="btn-white" href="https://calendly.com/favouronasanya22/30min" target="_blank" rel="noopener">
-      📅 Book a Call
-    </a>
-    <a class="btn-outline" href="mailto:favouronasanya22@gmail.com">Send an Email</a>
-    <a class="btn-outline" href="https://wa.link/wd8bjt" target="_blank" rel="noopener">WhatsApp</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="about-footer">
-  <span>© 2025 FAVOUR ONASANYA TL</span>
-  <a href="index.html">← Back to Portfolio</a>
-</footer>
+</div><!-- end page-wrap -->
 
 <script>
-// ── Intersection Observer for reveal + skill bars + timeline ──
-const io = new IntersectionObserver((entries) => {
+// Intersection observer — reveal + skill bars
+const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.classList.add('in');
-
-      // Animate skill bars
       e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
         bar.style.width = bar.dataset.w + '%';
       });
-
       io.unobserve(e.target);
     }
   });
-}, { threshold: .18 });
+}, {threshold: .15});
 
-document.querySelectorAll('.reveal, .tl-item').forEach(el => io.observe(el));
-
-// Trigger skill bars if already in view on load
-document.querySelectorAll('#skillsGrid .skill-bar-fill').forEach(bar => {
-  const rect = bar.getBoundingClientRect();
-  if (rect.top < window.innerHeight) bar.style.width = bar.dataset.w + '%';
-});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 </body>
 </html>
