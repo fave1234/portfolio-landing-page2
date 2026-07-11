@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Favour Onasanya TL — Visual Designer</title>
-<link rel="icon" type="image/jpeg" href="favicon.jpg">
+<link rel="icon" type="image/jpeg" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -42,7 +42,7 @@ section,header,footer,nav{position:relative;z-index:2;}
 .hero-fade-delay-4{transition-delay:.6s;}
 .hero-fade-delay-5{transition-delay:.75s;}
 
-/* NAV */
+/* ══ NAV ══ */
 .navbar{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;align-items:center;justify-content:space-between;
@@ -77,6 +77,8 @@ section,header,footer,nav{position:relative;z-index:2;}
   text-decoration:none;transition:color .25s;cursor:pointer;
 }
 .nav-links a:hover{color:var(--ink);}
+
+.nav-right{display:flex;align-items:center;gap:14px;}
 .nav-cta{
   font-size:13px;font-weight:600;color:var(--bg);
   background:var(--ink);border:none;border-radius:999px;
@@ -84,6 +86,75 @@ section,header,footer,nav{position:relative;z-index:2;}
   transition:background .25s,transform .25s;
 }
 .nav-cta:hover{background:rgba(255,255,255,.85);transform:translateY(-1px);}
+
+/* HAMBURGER BUTTON */
+.hamburger{
+  display:none;
+  flex-direction:column;justify-content:center;align-items:center;
+  gap:5px;width:40px;height:40px;
+  background:var(--glass);border:1px solid var(--line);
+  border-radius:10px;cursor:pointer;
+  transition:background .3s;z-index:201;position:relative;
+}
+.hamburger:hover{background:rgba(255,255,255,.08);}
+.hamburger span{
+  display:block;width:20px;height:1.5px;
+  background:var(--ink);border-radius:2px;
+  transition:all .35s cubic-bezier(.4,0,.2,1);
+  transform-origin:center;
+}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+/* MOBILE MENU OVERLAY */
+.mobile-overlay{
+  position:fixed;inset:0;z-index:150;
+  background:rgba(0,0,0,.7);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  opacity:0;pointer-events:none;
+  transition:opacity .35s ease;
+}
+.mobile-overlay.open{opacity:1;pointer-events:all;}
+
+/* MOBILE DROPDOWN MENU */
+.mobile-menu{
+  position:fixed;top:0;left:0;right:0;z-index:160;
+  background:rgba(12,12,12,.98);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(20px);
+  padding:88px 32px 40px;
+  transform:translateY(-110%);
+  transition:transform .45s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;gap:8px;
+}
+.mobile-menu.open{transform:translateY(0);}
+
+.mobile-nav-item{
+  display:block;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:700;font-size:2rem;
+  color:var(--ink-soft);text-decoration:none;
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
+  transition:color .25s,padding-left .25s;
+  cursor:pointer;background:none;border-left:none;border-right:none;border-top:none;
+  text-align:left;width:100%;
+}
+.mobile-nav-item:last-of-type{border-bottom:none;}
+.mobile-nav-item:hover,.mobile-nav-item:focus{
+  color:var(--ink);padding-left:12px;
+}
+.mobile-menu-cta{
+  margin-top:24px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  font-size:14px;font-weight:600;color:var(--bg);
+  background:var(--ink);border:none;border-radius:999px;
+  padding:16px 28px;cursor:pointer;
+  transition:background .25s;width:100%;
+}
+.mobile-menu-cta:hover{background:rgba(255,255,255,.85);}
 
 /* SOCIAL DOCK */
 .social-dock{
@@ -134,7 +205,6 @@ section,header,footer,nav{position:relative;z-index:2;}
   0%,100%{opacity:1;box-shadow:0 0 8px rgba(34,197,94,.9),0 0 18px rgba(34,197,94,.5);}
   50%{opacity:.3;box-shadow:none;}
 }
-
 .hero-headline{
   font-family:'Plus Jakarta Sans',sans-serif;
   font-weight:900;
@@ -259,9 +329,7 @@ section,header,footer,nav{position:relative;z-index:2;}
   box-shadow:0 12px 40px rgba(0,0,0,.6);
   transform:scale(1.02);
 }
-.work-card img{
-  width:100%;display:block;object-fit:cover;
-}
+.work-card img{width:100%;display:block;object-fit:cover;}
 .work-card video{width:100%;display:block;object-fit:cover;}
 .card-overlay{
   position:absolute;inset:0;
@@ -439,20 +507,73 @@ footer{
 }
 .foot-bottom a:hover{color:var(--ink);border-color:rgba(255,255,255,.4);}
 
-@media(max-width:900px){
-  .work-columns{grid-template-columns:repeat(2,1fr);height:90vh;}
-  .work-col:nth-child(3),.work-col:nth-child(4){display:none;}
+/* ══════════════════════════════════
+   RESPONSIVE — MOBILE
+══════════════════════════════════ */
+@media(max-width:768px){
+
+  /* Nav */
+  .navbar{padding:0 20px;}
   .nav-links{display:none;}
-  .navbar{padding:0 24px;}
+  .nav-cta{display:none;}
+  .hamburger{display:flex;}
+
+  /* Hero */
+  .hero{padding:100px 20px 60px;}
+  .hero-headline{font-size:clamp(2.2rem,8vw,3rem);}
+  .hero-sub{font-size:.95rem;}
+  .stat-chip{min-width:120px;padding:14px 18px;}
+  .stat-num{font-size:1.5rem;}
+
+  /* Work — 2 columns on mobile */
+  .work-columns{
+    grid-template-columns:repeat(2,1fr);
+    height:90vh;
+    gap:10px;
+    padding:0 4vw;
+  }
+  /* Show only 2 columns on mobile */
+  .work-col:nth-child(3),
+  .work-col:nth-child(4){display:none;}
+
+  /* Hide speed button on mobile */
+  .speed-btn{display:none !important;}
+
+  /* Social dock smaller on mobile */
+  .social-dock{bottom:16px;right:16px;gap:8px;}
+  .social-dock a{width:38px;height:38px;}
+  .social-dock svg{width:16px;height:16px;}
+
+  /* Footer */
+  footer{padding:60px 6vw 40px;}
+  .foot-top{gap:20px;}
+  .foot-photo{width:70px;height:70px;}
+  .foot-headline{font-size:clamp(1.5rem,6vw,2.2rem);}
 }
-@media(max-width:540px){
-  .work-columns{grid-template-columns:1fr;height:80vh;}
-  .work-col:nth-child(2){display:none;}
+
+@media(max-width:480px){
+  .stat-row{gap:10px;}
+  .stat-chip{min-width:100px;padding:12px 14px;}
+  .work-columns{gap:8px;padding:0 3vw;}
+  .hero-cta{gap:10px;}
+  .btn-dark,.btn-light{padding:12px 22px;font-size:13px;}
 }
 </style>
 </head>
 <body>
 <div class="bg-grid"></div>
+
+<!-- MOBILE OVERLAY -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<!-- MOBILE DROPDOWN MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mobile-nav-item" href="#work" id="mobileWork">Work</a>
+  <a class="mobile-nav-item" href="#services" id="mobileServices">Services</a>
+  <a class="mobile-nav-item" href="about.html">About</a>
+  <a class="mobile-nav-item" id="mobileContact" href="#contact">Contact</a>
+  <button class="mobile-menu-cta" id="mobileBookBtn">📅 Book a Call</button>
+</div>
 
 <!-- NAV -->
 <nav class="navbar">
@@ -465,13 +586,25 @@ footer{
     </div>
     Favour Onasanya TL
   </a>
+
+  <!-- Desktop nav links -->
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="about.html">About</a></li>
     <li><a id="contactNavLink" href="#contact">Contact</a></li>
   </ul>
-  <button class="nav-cta" id="navBookBtn">Book a Call</button>
+
+  <!-- Desktop + mobile right side -->
+  <div class="nav-right">
+    <button class="nav-cta" id="navBookBtn">Book a Call</button>
+    <!-- Hamburger — mobile only -->
+    <div class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
 </nav>
 
 <!-- SOCIAL DOCK -->
@@ -697,11 +830,57 @@ logoLink.addEventListener('click', e => {
   setTimeout(() => logoAvatar.classList.remove('spin'), 700);
 });
 
-// ══ CONTACT SCROLL ══
-document.getElementById('contactNavLink').addEventListener('click', e => {
-  e.preventDefault();
-  document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+// ══ HAMBURGER MENU ══
+const hamburger     = document.getElementById('hamburger');
+const mobileMenu    = document.getElementById('mobileMenu');
+const mobileOverlay = document.getElementById('mobileOverlay');
+
+function openMenu() {
+  hamburger.classList.add('open');
+  mobileMenu.classList.add('open');
+  mobileOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMenu() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  mobileOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', () => {
+  if (mobileMenu.classList.contains('open')) closeMenu();
+  else openMenu();
 });
+
+// Close when overlay is clicked
+mobileOverlay.addEventListener('click', closeMenu);
+
+// Close when any mobile nav link is clicked
+document.querySelectorAll('.mobile-nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    closeMenu();
+  });
+});
+
+// Mobile contact scroll
+document.getElementById('mobileContact').addEventListener('click', e => {
+  e.preventDefault();
+  closeMenu();
+  setTimeout(() => {
+    document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+  }, 300);
+});
+
+// ══ CONTACT SCROLL (desktop) ══
+const contactNavLink = document.getElementById('contactNavLink');
+if (contactNavLink) {
+  contactNavLink.addEventListener('click', e => {
+    e.preventDefault();
+    document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+  });
+}
 
 // ══ CALENDLY POPUP ══
 function openCalendly() {
@@ -714,6 +893,10 @@ function openCalendly() {
 document.getElementById('navBookBtn').addEventListener('click', openCalendly);
 document.getElementById('heroBookBtn').addEventListener('click', openCalendly);
 document.getElementById('footerBookBtn').addEventListener('click', openCalendly);
+document.getElementById('mobileBookBtn').addEventListener('click', () => {
+  closeMenu();
+  setTimeout(openCalendly, 300);
+});
 
 // ══ CARDS DATA ══
 const SM  = 'images/works/Social Media/';
@@ -723,7 +906,7 @@ const RA  = 'images/works/Random/';
 const VID = 'Videos/';
 
 const cards = [
-  // ── COLUMN 1 — Social Media (sm-1 to sm-12) ──
+  // COLUMN 1 — Social Media
   {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-1.webp`},
   {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-2.webp`},
   {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-3.webp`},
@@ -737,7 +920,7 @@ const cards = [
   {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-11.webp`},
   {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-12.webp`},
 
-  // ── COLUMN 2 — Social Media (sm-13 to sm-25) ──
+  // COLUMN 2 — Social Media continued
   {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-13.webp`},
   {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-14.webp`},
   {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-15.webp`},
@@ -751,7 +934,7 @@ const cards = [
   {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-24.webp`},
   {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-25.webp`},
 
-  // ── COLUMN 3 — Prints + LinkedIn + Social Media ──
+  // COLUMN 3 — Prints + LinkedIn + Social Media
   {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-1.webp`},
   {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-2.webp`},
   {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-3.webp`},
@@ -760,16 +943,12 @@ const cards = [
   {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-6.webp`},
   {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-7.webp`},
   {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-8.webp`},
-  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-9.webp`},
-  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-10.webp`},
-  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-11.webp`},
-  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-12.webp`},
   {col:3, tag:'LINKEDIN BANNER',     type:'image', src:`${LB}Lb-1.webp`},
   {col:3, tag:'LINKEDIN BANNER',     type:'image', src:`${LB}Lb-2.webp`},
   {col:3, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-26.webp`},
   {col:3, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-27.webp`},
 
-  // ── COLUMN 4 — Videos + Random + Prints + Social Media ──
+  // COLUMN 4 — Videos + Random + Prints
   {col:4, tag:'VIDEO REEL',          type:'video', src:`${VID}0108.webm`},
   {col:4, tag:'VIDEO REEL',          type:'video', src:`${VID}0122-1.webm`},
   {col:4, tag:'VIDEO REEL',          type:'video', src:`${VID}0414.webm`},
@@ -779,6 +958,10 @@ const cards = [
   {col:4, tag:'CREATIVE DESIGN',     type:'image', src:`${RA}ra-3.webp`},
   {col:4, tag:'CREATIVE DESIGN',     type:'image', src:`${RA}ra-4.webp`},
   {col:4, tag:'CREATIVE DESIGN',     type:'image', src:`${RA}ra-5.webp`},
+  {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-9.webp`},
+  {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-10.webp`},
+  {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-11.webp`},
+  {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-12.webp`},
   {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-13.webp`},
   {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-14.webp`},
   {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-15.webp`},
@@ -792,20 +975,17 @@ const cards = [
 // ══ BUILD CARDS ══
 function makeCard(data) {
   const card = document.createElement('div');
-  card.className   = 'work-card';
+  card.className    = 'work-card';
   card.dataset.tag  = data.tag;
   card.dataset.type = data.type;
 
   if (data.type === 'video') {
     const vid = document.createElement('video');
     vid.src = data.src;
-    vid.autoplay = true;
-    vid.muted    = true;
-    vid.loop     = true;
-    vid.playsInline = true;
+    vid.autoplay = true; vid.muted = true;
+    vid.loop = true; vid.playsInline = true;
     card.appendChild(vid);
     card.dataset.src = data.src;
-
     const snd = document.createElement('div');
     snd.className = 'card-sound';
     snd.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -815,20 +995,15 @@ function makeCard(data) {
     card.appendChild(snd);
   } else {
     const img = document.createElement('img');
-    img.src     = data.src;
-    img.alt     = data.tag;
-    img.loading = 'lazy';
+    img.src = data.src; img.alt = data.tag; img.loading = 'lazy';
     card.appendChild(img);
     card.dataset.src = data.src;
   }
 
   const overlay = document.createElement('div');
   overlay.className = 'card-overlay';
-
   const tag = document.createElement('span');
-  tag.className   = 'card-tag';
-  tag.textContent = data.tag;
-
+  tag.className = 'card-tag'; tag.textContent = data.tag;
   const expand = document.createElement('div');
   expand.className = 'card-expand';
   expand.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -837,7 +1012,6 @@ function makeCard(data) {
     <line x1="21" y1="3" x2="14" y2="10"/>
     <line x1="3" y1="21" x2="10" y2="14"/>
   </svg>`;
-
   card.appendChild(overlay);
   card.appendChild(tag);
   card.appendChild(expand);
@@ -848,13 +1022,14 @@ function makeCard(data) {
   const track = document.getElementById(`track${n}`);
   const col   = cards.filter(c => c.col === n);
   col.forEach(d => track.appendChild(makeCard(d)));
-  col.forEach(d => track.appendChild(makeCard(d))); // duplicate for infinite loop
+  col.forEach(d => track.appendChild(makeCard(d)));
 });
 
 // ══ SCROLL ENGINE ══
 const SPEED_NORMAL = 0.55;
 const SPEED_SLOW   = SPEED_NORMAL * 0.15;
 const SPEED_FAST   = SPEED_NORMAL * 5;
+const isMobile     = () => window.innerWidth <= 768;
 
 const colState = [
   {id:'track1', pos:0, hovered:false},
@@ -870,8 +1045,8 @@ function animate() {
     const t = document.getElementById(s.id);
     if (!t || globalPaused) return;
     let sp = SPEED_NORMAL;
-    if (speedBoosted)   sp = SPEED_FAST;
-    else if (s.hovered) sp = SPEED_SLOW;
+    if (!isMobile() && speedBoosted)   sp = SPEED_FAST;
+    else if (!isMobile() && s.hovered) sp = SPEED_SLOW;
     s.pos += sp;
     const half = t.scrollHeight / 2;
     if (s.pos >= half) s.pos = 0;
@@ -882,8 +1057,8 @@ function animate() {
 
 [1,2,3,4].forEach((n,i) => {
   const col = document.getElementById(`col${n}`);
-  col.addEventListener('mouseenter', () => colState[i].hovered = true);
-  col.addEventListener('mouseleave', () => colState[i].hovered = false);
+  col.addEventListener('mouseenter', () => { if (!isMobile()) colState[i].hovered = true; });
+  col.addEventListener('mouseleave', () => { colState[i].hovered = false; });
 });
 animate();
 
@@ -893,14 +1068,19 @@ const workSection = document.getElementById('work');
 
 const workObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) speedBtn.classList.add('visible');
-    else                  speedBtn.classList.remove('visible');
+    if (e.isIntersecting && !isMobile()) speedBtn.classList.add('visible');
+    else speedBtn.classList.remove('visible');
   });
 }, {threshold:0.05});
-
 workObserver.observe(workSection);
+
 speedBtn.addEventListener('mouseenter', () => { speedBoosted = true; });
 speedBtn.addEventListener('mouseleave', () => { speedBoosted = false; });
+
+// Hide speed btn on resize to mobile
+window.addEventListener('resize', () => {
+  if (isMobile()) speedBtn.classList.remove('visible');
+});
 
 // ══ LIGHTBOX ══
 const lightbox   = document.getElementById('lightbox');
@@ -919,15 +1099,13 @@ function openLightbox(card) {
 
   if (card.dataset.type === 'video') {
     const vid = document.createElement('video');
-    vid.src        = card.dataset.src;
-    vid.autoplay   = true;
-    vid.muted      = true;
-    vid.loop       = true;
-    vid.playsInline = true;
+    vid.src = card.dataset.src;
+    vid.autoplay = true; vid.muted = true;
+    vid.loop = true; vid.playsInline = true;
     lbImgWrap.appendChild(vid);
     activeVideo = vid;
     lbSoundBtn.style.display = 'flex';
-    lbSoundBtn.textContent   = '🔇 TAP FOR SOUND';
+    lbSoundBtn.textContent = '🔇 TAP FOR SOUND';
   } else {
     const img = document.createElement('img');
     img.src = card.dataset.src;
