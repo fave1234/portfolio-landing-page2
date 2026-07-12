@@ -42,7 +42,7 @@ section,header,footer,nav{position:relative;z-index:2;}
 .hero-fade-delay-4{transition-delay:.6s;}
 .hero-fade-delay-5{transition-delay:.75s;}
 
-/* ══ NAV ══ */
+/* NAV */
 .navbar{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;align-items:center;justify-content:space-between;
@@ -87,7 +87,7 @@ section,header,footer,nav{position:relative;z-index:2;}
 }
 .nav-cta:hover{background:rgba(255,255,255,.85);transform:translateY(-1px);}
 
-/* HAMBURGER BUTTON */
+/* HAMBURGER */
 .hamburger{
   display:none;
   flex-direction:column;justify-content:center;align-items:center;
@@ -107,7 +107,7 @@ section,header,footer,nav{position:relative;z-index:2;}
 .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
 .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
 
-/* MOBILE MENU OVERLAY */
+/* MOBILE OVERLAY */
 .mobile-overlay{
   position:fixed;inset:0;z-index:150;
   background:rgba(0,0,0,.7);
@@ -118,7 +118,7 @@ section,header,footer,nav{position:relative;z-index:2;}
 }
 .mobile-overlay.open{opacity:1;pointer-events:all;}
 
-/* MOBILE DROPDOWN MENU */
+/* MOBILE MENU */
 .mobile-menu{
   position:fixed;top:0;left:0;right:0;z-index:160;
   background:rgba(12,12,12,.98);
@@ -130,7 +130,6 @@ section,header,footer,nav{position:relative;z-index:2;}
   display:flex;flex-direction:column;gap:8px;
 }
 .mobile-menu.open{transform:translateY(0);}
-
 .mobile-nav-item{
   display:block;
   font-family:'Plus Jakarta Sans',sans-serif;
@@ -143,9 +142,7 @@ section,header,footer,nav{position:relative;z-index:2;}
   text-align:left;width:100%;
 }
 .mobile-nav-item:last-of-type{border-bottom:none;}
-.mobile-nav-item:hover,.mobile-nav-item:focus{
-  color:var(--ink);padding-left:12px;
-}
+.mobile-nav-item:hover,.mobile-nav-item:focus{color:var(--ink);padding-left:12px;}
 .mobile-menu-cta{
   margin-top:24px;
   display:flex;align-items:center;justify-content:center;gap:10px;
@@ -187,7 +184,6 @@ section,header,footer,nav{position:relative;z-index:2;}
 }
 .hero-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
 .hero-avatar .fallback-icon{width:40px;height:40px;color:var(--ink-soft);display:none;}
-
 .hero-role{
   display:inline-flex;align-items:center;gap:8px;
   font-size:13px;font-weight:500;color:var(--ink-soft);
@@ -289,8 +285,10 @@ section,header,footer,nav{position:relative;z-index:2;}
 
 /* WORK SECTION */
 .work-section{padding:80px 0 0;overflow:hidden;}
+
+/* WORK HEAD */
 .work-head{
-  display:flex;justify-content:space-between;align-items:flex-end;
+  display:flex;justify-content:space-between;align-items:center;
   border-bottom:1px solid var(--line);
   padding:0 5vw 22px;margin-bottom:40px;
 }
@@ -298,10 +296,32 @@ section,header,footer,nav{position:relative;z-index:2;}
   font-family:'Fraunces',serif;font-weight:600;font-style:italic;
   font-size:clamp(1.6rem,3vw,2.4rem);
 }
-.work-head span{
+.work-head-right{
+  display:flex;align-items:center;gap:16px;
+}
+.view-all-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;letter-spacing:.08em;font-weight:600;
+  color:#000;
+  background:#fff;
+  border:none;
+  padding:10px 20px;border-radius:999px;
+  text-decoration:none;
+  transition:all .25s;
+  white-space:nowrap;
+  cursor:pointer;
+}
+.view-all-btn:hover{
+  background:rgba(255,255,255,.85);
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(255,255,255,.15);
+}
+.work-head-year{
   font-family:'JetBrains Mono',monospace;
   font-size:11px;letter-spacing:.14em;color:var(--ink-soft);
 }
+
 .work-columns{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -379,10 +399,7 @@ section,header,footer,nav{position:relative;z-index:2;}
   transition:bottom .5s cubic-bezier(.34,1.56,.64,1),border-color .3s,box-shadow .3s;
 }
 .speed-btn.visible{bottom:32px;pointer-events:all;}
-.speed-btn:hover{
-  border-color:rgba(255,255,255,.5);
-  box-shadow:0 12px 40px rgba(0,0,0,.7);
-}
+.speed-btn:hover{border-color:rgba(255,255,255,.5);box-shadow:0 12px 40px rgba(0,0,0,.7);}
 .speed-btn svg{width:16px;height:16px;flex-shrink:0;}
 
 /* LIGHTBOX */
@@ -405,6 +422,25 @@ section,header,footer,nav{position:relative;z-index:2;}
   transition:transform .4s cubic-bezier(.2,.8,.2,1);
 }
 .lightbox.open .lb-content{transform:scale(1) translateY(0);}
+
+/* LIGHTBOX ARROWS */
+.lb-arrow{
+  position:fixed;top:50%;transform:translateY(-50%);
+  z-index:310;
+  width:52px;height:52px;border-radius:50%;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.2);
+  backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--ink);
+  transition:all .25s;
+}
+.lb-arrow:hover{background:rgba(255,255,255,.2);transform:translateY(-50%) scale(1.08);}
+.lb-arrow.prev{left:16px;}
+.lb-arrow.next{right:16px;}
+.lb-arrow svg{width:22px;height:22px;}
+.lb-arrow.hidden{opacity:0;pointer-events:none;}
+
 .lb-img-wrap{
   border-radius:18px;overflow:hidden;
   border:1px solid rgba(255,255,255,.1);
@@ -420,8 +456,11 @@ section,header,footer,nav{position:relative;z-index:2;}
 .lb-meta{
   margin-top:16px;
   display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:10px;
 }
+.lb-left{display:flex;align-items:center;gap:14px;}
 .lb-tag{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;color:var(--ink-soft);}
+.lb-counter{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-mute);}
 .lb-actions{display:flex;gap:10px;align-items:center;}
 .lb-sound-btn{
   padding:8px 16px;border-radius:999px;
@@ -507,50 +546,40 @@ footer{
 }
 .foot-bottom a:hover{color:var(--ink);border-color:rgba(255,255,255,.4);}
 
-/* ══════════════════════════════════
-   RESPONSIVE — MOBILE
-══════════════════════════════════ */
+/* ══ RESPONSIVE ══ */
 @media(max-width:768px){
+  /* Faster ticker on mobile */
+  .ticker-track{animation:tickerL 16s linear infinite;}
+  .ticker-track-r{animation:tickerR 16s linear infinite;}
 
-  /* Nav */
   .navbar{padding:0 20px;}
   .nav-links{display:none;}
   .nav-cta{display:none;}
   .hamburger{display:flex;}
-
-  /* Hero */
   .hero{padding:100px 20px 60px;}
   .hero-headline{font-size:clamp(2.2rem,8vw,3rem);}
   .hero-sub{font-size:.95rem;}
   .stat-chip{min-width:120px;padding:14px 18px;}
   .stat-num{font-size:1.5rem;}
-
-  /* Work — 2 columns on mobile */
   .work-columns{
     grid-template-columns:repeat(2,1fr);
-    height:90vh;
-    gap:10px;
-    padding:0 4vw;
+    height:90vh;gap:10px;padding:0 4vw;
   }
-  /* Show only 2 columns on mobile */
   .work-col:nth-child(3),
   .work-col:nth-child(4){display:none;}
-
-  /* Hide speed button on mobile */
   .speed-btn{display:none !important;}
-
-  /* Social dock smaller on mobile */
   .social-dock{bottom:16px;right:16px;gap:8px;}
   .social-dock a{width:38px;height:38px;}
   .social-dock svg{width:16px;height:16px;}
-
-  /* Footer */
   footer{padding:60px 6vw 40px;}
   .foot-top{gap:20px;}
   .foot-photo{width:70px;height:70px;}
   .foot-headline{font-size:clamp(1.5rem,6vw,2.2rem);}
+  .lb-arrow.prev{left:8px;}
+  .lb-arrow.next{right:8px;}
+  .lb-arrow{width:42px;height:42px;}
+  .lb-arrow svg{width:18px;height:18px;}
 }
-
 @media(max-width:480px){
   .stat-row{gap:10px;}
   .stat-chip{min-width:100px;padding:12px 14px;}
@@ -566,12 +595,13 @@ footer{
 <!-- MOBILE OVERLAY -->
 <div class="mobile-overlay" id="mobileOverlay"></div>
 
-<!-- MOBILE DROPDOWN MENU -->
+<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <a class="mobile-nav-item" href="#work" id="mobileWork">Work</a>
+  <a class="mobile-nav-item" href="work.html">Work</a>
   <a class="mobile-nav-item" href="#services" id="mobileServices">Services</a>
   <a class="mobile-nav-item" href="about.html">About</a>
   <a class="mobile-nav-item" id="mobileContact" href="#contact">Contact</a>
+  <a class="mobile-nav-item" href="work.html">View All Work →</a>
   <button class="mobile-menu-cta" id="mobileBookBtn">📅 Book a Call</button>
 </div>
 
@@ -587,22 +617,17 @@ footer{
     Favour Onasanya TL
   </a>
 
-  <!-- Desktop nav links -->
   <ul class="nav-links">
-    <li><a href="#work">Work</a></li>
+    <li><a href="work.html">Work</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="about.html">About</a></li>
     <li><a id="contactNavLink" href="#contact">Contact</a></li>
   </ul>
 
-  <!-- Desktop + mobile right side -->
   <div class="nav-right">
     <button class="nav-cta" id="navBookBtn">Book a Call</button>
-    <!-- Hamburger — mobile only -->
     <div class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </div>
   </div>
 </nav>
@@ -628,26 +653,21 @@ footer{
       <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/>
     </svg>
   </div>
-
   <div class="hero-role hero-fade hero-fade-delay-1">
     <span class="dot"></span>Visual Designer
   </div>
-
   <h1 class="hero-headline hero-fade hero-fade-delay-2">
     Visual work with enough presence to make people
     <em>stop and stare.</em>
   </h1>
-
   <p class="hero-sub hero-fade hero-fade-delay-3">
     Favour brings brands to life through design, vision, and creative excellence.<br>
     Based in Ijebu Ode, Nigeria — working with clients everywhere.
   </p>
-
   <div class="hero-cta hero-fade hero-fade-delay-4">
     <a class="btn-dark" href="#work">See My Work</a>
     <button class="btn-light" id="heroBookBtn">Book a Call</button>
   </div>
-
   <div class="stat-row hero-fade hero-fade-delay-5">
     <div class="stat-chip"><div class="stat-num">100+</div><div class="stat-label">CLIENTS SERVED</div></div>
     <div class="stat-chip"><div class="stat-num">20%</div><div class="stat-label">AVG. BRAND GROWTH</div></div>
@@ -711,7 +731,10 @@ footer{
 <section class="work-section" id="work">
   <div class="work-head">
     <h2>The Catalogue</h2>
-    <span>2022 — 2026</span>
+    <div class="work-head-right">
+      <a class="view-all-btn" href="work.html">View All Work →</a>
+      <span class="work-head-year">2022 — 2026</span>
+    </div>
   </div>
   <div class="work-columns" id="workColumns">
     <div class="work-col" id="col1"><div class="col-track" id="track1"></div></div>
@@ -744,11 +767,7 @@ footer{
       <em>worth a second scroll.</em>
     </div>
   </div>
-
-  <button class="foot-cta" id="footerBookBtn">
-    📅 Book a Call — Let's Work Together
-  </button>
-
+  <button class="foot-cta" id="footerBookBtn">📅 Book a Call — Let's Work Together</button>
   <div class="foot-meta">
     <a href="mailto:favouronasanya22@gmail.com">favouronasanya22@gmail.com</a>
     <a href="tel:+2348062283254">+234 806 228 3254</a>
@@ -765,7 +784,6 @@ footer{
       </a>
     </div>
   </div>
-
   <div class="foot-bottom">
     <span>© 2025 FAVOUR ONASANYA TL. ALL RIGHTS RESERVED.</span>
     <a href="Favour_Onasanya_CV.pdf" download>DOWNLOAD RÉSUMÉ ↓</a>
@@ -775,10 +793,28 @@ footer{
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
   <div class="lb-backdrop" id="lbBackdrop"></div>
+
+  <!-- PREV ARROW -->
+  <button class="lb-arrow prev" id="lbPrev" aria-label="Previous">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+  </button>
+
+  <!-- NEXT ARROW -->
+  <button class="lb-arrow next" id="lbNext" aria-label="Next">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="9 18 15 12 9 6"/>
+    </svg>
+  </button>
+
   <div class="lb-content">
     <div class="lb-img-wrap" id="lbImgWrap"></div>
     <div class="lb-meta">
-      <span class="lb-tag" id="lbTag"></span>
+      <div class="lb-left">
+        <span class="lb-tag" id="lbTag"></span>
+        <span class="lb-counter" id="lbCounter"></span>
+      </div>
       <div class="lb-actions">
         <button class="lb-sound-btn" id="lbSoundBtn">🔇 TAP FOR SOUND</button>
         <button class="lb-close" id="lbClose" aria-label="Close">
@@ -795,218 +831,200 @@ footer{
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 <script>
 // ══ IMAGE FALLBACKS ══
-function setupFallback(imgId) {
-  const img = document.getElementById(imgId);
-  if (!img) return;
-  img.addEventListener('error', function() {
-    this.style.display = 'none';
-    const fb = this.parentElement.querySelector('.fallback-icon');
-    if (fb) fb.style.display = 'block';
+function setupFallback(imgId){
+  const img=document.getElementById(imgId);
+  if(!img) return;
+  img.addEventListener('error',function(){
+    this.style.display='none';
+    const fb=this.parentElement.querySelector('.fallback-icon');
+    if(fb) fb.style.display='block';
   });
-  if (img.complete && img.naturalWidth === 0) {
-    img.dispatchEvent(new Event('error'));
-  }
+  if(img.complete&&img.naturalWidth===0) img.dispatchEvent(new Event('error'));
 }
 setupFallback('navAvatarImg');
 setupFallback('heroAvatarImg');
 setupFallback('footerPhotoImg');
 
-// ══ HERO FADE IN ══
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.querySelectorAll('.hero-fade').forEach(el => el.classList.add('visible'));
-  }, 80);
+// ══ HERO FADE ══
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.querySelectorAll('.hero-fade').forEach(el=>el.classList.add('visible'));
+  },80);
 });
 
 // ══ LOGO SPIN ══
-const logoAvatar = document.getElementById('logoAvatar');
-const logoLink   = document.getElementById('logoLink');
-logoLink.addEventListener('click', e => {
+const logoAvatar=document.getElementById('logoAvatar');
+const logoLink=document.getElementById('logoLink');
+logoLink.addEventListener('click',e=>{
   e.preventDefault();
   logoAvatar.classList.remove('spin');
   void logoAvatar.offsetWidth;
   logoAvatar.classList.add('spin');
-  setTimeout(() => window.scrollTo({top:0,behavior:'smooth'}), 80);
-  setTimeout(() => logoAvatar.classList.remove('spin'), 700);
+  setTimeout(()=>window.scrollTo({top:0,behavior:'smooth'}),80);
+  setTimeout(()=>logoAvatar.classList.remove('spin'),700);
 });
 
-// ══ HAMBURGER MENU ══
-const hamburger     = document.getElementById('hamburger');
-const mobileMenu    = document.getElementById('mobileMenu');
-const mobileOverlay = document.getElementById('mobileOverlay');
-
-function openMenu() {
+// ══ HAMBURGER ══
+const hamburger=document.getElementById('hamburger');
+const mobileMenu=document.getElementById('mobileMenu');
+const mobileOverlay=document.getElementById('mobileOverlay');
+function openMenu(){
   hamburger.classList.add('open');
   mobileMenu.classList.add('open');
   mobileOverlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
-
-function closeMenu() {
+function closeMenu(){
   hamburger.classList.remove('open');
   mobileMenu.classList.remove('open');
   mobileOverlay.classList.remove('open');
-  document.body.style.overflow = '';
+  document.body.style.overflow='';
 }
-
-hamburger.addEventListener('click', () => {
-  if (mobileMenu.classList.contains('open')) closeMenu();
+hamburger.addEventListener('click',()=>{
+  if(mobileMenu.classList.contains('open')) closeMenu();
   else openMenu();
 });
-
-// Close when overlay is clicked
-mobileOverlay.addEventListener('click', closeMenu);
-
-// Close when any mobile nav link is clicked
-document.querySelectorAll('.mobile-nav-item').forEach(item => {
-  item.addEventListener('click', () => {
-    closeMenu();
-  });
+mobileOverlay.addEventListener('click',closeMenu);
+document.querySelectorAll('.mobile-nav-item').forEach(item=>{
+  item.addEventListener('click',()=>closeMenu());
 });
-
-// Mobile contact scroll
-document.getElementById('mobileContact').addEventListener('click', e => {
+document.getElementById('mobileContact').addEventListener('click',e=>{
   e.preventDefault();
   closeMenu();
-  setTimeout(() => {
-    document.getElementById('contact').scrollIntoView({behavior:'smooth'});
-  }, 300);
+  setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),300);
 });
 
-// ══ CONTACT SCROLL (desktop) ══
-const contactNavLink = document.getElementById('contactNavLink');
-if (contactNavLink) {
-  contactNavLink.addEventListener('click', e => {
+// ══ CONTACT SCROLL ══
+const contactNavLink=document.getElementById('contactNavLink');
+if(contactNavLink){
+  contactNavLink.addEventListener('click',e=>{
     e.preventDefault();
     document.getElementById('contact').scrollIntoView({behavior:'smooth'});
   });
 }
 
-// ══ CALENDLY POPUP ══
-function openCalendly() {
-  if (window.Calendly) {
+// ══ CALENDLY ══
+function openCalendly(){
+  if(window.Calendly){
     Calendly.initPopupWidget({
       url:'https://calendly.com/favouronasanya22/30min?background_color=000000&text_color=ffffff&primary_color=ffffff'
     });
   }
 }
-document.getElementById('navBookBtn').addEventListener('click', openCalendly);
-document.getElementById('heroBookBtn').addEventListener('click', openCalendly);
-document.getElementById('footerBookBtn').addEventListener('click', openCalendly);
-document.getElementById('mobileBookBtn').addEventListener('click', () => {
+document.getElementById('navBookBtn').addEventListener('click',openCalendly);
+document.getElementById('heroBookBtn').addEventListener('click',openCalendly);
+document.getElementById('footerBookBtn').addEventListener('click',openCalendly);
+document.getElementById('mobileBookBtn').addEventListener('click',()=>{
   closeMenu();
-  setTimeout(openCalendly, 300);
+  setTimeout(openCalendly,300);
 });
 
-// ══ CARDS DATA ══
-const SM  = 'images/works/Social Media/';
-const PR  = 'images/works/Prints/';
-const LB  = 'images/works/LinkedIn/';
-const RA  = 'images/works/Random/';
-const VID = 'Videos/';
+// ══ ALL CARDS DATA (flat list for lightbox navigation) ══
+const SM ='images/works/Social Media/';
+const PR ='images/works/Prints/';
+const LB ='images/works/LinkedIn/';
+const RA ='images/works/Random/';
+const VID='Videos/';
 
-const cards = [
-  // COLUMN 1 — Social Media
-  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-1.webp`},
-  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-2.webp`},
-  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-3.webp`},
-  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-4.webp`},
-  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-5.webp`},
-  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-6.webp`},
-  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-7.webp`},
-  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-8.webp`},
-  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-9.webp`},
-  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-10.webp`},
-  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-11.webp`},
-  {col:1, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-12.webp`},
-
-  // COLUMN 2 — Social Media continued
-  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-13.webp`},
-  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-14.webp`},
-  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-15.webp`},
-  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-16.webp`},
-  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-18.webp`},
-  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-19.webp`},
-  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-20.webp`},
-  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-21.webp`},
-  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-22.webp`},
-  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-23.webp`},
-  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-24.webp`},
-  {col:2, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-25.webp`},
-
-  // COLUMN 3 — Prints + LinkedIn + Social Media
-  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-1.webp`},
-  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-2.webp`},
-  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-3.webp`},
-  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-4.webp`},
-  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-5.webp`},
-  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-6.webp`},
-  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-7.webp`},
-  {col:3, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-8.webp`},
-  {col:3, tag:'LINKEDIN BANNER',     type:'image', src:`${LB}Lb-1.webp`},
-  {col:3, tag:'LINKEDIN BANNER',     type:'image', src:`${LB}Lb-2.webp`},
-  {col:3, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-26.webp`},
-  {col:3, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-27.webp`},
-
-  // COLUMN 4 — Videos + Random + Prints
-  {col:4, tag:'VIDEO REEL',          type:'video', src:`${VID}0108.webm`},
-  {col:4, tag:'VIDEO REEL',          type:'video', src:`${VID}0122-1.webm`},
-  {col:4, tag:'VIDEO REEL',          type:'video', src:`${VID}0414.webm`},
-  {col:4, tag:'VIDEO REEL',          type:'video', src:`${VID}1009.webm`},
-  {col:4, tag:'CREATIVE DESIGN',     type:'image', src:`${RA}ra-1.webp`},
-  {col:4, tag:'CREATIVE DESIGN',     type:'image', src:`${RA}ra-2.webp`},
-  {col:4, tag:'CREATIVE DESIGN',     type:'image', src:`${RA}ra-3.webp`},
-  {col:4, tag:'CREATIVE DESIGN',     type:'image', src:`${RA}ra-4.webp`},
-  {col:4, tag:'CREATIVE DESIGN',     type:'image', src:`${RA}ra-5.webp`},
-  {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-9.webp`},
-  {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-10.webp`},
-  {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-11.webp`},
-  {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-12.webp`},
-  {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-13.webp`},
-  {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-14.webp`},
-  {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-15.webp`},
-  {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-16.webp`},
-  {col:4, tag:'PRINT DESIGN',        type:'image', src:`${PR}print-17.webp`},
-  {col:4, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-28.webp`},
-  {col:4, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-29.webp`},
-  {col:4, tag:'SOCIAL MEDIA DESIGN', type:'image', src:`${SM}sm-30.webp`},
+// Flat ordered list — all cards across all columns
+const allCards=[
+  // Col 1
+  {col:1,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-1.webp`},
+  {col:1,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-2.webp`},
+  {col:1,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-3.webp`},
+  {col:1,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-4.webp`},
+  {col:1,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-5.webp`},
+  {col:1,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-6.webp`},
+  {col:1,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-7.webp`},
+  {col:1,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-8.webp`},
+  {col:1,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-9.webp`},
+  {col:1,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-10.webp`},
+  {col:1,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-11.webp`},
+  {col:1,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-12.webp`},
+  // Col 2
+  {col:2,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-13.webp`},
+  {col:2,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-14.webp`},
+  {col:2,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-15.webp`},
+  {col:2,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-16.webp`},
+  {col:2,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-18.webp`},
+  {col:2,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-19.webp`},
+  {col:2,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-20.webp`},
+  {col:2,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-21.webp`},
+  {col:2,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-22.webp`},
+  {col:2,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-23.webp`},
+  {col:2,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-24.webp`},
+  {col:2,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-25.webp`},
+  // Col 3
+  {col:3,tag:'PRINT DESIGN',type:'image',src:`${PR}print-1.webp`},
+  {col:3,tag:'PRINT DESIGN',type:'image',src:`${PR}print-2.webp`},
+  {col:3,tag:'PRINT DESIGN',type:'image',src:`${PR}print-3.webp`},
+  {col:3,tag:'PRINT DESIGN',type:'image',src:`${PR}print-4.webp`},
+  {col:3,tag:'PRINT DESIGN',type:'image',src:`${PR}print-5.webp`},
+  {col:3,tag:'PRINT DESIGN',type:'image',src:`${PR}print-6.webp`},
+  {col:3,tag:'PRINT DESIGN',type:'image',src:`${PR}print-7.webp`},
+  {col:3,tag:'PRINT DESIGN',type:'image',src:`${PR}print-8.webp`},
+  {col:3,tag:'LINKEDIN BANNER',type:'image',src:`${LB}Lb-1.webp`},
+  {col:3,tag:'LINKEDIN BANNER',type:'image',src:`${LB}Lb-2.webp`},
+  {col:3,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-26.webp`},
+  {col:3,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-27.webp`},
+  // Col 4
+  {col:4,tag:'VIDEO REEL',type:'video',src:`${VID}0108.webm`},
+  {col:4,tag:'VIDEO REEL',type:'video',src:`${VID}0122-1.webm`},
+  {col:4,tag:'VIDEO REEL',type:'video',src:`${VID}0414.webm`},
+  {col:4,tag:'VIDEO REEL',type:'video',src:`${VID}1009.webm`},
+  {col:4,tag:'CREATIVE DESIGN',type:'image',src:`${RA}ra-1.webp`},
+  {col:4,tag:'CREATIVE DESIGN',type:'image',src:`${RA}ra-2.webp`},
+  {col:4,tag:'CREATIVE DESIGN',type:'image',src:`${RA}ra-3.webp`},
+  {col:4,tag:'CREATIVE DESIGN',type:'image',src:`${RA}ra-4.webp`},
+  {col:4,tag:'CREATIVE DESIGN',type:'image',src:`${RA}ra-5.webp`},
+  {col:4,tag:'PRINT DESIGN',type:'image',src:`${PR}print-9.webp`},
+  {col:4,tag:'PRINT DESIGN',type:'image',src:`${PR}print-10.webp`},
+  {col:4,tag:'PRINT DESIGN',type:'image',src:`${PR}print-11.webp`},
+  {col:4,tag:'PRINT DESIGN',type:'image',src:`${PR}print-12.webp`},
+  {col:4,tag:'PRINT DESIGN',type:'image',src:`${PR}print-13.webp`},
+  {col:4,tag:'PRINT DESIGN',type:'image',src:`${PR}print-14.webp`},
+  {col:4,tag:'PRINT DESIGN',type:'image',src:`${PR}print-15.webp`},
+  {col:4,tag:'PRINT DESIGN',type:'image',src:`${PR}print-16.webp`},
+  {col:4,tag:'PRINT DESIGN',type:'image',src:`${PR}print-17.webp`},
+  {col:4,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-28.webp`},
+  {col:4,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-29.webp`},
+  {col:4,tag:'SOCIAL MEDIA DESIGN',type:'image',src:`${SM}sm-30.webp`},
 ];
 
-// ══ BUILD CARDS ══
-function makeCard(data) {
-  const card = document.createElement('div');
-  card.className    = 'work-card';
-  card.dataset.tag  = data.tag;
-  card.dataset.type = data.type;
+// ══ BUILD COLUMNS ══
+function makeCard(data,globalIdx){
+  const card=document.createElement('div');
+  card.className='work-card';
+  card.dataset.tag=data.tag;
+  card.dataset.type=data.type;
+  card.dataset.src=data.src;
+  card.dataset.globalIdx=globalIdx;
 
-  if (data.type === 'video') {
-    const vid = document.createElement('video');
-    vid.src = data.src;
-    vid.autoplay = true; vid.muted = true;
-    vid.loop = true; vid.playsInline = true;
+  if(data.type==='video'){
+    const vid=document.createElement('video');
+    vid.src=data.src;vid.autoplay=true;vid.muted=true;
+    vid.loop=true;vid.playsInline=true;
     card.appendChild(vid);
-    card.dataset.src = data.src;
-    const snd = document.createElement('div');
-    snd.className = 'card-sound';
-    snd.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    const snd=document.createElement('div');
+    snd.className='card-sound';
+    snd.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
       <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
     </svg>`;
     card.appendChild(snd);
   } else {
-    const img = document.createElement('img');
-    img.src = data.src; img.alt = data.tag; img.loading = 'lazy';
+    const img=document.createElement('img');
+    img.src=data.src;img.alt=data.tag;img.loading='lazy';
     card.appendChild(img);
-    card.dataset.src = data.src;
   }
 
-  const overlay = document.createElement('div');
-  overlay.className = 'card-overlay';
-  const tag = document.createElement('span');
-  tag.className = 'card-tag'; tag.textContent = data.tag;
-  const expand = document.createElement('div');
-  expand.className = 'card-expand';
-  expand.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+  const overlay=document.createElement('div');
+  overlay.className='card-overlay';
+  const tag=document.createElement('span');
+  tag.className='card-tag';tag.textContent=data.tag;
+  const expand=document.createElement('div');
+  expand.className='card-expand';
+  expand.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <polyline points="15 3 21 3 21 9"/>
     <polyline points="9 21 3 21 3 15"/>
     <line x1="21" y1="3" x2="14" y2="10"/>
@@ -1018,128 +1036,177 @@ function makeCard(data) {
   return card;
 }
 
-[1,2,3,4].forEach(n => {
-  const track = document.getElementById(`track${n}`);
-  const col   = cards.filter(c => c.col === n);
-  col.forEach(d => track.appendChild(makeCard(d)));
-  col.forEach(d => track.appendChild(makeCard(d)));
+[1,2,3,4].forEach(n=>{
+  const track=document.getElementById(`track${n}`);
+  const col=allCards.filter(c=>c.col===n);
+  // Add cards with their global index
+  col.forEach(d=>{
+    const gi=allCards.indexOf(d);
+    track.appendChild(makeCard(d,gi));
+  });
+  // Duplicate for infinite scroll
+  col.forEach(d=>{
+    const gi=allCards.indexOf(d);
+    track.appendChild(makeCard(d,gi));
+  });
 });
 
 // ══ SCROLL ENGINE ══
-const SPEED_NORMAL = 0.55;
-const SPEED_SLOW   = SPEED_NORMAL * 0.15;
-const SPEED_FAST   = SPEED_NORMAL * 5;
-const isMobile     = () => window.innerWidth <= 768;
+const SPEED_NORMAL=0.55;
+const SPEED_SLOW=SPEED_NORMAL*0.15;
+const SPEED_FAST=SPEED_NORMAL*5;
+const isMobile=()=>window.innerWidth<=768;
 
-const colState = [
-  {id:'track1', pos:0, hovered:false},
-  {id:'track2', pos:0, hovered:false},
-  {id:'track3', pos:0, hovered:false},
-  {id:'track4', pos:0, hovered:false},
+const colState=[
+  {id:'track1',pos:0,hovered:false},
+  {id:'track2',pos:0,hovered:false},
+  {id:'track3',pos:0,hovered:false},
+  {id:'track4',pos:0,hovered:false},
 ];
-let globalPaused = false;
-let speedBoosted  = false;
+let globalPaused=false;
+let speedBoosted=false;
 
-function animate() {
-  colState.forEach(s => {
-    const t = document.getElementById(s.id);
-    if (!t || globalPaused) return;
-    let sp = SPEED_NORMAL;
-    if (!isMobile() && speedBoosted)   sp = SPEED_FAST;
-    else if (!isMobile() && s.hovered) sp = SPEED_SLOW;
-    s.pos += sp;
-    const half = t.scrollHeight / 2;
-    if (s.pos >= half) s.pos = 0;
-    t.style.transform = `translateY(-${s.pos}px)`;
+function animate(){
+  colState.forEach(s=>{
+    const t=document.getElementById(s.id);
+    if(!t||globalPaused) return;
+    let sp=SPEED_NORMAL;
+    if(!isMobile()&&speedBoosted) sp=SPEED_FAST;
+    else if(!isMobile()&&s.hovered) sp=SPEED_SLOW;
+    s.pos+=sp;
+    const half=t.scrollHeight/2;
+    if(s.pos>=half) s.pos=0;
+    t.style.transform=`translateY(-${s.pos}px)`;
   });
   requestAnimationFrame(animate);
 }
 
-[1,2,3,4].forEach((n,i) => {
-  const col = document.getElementById(`col${n}`);
-  col.addEventListener('mouseenter', () => { if (!isMobile()) colState[i].hovered = true; });
-  col.addEventListener('mouseleave', () => { colState[i].hovered = false; });
+[1,2,3,4].forEach((n,i)=>{
+  const col=document.getElementById(`col${n}`);
+  col.addEventListener('mouseenter',()=>{if(!isMobile()) colState[i].hovered=true;});
+  col.addEventListener('mouseleave',()=>{colState[i].hovered=false;});
 });
 animate();
 
-// ══ FLOATING SPEED BUTTON ══
-const speedBtn    = document.getElementById('speedBtn');
-const workSection = document.getElementById('work');
-
-const workObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting && !isMobile()) speedBtn.classList.add('visible');
+// ══ SPEED BUTTON ══
+const speedBtn=document.getElementById('speedBtn');
+const workSection=document.getElementById('work');
+const workObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting&&!isMobile()) speedBtn.classList.add('visible');
     else speedBtn.classList.remove('visible');
   });
-}, {threshold:0.05});
+},{threshold:0.05});
 workObserver.observe(workSection);
-
-speedBtn.addEventListener('mouseenter', () => { speedBoosted = true; });
-speedBtn.addEventListener('mouseleave', () => { speedBoosted = false; });
-
-// Hide speed btn on resize to mobile
-window.addEventListener('resize', () => {
-  if (isMobile()) speedBtn.classList.remove('visible');
+speedBtn.addEventListener('mouseenter',()=>{speedBoosted=true;});
+speedBtn.addEventListener('mouseleave',()=>{speedBoosted=false;});
+window.addEventListener('resize',()=>{
+  if(isMobile()) speedBtn.classList.remove('visible');
 });
 
 // ══ LIGHTBOX ══
-const lightbox   = document.getElementById('lightbox');
-const lbImgWrap  = document.getElementById('lbImgWrap');
-const lbTag      = document.getElementById('lbTag');
-const lbClose    = document.getElementById('lbClose');
-const lbBackdrop = document.getElementById('lbBackdrop');
-const lbSoundBtn = document.getElementById('lbSoundBtn');
-let activeVideo  = null;
+const lightbox   =document.getElementById('lightbox');
+const lbImgWrap  =document.getElementById('lbImgWrap');
+const lbTag      =document.getElementById('lbTag');
+const lbCounter  =document.getElementById('lbCounter');
+const lbClose    =document.getElementById('lbClose');
+const lbBackdrop =document.getElementById('lbBackdrop');
+const lbSoundBtn =document.getElementById('lbSoundBtn');
+const lbPrev     =document.getElementById('lbPrev');
+const lbNext     =document.getElementById('lbNext');
+let activeVideo  =null;
+let currentIdx   =0;
 
-function openLightbox(card) {
-  globalPaused = true;
-  lbImgWrap.innerHTML = '';
-  lbSoundBtn.style.display = 'none';
-  activeVideo = null;
+function renderLightboxItem(idx){
+  currentIdx=idx;
+  const item=allCards[idx];
+  if(activeVideo){activeVideo.pause();activeVideo=null;}
+  lbSoundBtn.style.display='none';
+  lbImgWrap.innerHTML='';
 
-  if (card.dataset.type === 'video') {
-    const vid = document.createElement('video');
-    vid.src = card.dataset.src;
-    vid.autoplay = true; vid.muted = true;
-    vid.loop = true; vid.playsInline = true;
+  if(item.type==='video'){
+    const vid=document.createElement('video');
+    vid.src=item.src;vid.autoplay=true;vid.muted=true;
+    vid.loop=true;vid.playsInline=true;
     lbImgWrap.appendChild(vid);
-    activeVideo = vid;
-    lbSoundBtn.style.display = 'flex';
-    lbSoundBtn.textContent = '🔇 TAP FOR SOUND';
+    activeVideo=vid;
+    lbSoundBtn.style.display='flex';
+    lbSoundBtn.textContent='🔇 TAP FOR SOUND';
   } else {
-    const img = document.createElement('img');
-    img.src = card.dataset.src;
-    img.alt = card.dataset.tag;
+    const img=document.createElement('img');
+    img.src=item.src;img.alt=item.tag;
     lbImgWrap.appendChild(img);
   }
 
-  lbTag.textContent = card.dataset.tag;
+  lbTag.textContent=item.tag;
+  lbCounter.textContent=`${idx+1} / ${allCards.length}`;
+
+  // Arrow visibility
+  lbPrev.classList.toggle('hidden',idx===0);
+  lbNext.classList.toggle('hidden',idx===allCards.length-1);
+}
+
+function openLightbox(globalIdx){
+  globalPaused=true;
+  renderLightboxItem(globalIdx);
   lightbox.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
 
-function closeLightbox() {
+function closeLightbox(){
   lightbox.classList.remove('open');
-  document.body.style.overflow = '';
-  if (activeVideo) { activeVideo.muted = true; activeVideo = null; }
-  setTimeout(() => { globalPaused = false; }, 350);
+  document.body.style.overflow='';
+  if(activeVideo){activeVideo.pause();activeVideo=null;}
+  setTimeout(()=>{globalPaused=false;},350);
 }
 
-lbSoundBtn.addEventListener('click', () => {
-  if (!activeVideo) return;
-  activeVideo.muted = !activeVideo.muted;
-  lbSoundBtn.textContent = activeVideo.muted ? '🔇 TAP FOR SOUND' : '🔊 SOUND ON';
+// Arrow clicks
+lbPrev.addEventListener('click',()=>{
+  if(currentIdx>0) renderLightboxItem(currentIdx-1);
+});
+lbNext.addEventListener('click',()=>{
+  if(currentIdx<allCards.length-1) renderLightboxItem(currentIdx+1);
 });
 
-document.getElementById('workColumns').addEventListener('click', e => {
-  const card = e.target.closest('.work-card');
-  if (card) openLightbox(card);
+// Keyboard
+document.addEventListener('keydown',e=>{
+  if(!lightbox.classList.contains('open')) return;
+  if(e.key==='ArrowLeft'&&currentIdx>0) renderLightboxItem(currentIdx-1);
+  if(e.key==='ArrowRight'&&currentIdx<allCards.length-1) renderLightboxItem(currentIdx+1);
+  if(e.key==='Escape') closeLightbox();
 });
-lbClose.addEventListener('click', closeLightbox);
-lbBackdrop.addEventListener('click', closeLightbox);
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeLightbox();
+
+// Swipe
+let touchStartX=0;
+lbImgWrap.addEventListener('touchstart',e=>{
+  touchStartX=e.changedTouches[0].screenX;
+},{passive:true});
+lbImgWrap.addEventListener('touchend',e=>{
+  const diff=touchStartX-e.changedTouches[0].screenX;
+  if(Math.abs(diff)>50){
+    if(diff>0&&currentIdx<allCards.length-1) renderLightboxItem(currentIdx+1);
+    else if(diff<0&&currentIdx>0) renderLightboxItem(currentIdx-1);
+  }
 });
+
+// Sound toggle
+lbSoundBtn.addEventListener('click',()=>{
+  if(!activeVideo) return;
+  activeVideo.muted=!activeVideo.muted;
+  lbSoundBtn.textContent=activeVideo.muted?'🔇 TAP FOR SOUND':'🔊 SOUND ON';
+});
+
+// Click card to open lightbox
+document.getElementById('workColumns').addEventListener('click',e=>{
+  const card=e.target.closest('.work-card');
+  if(card){
+    const gi=parseInt(card.dataset.globalIdx);
+    openLightbox(gi);
+  }
+});
+
+lbClose.addEventListener('click',closeLightbox);
+lbBackdrop.addEventListener('click',closeLightbox);
 </script>
 </body>
 </html>
