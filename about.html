@@ -13,6 +13,7 @@
   --bg:#0a0a0a;--bg-1:#111;--bg-2:#181818;--bg-card:#141414;
   --ink:#fff;--ink-soft:rgba(255,255,255,.5);--ink-mute:rgba(255,255,255,.22);
   --line:rgba(255,255,255,.09);--glass:rgba(255,255,255,.06);
+  --green:#22b457;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -28,7 +29,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overfl
 }
 .page-wrap{position:relative;z-index:2;padding:32px 5vw 80px;}
 
-/* BACK BUTTON */
+/* BACK */
 .back-btn{
   display:inline-flex;align-items:center;gap:10px;
   text-decoration:none;color:var(--ink-soft);
@@ -42,76 +43,42 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overfl
 
 /* PAGE HEADLINE */
 .page-headline{
-  font-family:'Plus Jakarta Sans',sans-serif;
-  font-weight:900;
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;
   font-size:clamp(3rem,7vw,6rem);
-  line-height:1.02;letter-spacing:-.035em;
-  margin-bottom:40px;
+  line-height:1.02;letter-spacing:-.035em;margin-bottom:40px;
 }
-.page-headline em{
-  font-style:italic;font-family:'Fraunces',serif;font-weight:600;
-  color:rgba(255,255,255,.5);
-}
+.page-headline em{font-style:italic;font-family:'Fraunces',serif;font-weight:600;color:rgba(255,255,255,.5);}
 
 /* CARD BASE */
 .card{
-  background:var(--bg-card);
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:32px;
-  position:relative;
-  overflow:hidden;
+  background:var(--bg-card);border:1px solid var(--line);
+  border-radius:22px;padding:32px;position:relative;overflow:hidden;
 }
 .card-label{
   font-family:'JetBrains Mono',monospace;font-size:10px;
-  letter-spacing:.22em;color:var(--ink-mute);
-  margin-bottom:24px;
+  letter-spacing:.22em;color:var(--ink-mute);margin-bottom:24px;
 }
 
-/* ══════════════════════════════════
-   ROW 1 — INTRO (left) + PHOTO (right, tall)
-   Photo spans rows 1+2 on the right
-══════════════════════════════════ */
+/* ROW 1 */
 .row1{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  grid-template-rows:auto auto;
-  gap:16px;
-  margin-bottom:16px;
+  display:grid;grid-template-columns:1fr 1fr;
+  grid-template-rows:auto auto;gap:16px;margin-bottom:16px;
 }
-
-/* Intro card — row 1, col 1 */
-.card-intro{
-  grid-column:1/2;
-  grid-row:1/2;
-  display:flex;flex-direction:column;gap:18px;
-}
-
-/* Photo card — col 2, spans BOTH rows */
+.card-intro{grid-column:1/2;grid-row:1/2;display:flex;flex-direction:column;gap:18px;}
 .card-photo{
-  grid-column:2/3;
-  grid-row:1/3;
-  padding:0;overflow:hidden;border-radius:22px;
-  min-height:600px;
+  grid-column:2/3;grid-row:1/3;padding:0;overflow:hidden;
+  border-radius:22px;min-height:600px;
 }
-.card-photo img{
-  width:100%;height:100%;object-fit:cover;
-  display:block;border-radius:22px;
-}
+.card-photo img{width:100%;height:100%;object-fit:cover;display:block;border-radius:22px;}
 .card-photo .photo-ph{
   width:100%;height:100%;min-height:600px;
   background:radial-gradient(ellipse at 50% 30%,#1e1e1e,var(--bg-card));
-  display:flex;align-items:center;justify-content:center;
-  border-radius:22px;
+  display:flex;align-items:center;justify-content:center;border-radius:22px;
 }
 .card-photo .photo-ph svg{width:80px;height:80px;color:rgba(255,255,255,.1);}
-
-/* Resume card — row 2, col 1 */
 .card-resume{
-  grid-column:1/2;
-  grid-row:2/3;
-  display:flex;flex-direction:column;justify-content:space-between;
-  gap:24px;
+  grid-column:1/2;grid-row:2/3;
+  display:flex;flex-direction:column;justify-content:space-between;gap:24px;
 }
 .resume-text{
   font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;
@@ -122,133 +89,114 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overfl
   font-family:'Inter',sans-serif;font-size:13px;font-weight:600;
   color:var(--ink);background:rgba(255,255,255,.08);
   border:1px solid rgba(255,255,255,.18);
-  padding:12px 22px;border-radius:999px;
-  text-decoration:none;width:fit-content;
-  transition:all .25s;
+  padding:12px 22px;border-radius:999px;text-decoration:none;width:fit-content;transition:all .25s;
 }
 .resume-btn:hover{background:rgba(255,255,255,.18);transform:translateY(-2px);}
 .resume-btn svg{width:14px;height:14px;}
 
-/* ══════════════════════════════════
-   ROW 2 — EXPERIENCE (left) + TOOLS+SKILLS (right)
-   Experience on left, tools & skills stacked on right
-══════════════════════════════════ */
-.row2{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px;
-  margin-bottom:16px;
-  align-items:start;
-}
-
-/* Experience card */
-.card-experience{
-  grid-column:1/2;
-}
+/* ROW 2 */
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;align-items:start;}
+.card-experience{grid-column:1/2;}
 .tl-simple{display:flex;flex-direction:column;}
 .tl-row{
   display:grid;grid-template-columns:95px 1fr;gap:14px;
   padding:16px 0;border-bottom:1px solid var(--line);
 }
 .tl-row:last-child{border-bottom:none;padding-bottom:0;}
-.tl-period-s{
-  font-family:'JetBrains Mono',monospace;font-size:10px;
-  letter-spacing:.06em;color:var(--ink-mute);padding-top:3px;
-}
-.tl-role-s{
-  font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;
-  font-size:.95rem;color:var(--ink);margin-bottom:3px;
-}
+.tl-period-s{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;color:var(--ink-mute);padding-top:3px;}
+.tl-role-s{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.95rem;color:var(--ink);margin-bottom:3px;}
 .tl-company-s{font-size:12px;color:var(--ink-soft);font-style:italic;}
-
-/* Education sub-block */
 .edu-block{margin-top:24px;padding-top:22px;border-top:1px solid var(--line);}
-.edu-title{
-  font-family:'JetBrains Mono',monospace;font-size:10px;
-  letter-spacing:.2em;color:var(--ink-mute);margin-bottom:14px;
-}
-.edu-name{
-  font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;
-  font-size:.9rem;color:var(--ink);margin-bottom:4px;
-}
+.edu-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--ink-mute);margin-bottom:14px;}
+.edu-name{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.9rem;color:var(--ink);margin-bottom:4px;}
 .edu-place{font-size:12px;color:var(--ink-soft);font-style:italic;margin-bottom:14px;}
 .cert-list{display:flex;flex-direction:column;gap:8px;}
-.cert-item{
-  font-size:12px;color:var(--ink-soft);
-  padding-left:14px;position:relative;
-}
-.cert-item::before{
-  content:"";position:absolute;left:0;top:8px;
-  width:5px;height:1px;background:rgba(255,255,255,.3);
-}
+.cert-item{font-size:12px;color:var(--ink-soft);padding-left:14px;position:relative;}
+.cert-item::before{content:"";position:absolute;left:0;top:8px;width:5px;height:1px;background:rgba(255,255,255,.3);}
 
-/* Right column of row2 — tools + skills stacked */
-.row2-right{
-  grid-column:2/3;
-  display:flex;flex-direction:column;gap:16px;
-}
+.row2-right{grid-column:2/3;display:flex;flex-direction:column;gap:16px;}
 
-/* Tools card */
+/* TOOLS — always coloured, no hover effect */
 .card-tools{}
 .tools-row{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-start;}
-.tool-item{
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-  cursor:default;
-}
+.tool-item{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:default;}
 .tool-icon-wrap{
   width:46px;height:46px;border-radius:12px;overflow:hidden;
   display:flex;align-items:center;justify-content:center;
-  filter:grayscale(1) brightness(.55);
-  transition:filter .35s ease,transform .35s ease;
-}
-.tool-item:hover .tool-icon-wrap{
-  filter:grayscale(0) brightness(1);
-  transform:translateY(-4px) scale(1.08);
+  /* Always full colour — no grayscale */
+  filter:none;
 }
 .tool-icon-wrap svg{width:46px;height:46px;}
 .tool-name{
   font-family:'JetBrains Mono',monospace;font-size:9px;
-  letter-spacing:.06em;color:var(--ink-mute);
-  transition:color .3s;text-align:center;
+  letter-spacing:.06em;color:var(--ink-soft);text-align:center;
 }
-.tool-item:hover .tool-name{color:var(--ink-soft);}
 
-/* Skills card */
+/* SKILLS — green bars with soft glow */
 .card-skills{}
 .skills-list{display:flex;flex-direction:column;gap:18px;}
-.skill-top{
-  display:flex;justify-content:space-between;margin-bottom:8px;
-}
+.skill-top{display:flex;justify-content:space-between;margin-bottom:8px;}
 .skill-name{font-size:13px;font-weight:600;color:var(--ink);}
-.skill-pct{
-  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);
-}
+.skill-pct{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);}
 .skill-bar-bg{
-  width:100%;height:3px;border-radius:999px;
-  background:rgba(255,255,255,.08);overflow:hidden;
+  width:100%;height:4px;border-radius:999px;
+  background:rgba(255,255,255,.08);overflow:visible;
+  position:relative;
 }
 .skill-bar-fill{
-  height:100%;border-radius:999px;background:var(--ink);
+  height:100%;border-radius:999px;
+  background:var(--green);
+  box-shadow:0 0 8px rgba(34,180,87,.7),0 0 16px rgba(34,180,87,.35);
   width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1);
 }
 
-/* ══════════════════════════════════
-   ROW 3 — CONNECT (full width)
-══════════════════════════════════ */
-.card-connect{
+/* PRESENTATIONS CARD */
+.card-presentations{
   margin-bottom:16px;
-  display:flex;flex-wrap:wrap;gap:32px;align-items:center;
-  justify-content:space-between;
+}
+.pres-content{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start;}
+.pres-text{flex:1;min-width:240px;}
+.pres-headline{
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
+  font-size:1.4rem;line-height:1.2;letter-spacing:-.02em;
+  margin-bottom:12px;
+}
+.pres-sub{font-size:13px;line-height:1.75;color:var(--ink-soft);max-width:44ch;margin-bottom:20px;}
+.pres-companies{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
+.pres-company-tag{
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;
+  color:var(--ink-soft);background:rgba(255,255,255,.06);
+  border:1px solid var(--line);padding:6px 14px;border-radius:999px;
+}
+.pres-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:13px;font-weight:600;color:var(--bg);
+  background:var(--ink);border:none;border-radius:999px;
+  padding:12px 24px;text-decoration:none;cursor:pointer;
+  transition:all .25s;width:fit-content;
+}
+.pres-btn:hover{background:rgba(255,255,255,.85);transform:translateY(-2px);}
+.pres-previews{
+  display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start;
+}
+.pres-thumb{
+  width:80px;height:56px;border-radius:8px;overflow:hidden;
+  border:1px solid var(--line);background:var(--bg-2);
+  flex-shrink:0;transition:transform .3s,border-color .3s;
+}
+.pres-thumb:hover{transform:translateY(-3px) scale(1.05);border-color:rgba(255,255,255,.3);}
+.pres-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* CONNECT */
+.card-connect{
+  margin-bottom:16px;display:flex;flex-wrap:wrap;gap:32px;
+  align-items:center;justify-content:space-between;
 }
 .connect-headline{
   font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;
-  font-size:clamp(1.6rem,3.5vw,2.8rem);
-  line-height:1.05;letter-spacing:-.02em;margin-bottom:12px;
+  font-size:clamp(1.6rem,3.5vw,2.8rem);line-height:1.05;letter-spacing:-.02em;margin-bottom:12px;
 }
-.connect-headline em{
-  font-style:italic;font-family:'Fraunces',serif;font-weight:500;
-  color:rgba(255,255,255,.5);
-}
+.connect-headline em{font-style:italic;font-family:'Fraunces',serif;font-weight:500;color:rgba(255,255,255,.5);}
 .connect-sub{font-size:14px;line-height:1.75;color:var(--ink-soft);max-width:50ch;}
 .connect-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;}
 .btn-w{
@@ -261,114 +209,80 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overfl
 .btn-o{
   font-size:13px;font-weight:600;color:var(--ink);
   background:transparent;border:1px solid rgba(255,255,255,.18);
-  border-radius:999px;padding:12px 24px;text-decoration:none;
-  transition:all .25s;
+  border-radius:999px;padding:12px 24px;text-decoration:none;transition:all .25s;
 }
 .btn-o:hover{border-color:rgba(255,255,255,.45);transform:translateY(-2px);}
 
-/* ══════════════════════════════════
-   VIBE / SPOTIFY
-══════════════════════════════════ */
+/* VIBE */
 .vibe-section{margin-bottom:16px;}
 .vibe-header{
   display:flex;align-items:center;gap:12px;
-  font-family:'Plus Jakarta Sans',sans-serif;
-  font-weight:700;font-size:1.1rem;
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1.1rem;
   margin-bottom:20px;color:var(--ink);
 }
 .vibe-header svg{width:22px;height:22px;color:var(--ink-soft);}
-.spotify-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
-}
+.spotify-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 .spotify-card{
   background:var(--bg-card);border:1px solid var(--line);
-  border-radius:18px;overflow:hidden;
-  transition:border-color .3s,transform .3s;
+  border-radius:18px;overflow:hidden;transition:border-color .3s,transform .3s;
 }
 .spotify-card:hover{border-color:rgba(255,255,255,.2);transform:translateY(-3px);}
 
 /* FOOTER */
 .about-footer{
-  padding-top:28px;margin-top:8px;
-  border-top:1px solid var(--line);
-  display:flex;justify-content:space-between;align-items:center;
-  flex-wrap:wrap;gap:16px;
+  padding-top:28px;margin-top:8px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
 }
-.about-footer span{
-  font-family:'JetBrains Mono',monospace;font-size:11px;
-  letter-spacing:.08em;color:var(--ink-mute);
-}
+.about-footer span{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--ink-mute);}
 .about-footer a{
-  font-family:'JetBrains Mono',monospace;font-size:11px;
-  letter-spacing:.08em;color:var(--ink-soft);
-  text-decoration:none;border-bottom:1px solid var(--line);
-  transition:color .3s,border-color .3s;
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;
+  color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line);transition:color .3s,border-color .3s;
 }
 .about-footer a:hover{color:var(--ink);border-color:rgba(255,255,255,.4);}
 
-/* Intro text */
-.intro-tagline{
-  font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;
-  font-size:1.2rem;color:var(--ink);
-}
+.intro-tagline{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1.2rem;color:var(--ink);}
 .intro-bio{font-size:14px;line-height:1.82;color:var(--ink-soft);}
 .intro-bio strong{color:var(--ink);}
 
-/* Reveal */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease;}
 .reveal.in{opacity:1;transform:translateY(0);}
 
-/* Responsive */
 @media(max-width:860px){
   .row1,.row2{grid-template-columns:1fr;}
   .card-photo{grid-column:1;grid-row:auto;min-height:340px;}
   .card-intro,.card-resume{grid-column:1;grid-row:auto;}
   .card-experience,.row2-right{grid-column:1;}
   .spotify-grid{grid-template-columns:1fr;}
+  .pres-content{flex-direction:column;}
 }
 </style>
 </head>
 <body>
 <div class="bg-grid"></div>
-
 <div class="page-wrap">
 
-  <!-- BACK -->
   <a class="back-btn" href="index.html">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <polyline points="15 18 9 12 15 6"/>
-    </svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
     HOME
   </a>
 
-  <!-- PAGE TITLE -->
-  <h1 class="page-headline">
-    The Mind Behind<br>
-    <em>the Work.</em>
-  </h1>
+  <h1 class="page-headline">The Mind Behind<br><em>the Work.</em></h1>
 
-  <!-- ══ ROW 1: INTRO + PHOTO ══ -->
+  <!-- ROW 1 -->
   <div class="row1">
-
-    <!-- Intro -->
     <div class="card card-intro reveal">
       <p class="card-label">ABOUT ME</p>
       <p class="intro-tagline">Graphic Designer. Brand Strategist. Creator.</p>
       <p class="intro-bio">
         I'm <strong>Favour Onasanya TL</strong> — a visual designer with <strong>5 years</strong> of hands-on experience building brands that don't just look good, but <em>perform</em>. I work with startups, personal brands, and businesses across social media, print, packaging, digital, and full brand systems.<br><br>
-        I've worked with <strong>Justprints Limited</strong>, <strong>Frootify</strong>, <strong>Janna's Bowls</strong>, <strong>Teolyx Digital Solutions</strong>, and over <strong>100+ clients</strong> globally.<br><br>
+        I've worked with <strong>Justprints Limited</strong>, <strong>Frootify</strong>, <strong>Janna's Bowls</strong>, <strong>Teolyx Digital Solutions</strong>, and over <strong>100+ clients</strong> globally. I also design high-impact <strong>pitch decks and brand presentations</strong> for startups and businesses — from Afren AI to Frootify to DeltaDiane.<br><br>
         <strong>TL stands for Tree of Life.</strong> Everything created under this name is built to grow, breathe, and stand the test of time.<br><br>
         My philosophy? <strong>Design without strategy is just decoration.</strong> Every pixel is intentional.
       </p>
     </div>
 
-    <!-- Photo — spans rows 1 & 2 on right -->
     <div class="card card-photo reveal">
-      <img
-        src="images/favour-photo.jpg"
-        alt="Favour Onasanya TL"
-        id="aboutPhotoImg"
-      >
+      <img src="images/favour-photo.jpg" alt="Favour Onasanya TL" id="aboutPhotoImg">
       <div class="photo-ph" id="aboutPhotoPh" style="display:none">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
           <circle cx="12" cy="8" r="5"/><path d="M3 21c0-5 3.5-8 9-8s9 3 9 8"/>
@@ -376,7 +290,6 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overfl
       </div>
     </div>
 
-    <!-- Resume card — col 1, row 2 -->
     <div class="card card-resume reveal">
       <p class="card-label">RESUME</p>
       <p class="resume-text">Download my full CV and creative portfolio.</p>
@@ -387,13 +300,10 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overfl
         Download CV
       </a>
     </div>
+  </div>
 
-  </div><!-- end row1 -->
-
-  <!-- ══ ROW 2: EXPERIENCE (left) + TOOLS & SKILLS (right) ══ -->
+  <!-- ROW 2 -->
   <div class="row2">
-
-    <!-- Experience — LEFT -->
     <div class="card card-experience reveal">
       <p class="card-label">EXPERIENCE</p>
       <div class="tl-simple">
@@ -419,7 +329,6 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overfl
           </div>
         </div>
       </div>
-
       <div class="edu-block">
         <p class="edu-title">EDUCATION & CERTIFICATIONS</p>
         <p class="edu-name">B.A. Graphics Design (Final Year)</p>
@@ -432,10 +341,9 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overfl
       </div>
     </div>
 
-    <!-- RIGHT column: Tools + Skills stacked -->
     <div class="row2-right">
 
-      <!-- Tools -->
+      <!-- TOOLS — always coloured -->
       <div class="card card-tools reveal">
         <p class="card-label">TOOLS I USE</p>
         <div class="tools-row">
@@ -508,7 +416,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overfl
         </div>
       </div>
 
-      <!-- Skills -->
+      <!-- SKILLS — green with glow -->
       <div class="card card-skills reveal" id="skillsCard">
         <p class="card-label">SKILLS</p>
         <div class="skills-list">
@@ -529,6 +437,10 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overfl
             <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="90"></div></div>
           </div>
           <div class="skill-item">
+            <div class="skill-top"><span class="skill-name">Presentation Design</span><span class="skill-pct">88%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="88"></div></div>
+          </div>
+          <div class="skill-item">
             <div class="skill-top"><span class="skill-name">UI/UX Design</span><span class="skill-pct">85%</span></div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="85"></div></div>
           </div>
@@ -547,11 +459,32 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overfl
         </div>
       </div>
 
-    </div><!-- end row2-right -->
+    </div>
+  </div>
 
-  </div><!-- end row2 -->
+  <!-- PRESENTATIONS CARD -->
+  <div class="card card-presentations reveal">
+    <p class="card-label">BRAND PRESENTATIONS</p>
+    <div class="pres-content">
+      <div class="pres-text">
+        <h3 class="pres-headline">Pitch Decks & Brand<br>Presentations</h3>
+        <p class="pres-sub">High-impact presentations designed for startups and growing brands — from investor pitch decks to full brand story decks.</p>
+        <div class="pres-companies">
+          <span class="pres-company-tag">AFREN AI</span>
+          <span class="pres-company-tag">FROOTIFY</span>
+          <span class="pres-company-tag">DELTADIANE</span>
+        </div>
+        <a class="pres-btn" href="work.html?filter=presentations">View All Decks →</a>
+      </div>
+      <div class="pres-previews">
+        <div class="pres-thumb"><img src="images/works/Presentations/AfrenaAI/slide-1.webp" alt="Afren AI Deck" loading="lazy"></div>
+        <div class="pres-thumb"><img src="images/works/Presentations/Frootify/slide-1.webp" alt="Frootify Deck" loading="lazy"></div>
+        <div class="pres-thumb"><img src="images/works/Presentations/DeltaDiane/slide-1.webp" alt="DeltaDiane Deck" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
 
-  <!-- ══ CONNECT ══ -->
+  <!-- CONNECT -->
   <div class="card card-connect reveal">
     <div class="connect-text">
       <p class="card-label">LET'S CONNECT</p>
@@ -565,7 +498,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overfl
     </div>
   </div>
 
-  <!-- ══ VIBE ══ -->
+  <!-- VIBE -->
   <div class="vibe-section reveal">
     <div class="vibe-header">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -586,42 +519,34 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overfl
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer class="about-footer">
     <span>© 2025 FAVOUR ONASANYA TL</span>
     <a href="index.html">← Back to Portfolio</a>
   </footer>
-
 </div>
 
 <script>
 // Image fallback
-const aboutImg = document.getElementById('aboutPhotoImg');
-const aboutPh  = document.getElementById('aboutPhotoPh');
-if (aboutImg) {
-  aboutImg.addEventListener('error', () => {
-    aboutImg.style.display = 'none';
-    if (aboutPh) aboutPh.style.display = 'flex';
-  });
-  if (aboutImg.complete && aboutImg.naturalWidth === 0) {
-    aboutImg.dispatchEvent(new Event('error'));
-  }
+const aboutImg=document.getElementById('aboutPhotoImg');
+const aboutPh=document.getElementById('aboutPhotoPh');
+if(aboutImg){
+  aboutImg.addEventListener('error',()=>{aboutImg.style.display='none';if(aboutPh) aboutPh.style.display='flex';});
+  if(aboutImg.complete&&aboutImg.naturalWidth===0) aboutImg.dispatchEvent(new Event('error'));
 }
 
 // Scroll reveal + skill bars
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
       e.target.classList.add('in');
-      e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
-        bar.style.width = bar.dataset.w + '%';
+      e.target.querySelectorAll('.skill-bar-fill').forEach(bar=>{
+        bar.style.width=bar.dataset.w+'%';
       });
       io.unobserve(e.target);
     }
   });
-}, {threshold: .12});
-
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
