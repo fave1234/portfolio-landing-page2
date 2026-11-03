@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visual Archive — Favour Onasanya TL</title>
+<meta name="description" content="The Visual Archive of Favour Onasanya TL: standalone graphic assets, social campaigns, print, presentations and client work (2022 – 2026).">
+<link rel="icon" type="image/jpeg" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0a;--bg-1:#111;--bg-2:#181818;--bg-card:#141414;
+  --ink:#fff;--ink-soft:rgba(255,255,255,.5);--ink-mute:rgba(255,255,255,.22);
+  --line:rgba(255,255,255,.09);--glass:rgba(255,255,255,.06);
+  --green:#22b457;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden;}
+::selection{background:#fff;color:#000;}
+
+.bg-grid{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:64px 64px;
+}
+.page-wrap{position:relative;z-index:2;padding:32px 5vw 80px;}
+
+.back-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  text-decoration:none;color:var(--ink-soft);
+  font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;
+  background:var(--bg-card);border:1px solid var(--line);
+  padding:10px 18px;border-radius:999px;
+  transition:all .3s ease;margin-bottom:40px;
+}
+.back-btn:hover{color:var(--ink);border-color:rgba(255,255,255,.25);transform:translateX(-3px);}
+.back-btn svg{width:14px;height:14px;}
+
+.page-headline{
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;
+  font-size:clamp(2.4rem,6vw,5rem);
+  line-height:1.02;letter-spacing:-.035em;margin-bottom:16px;
+}
+.page-headline em{font-style:italic;font-family:'Fraunces',serif;font-weight:600;color:rgba(255,255,255,.5);}
+.page-sub{font-size:14px;color:var(--ink-soft);line-height:1.7;margin-bottom:32px;max-width:54ch;}
+.page-eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink-mute);margin-bottom:18px;
+}
+.case-link{
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  text-decoration:none;color:var(--ink);
+  background:var(--bg-card);border:1px solid var(--line);border-radius:16px;
+  padding:18px 22px;margin-bottom:44px;max-width:720px;
+  transition:border-color .3s,background .3s,transform .3s;
+}
+.case-link:hover{border-color:rgba(255,255,255,.3);background:#171717;transform:translateY(-2px);}
+.case-link svg{width:15px;height:15px;margin-left:auto;flex-shrink:0;transition:transform .3s;}
+.case-link:hover svg{transform:translateX(4px);}
+.case-link-label{
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:#000;background:#fff;
+  padding:5px 11px;border-radius:999px;white-space:nowrap;
+}
+.case-link-title{font-size:14px;font-weight:500;color:rgba(255,255,255,.82);line-height:1.5;}
+
+/* FILTER BAR */
+.filter-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px;}
+.filter-btn{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;
+  color:var(--ink-soft);background:var(--glass);border:1px solid var(--line);
+  padding:9px 18px;border-radius:999px;cursor:pointer;transition:all .25s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.filter-btn:hover{color:var(--ink);border-color:rgba(255,255,255,.3);}
+.filter-btn.active{color:#000;background:#fff;border-color:#fff;}
+.clear-filter{
+  display:none;align-items:center;gap:8px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
+  color:#ff6b8a;background:rgba(255,60,100,.1);border:1px solid rgba(255,60,100,.3);
+  padding:9px 16px;border-radius:999px;cursor:pointer;transition:all .25s;
+}
+.clear-filter.visible{display:inline-flex;}
+.clear-filter:hover{background:rgba(255,60,100,.2);}
+.clear-filter svg{width:13px;height:13px;}
+.filter-info{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;
+  color:var(--ink-mute);margin-bottom:32px;min-height:18px;
+}
+
+/* MASONRY GRID — Pinterest style */
+.masonry-grid{
+  columns:4;column-gap:14px;
+}
+.masonry-item{
+  break-inside:avoid;margin-bottom:14px;
+  position:relative;overflow:hidden;
+  border-radius:14px;border:1px solid var(--line);
+  cursor:pointer;background:var(--bg-2);
+  transition:border-color .3s,box-shadow .3s,transform .3s;
+  display:block;
+}
+.masonry-item:hover{border-color:rgba(255,255,255,.28);box-shadow:0 12px 40px rgba(0,0,0,.6);transform:translateY(-4px);}
+.masonry-item img,.masonry-item video{width:100%;display:block;height:auto;}
+.card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,transparent 55%);pointer-events:none;opacity:0;transition:opacity .3s;}
+.masonry-item:hover .card-overlay{opacity:1;}
+.card-tag{
+  position:absolute;left:12px;bottom:12px;z-index:2;
+  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;
+  color:#fff;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);
+  padding:5px 12px;border:1px solid rgba(255,255,255,.15);border-radius:999px;
+  opacity:0;transform:translateY(6px);transition:all .3s;
+}
+.masonry-item:hover .card-tag{opacity:1;transform:translateY(0);}
+
+/* SLIDE COUNTER BADGE */
+.slide-badge{
+  position:absolute;top:12px;right:12px;z-index:2;
+  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.06em;
+  color:#fff;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);
+  padding:4px 10px;border:1px solid rgba(255,255,255,.2);border-radius:999px;
+}
+
+/* PRESENTATIONS SECTION */
+.pres-section{margin-bottom:56px;}
+.pres-company-header{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:20px;padding-bottom:16px;
+  border-bottom:1px solid var(--line);
+  flex-wrap:wrap;
+}
+.pres-company-name{
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
+  font-size:1.3rem;letter-spacing:-.02em;color:var(--ink);
+}
+.pres-type-badge{
+  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;
+  color:var(--green);background:rgba(34,180,87,.12);
+  border:1px solid rgba(34,180,87,.3);
+  padding:5px 12px;border-radius:999px;
+}
+.pres-slide-count{
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;
+  color:var(--ink-mute);margin-left:auto;
+}
+
+/* Presentations masonry */
+.pres-masonry{columns:4;column-gap:14px;}
+.pres-slide{
+  break-inside:avoid;margin-bottom:14px;
+  position:relative;overflow:hidden;
+  border-radius:12px;border:1px solid var(--line);
+  cursor:pointer;background:var(--bg-2);
+  transition:border-color .3s,box-shadow .3s,transform .3s;
+  display:block;
+}
+.pres-slide:hover{border-color:rgba(34,180,87,.4);box-shadow:0 8px 32px rgba(34,180,87,.15);transform:translateY(-3px);}
+.pres-slide img{width:100%;display:block;height:auto;border-radius:12px;}
+.pres-slide-num{
+  position:absolute;top:8px;left:8px;z-index:2;
+  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.06em;
+  color:#fff;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);
+  padding:4px 10px;border:1px solid rgba(255,255,255,.15);border-radius:999px;
+}
+
+/* EMPTY STATE */
+.empty-state{
+  text-align:center;padding:80px 20px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;
+  letter-spacing:.1em;color:var(--ink-mute);display:none;
+}
+.empty-state.visible{display:block;}
+
+/* LIGHTBOX */
+.lightbox{
+  position:fixed;inset:0;z-index:300;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .35s;
+}
+.lightbox.open{opacity:1;pointer-events:all;}
+.lb-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.92);backdrop-filter:blur(28px);}
+.lb-content{
+  position:relative;z-index:2;max-width:min(94vw,1000px);width:100%;
+  transform:scale(.94) translateY(20px);transition:transform .4s cubic-bezier(.2,.8,.2,1);
+}
+.lightbox.open .lb-content{transform:scale(1) translateY(0);}
+.lb-arrow{
+  position:fixed;top:50%;transform:translateY(-50%);z-index:310;
+  width:52px;height:52px;border-radius:50%;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--ink);transition:all .25s;
+}
+.lb-arrow:hover{background:rgba(255,255,255,.22);transform:translateY(-50%) scale(1.08);}
+.lb-arrow.prev{left:16px;}
+.lb-arrow.next{right:16px;}
+.lb-arrow svg{width:22px;height:22px;}
+.lb-arrow.hidden{opacity:0;pointer-events:none;}
+.lb-img-wrap{
+  border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 40px 100px rgba(0,0,0,.8);background:var(--bg-2);
+  display:flex;align-items:center;justify-content:center;max-height:80vh;
+}
+.lb-img-wrap img,.lb-img-wrap video{width:100%;display:block;max-height:80vh;object-fit:contain;border-radius:18px;}
+.lb-meta{margin-top:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.lb-left{display:flex;align-items:center;gap:14px;}
+.lb-tag{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;color:var(--ink-soft);}
+.lb-counter{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-mute);}
+.lb-actions{display:flex;gap:10px;align-items:center;}
+.lb-like-btn{
+  display:flex;align-items:center;gap:7px;padding:9px 18px;border-radius:999px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);
+  color:var(--ink-soft);font-family:'JetBrains Mono',monospace;font-size:11px;
+  cursor:pointer;transition:all .3s;user-select:none;
+}
+.lb-like-btn svg{width:16px;height:16px;transition:all .3s;flex-shrink:0;}
+.lb-like-btn:hover{background:rgba(255,60,100,.15);border-color:rgba(255,60,100,.4);color:#ff6b8a;}
+.lb-like-btn:hover svg{stroke:#ff6b8a;}
+.lb-like-btn.liked{background:rgba(255,60,100,.18);border-color:rgba(255,60,100,.5);color:#ff6b8a;}
+.lb-like-btn.liked svg{fill:#ff6b8a;stroke:#ff6b8a;}
+.lb-sound-btn{
+  padding:9px 16px;border-radius:999px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);
+  color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:11px;
+  cursor:pointer;transition:all .25s;display:none;align-items:center;gap:6px;
+}
+.lb-sound-btn:hover{background:rgba(255,255,255,.14);}
+.lb-close{
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--ink);transition:all .25s;
+}
+.lb-close:hover{background:rgba(255,255,255,.18);transform:rotate(90deg);}
+.lb-close svg{width:18px;height:18px;}
+
+/* LIKE TOAST */
+.like-toast{
+  position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);
+  z-index:400;background:rgba(15,15,15,.96);
+  border:1px solid rgba(255,100,130,.4);border-radius:999px;
+  padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:12px;
+  color:#ff9db0;display:flex;align-items:center;gap:8px;
+  opacity:0;pointer-events:none;transition:all .4s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;
+}
+.like-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+.work-footer{
+  padding-top:28px;margin-top:40px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+}
+.work-footer span{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--ink-mute);}
+.work-footer a{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;
+  color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line);transition:color .3s;
+}
+.work-footer a:hover{color:var(--ink);}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+@media(max-width:1024px){
+  .masonry-grid,.pres-masonry{columns:3;}
+}
+@media(max-width:768px){
+  .page-wrap{padding:24px 4vw 60px;}
+  .masonry-grid,.pres-masonry{columns:2;column-gap:10px;}
+  .masonry-item,.pres-slide{margin-bottom:10px;}
+  .lb-arrow.prev{left:8px;}
+  .lb-arrow.next{right:8px;}
+  .lb-arrow{width:42px;height:42px;}
+  .filter-btn{font-size:10px;padding:7px 13px;}
+}
+@media(max-width:480px){
+  .masonry-grid,.pres-masonry{columns:2;column-gap:8px;}
+  .lb-meta{flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="page-wrap">
+
+  <a class="back-btn" href="../index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    HOME
+  </a>
+
+  <p class="page-eyebrow reveal">Standalone Work · 2022 — 2026</p>
+  <h1 class="page-headline reveal">Visual<br><em>Archive.</em></h1>
+  <p class="page-sub reveal">Standalone graphic assets, social campaigns, and client work (2022 – 2026).</p>
+  <a class="case-link reveal" href="../work/jannas-bowls/">
+    <span class="case-link-label">Featured Case Study</span>
+    <span class="case-link-title">Janna's Bowls — Brand Identity &amp; Packaging System</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+  </a>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar reveal">
+    <button type="button" class="filter-btn active" data-filter="all">All Work</button>
+    <button type="button" class="filter-btn" data-filter="SOCIAL MEDIA">Social Media</button>
+    <button type="button" class="filter-btn" data-filter="PRINT DESIGN">Print Design</button>
+    <button type="button" class="filter-btn" data-filter="LINKEDIN BANNER">LinkedIn Banners</button>
+    <button type="button" class="filter-btn" data-filter="CREATIVE FLYER">Random / Creative</button>
+    <button type="button" class="filter-btn" data-filter="VIDEO REEL">Videos</button>
+    <button type="button" class="filter-btn" data-filter="PRESENTATIONS">Brand Presentations</button>
+    <button type="button" class="clear-filter" id="clearFilter">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+      CLEAR FILTER
+    </button>
+  </div>
+  <p class="filter-info" id="filterInfo"></p>
+
+  <!-- REGULAR WORK GRID (masonry) -->
+  <div id="regularSection">
+    <div class="masonry-grid" id="masonryGrid"></div>
+    <div class="empty-state" id="emptyState">NO DESIGNS FOUND FOR THIS FILTER</div>
+  </div>
+
+  <!-- PRESENTATIONS SECTION -->
+  <div id="presSection" style="display:none;">
+    <div id="presContent"></div>
+  </div>
+
+  <footer class="work-footer reveal">
+    <span>© 2026 FAVOUR ONASANYA TL</span>
+    <a href="../index.html">← Back to Portfolio</a>
+  </footer>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-backdrop" id="lbBackdrop"></div>
+  <button type="button" class="lb-arrow prev" id="lbPrev" aria-label="Previous">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button type="button" class="lb-arrow next" id="lbNext" aria-label="Next">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+  <div class="lb-content">
+    <div class="lb-img-wrap" id="lbImgWrap"></div>
+    <div class="lb-meta">
+      <div class="lb-left">
+        <span class="lb-tag" id="lbTag"></span>
+        <span class="lb-counter" id="lbCounter"></span>
+      </div>
+      <div class="lb-actions">
+        <button type="button" class="lb-like-btn" id="lbLikeBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+          <span id="lbLikeLabel">Like</span>
+        </button>
+        <button type="button" class="lb-sound-btn" id="lbSoundBtn">🔇 Sound</button>
+        <button type="button" class="lb-close" id="lbClose" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="like-toast" id="likeToast">❤️ <span id="likeToastMsg">Liked!</span></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+// EmailJS is optional — if the CDN is blocked the gallery keeps working.
+if(window.emailjs){emailjs.init('RxzqG0eteRDTIrVGp');}
+
+// ══ DATA ══
+const SM='../images/works/Social Media/';
+const PR='../images/works/Prints/';
+const LB='../images/works/LinkedIn/';
+const RA='../images/works/Random/';
+const VID='../Videos/';
+const PRES='../images/works/Presentations/';
+
+const smNums=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37];
+
+// Regular items
+const allItems=[
+  ...smNums.map(n=>({tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-${n}.webp`})),
+  ...Array.from({length:17},(_,i)=>({tag:'PRINT DESIGN',type:'image',src:`${PR}print-${i+1}.webp`})),
+  {tag:'LINKEDIN BANNER',type:'image',src:`${LB}Lb-1.webp`},
+  {tag:'LINKEDIN BANNER',type:'image',src:`${LB}Lb-2.webp`},
+  {tag:'CREATIVE FLYER',type:'image',src:`${RA}ra-1.webp`},
+  {tag:'CREATIVE FLYER',type:'image',src:`${RA}ra-2.webp`},
+  {tag:'CREATIVE FLYER',type:'image',src:`${RA}ra-3.webp`},
+  {tag:'CREATIVE FLYER',type:'image',src:`${RA}ra-4.webp`},
+  {tag:'CREATIVE FLYER',type:'image',src:`${RA}ra-5.webp`},
+  {tag:'VIDEO REEL',type:'video',src:`${VID}0108.webm`},
+  {tag:'VIDEO REEL',type:'video',src:`${VID}0122-1.webm`},
+  {tag:'VIDEO REEL',type:'video',src:`${VID}0414.webm`},
+  {tag:'VIDEO REEL',type:'video',src:`${VID}1009.webm`},
+];
+
+// Presentations data
+const presentations=[
+  {
+    company:'Afren AI',
+    subtitle:'Freelance AI App',
+    type:'PITCH DECK',
+    slides:Array.from({length:13},(_,i)=>({
+      src:`${PRES}AfrenaAI/slide-${i+1}.webp`,
+      num:i+1
+    }))
+  },
+  {
+    company:'Frootify',
+    subtitle:'HealthTech',
+    type:'PITCH DECK',
+    slides:Array.from({length:11},(_,i)=>({
+      src:`${PRES}Frootify/slide-${i+1}.webp`,
+      num:i+1
+    }))
+  },
+  {
+    company:'DeltaDiane',
+    subtitle:'Sport Company',
+    type:'PITCH DECK',
+    slides:Array.from({length:13},(_,i)=>({
+      src:`${PRES}DeltaDiane/slide-${i+1}.webp`,
+      num:i+1
+    }))
+  },
+];
+
+// ══ STATE ══
+let activeFilter='all';
+let visibleItems=[...allItems];
+let currentLbIdx=0;
+let currentLbItems=[];
+let activeVideo=null;
+
+// ══ FILTER LOGIC ══
+const filterBtns=document.querySelectorAll('.filter-btn');
+const clearFilter=document.getElementById('clearFilter');
+const filterInfo=document.getElementById('filterInfo');
+const regularSection=document.getElementById('regularSection');
+const presSection=document.getElementById('presSection');
+
+filterBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    filterBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter=btn.dataset.filter;
+    clearFilter.classList.toggle('visible',activeFilter!=='all');
+    applyFilter();
+  });
+});
+
+clearFilter.addEventListener('click',()=>{
+  activeFilter='all';
+  filterBtns.forEach(b=>b.classList.remove('active'));
+  document.querySelector('[data-filter="all"]').classList.add('active');
+  clearFilter.classList.remove('visible');
+  applyFilter();
+});
+
+function applyFilter(){
+  if(activeFilter==='PRESENTATIONS'){
+    regularSection.style.display='none';
+    presSection.style.display='block';
+    filterInfo.textContent=`Showing Brand Presentations — 3 decks`;
+    renderPresentations();
+  } else {
+    regularSection.style.display='block';
+    presSection.style.display='none';
+    renderGrid();
+  }
+}
+
+// Check URL param for auto-filter
+window.addEventListener('DOMContentLoaded',()=>{
+  const params=new URLSearchParams(window.location.search);
+  if(params.get('filter')==='presentations'){
+    activeFilter='PRESENTATIONS';
+    filterBtns.forEach(b=>b.classList.remove('active'));
+    document.querySelector('[data-filter="PRESENTATIONS"]').classList.add('active');
+    clearFilter.classList.add('visible');
+  }
+  applyFilter();
+});
+
+// ══ RENDER REGULAR GRID (masonry) ══
+const masonryGrid=document.getElementById('masonryGrid');
+const emptyState=document.getElementById('emptyState');
+
+function renderGrid(){
+  masonryGrid.innerHTML='';
+  visibleItems=activeFilter==='all'
+    ?[...allItems]
+    :allItems.filter(i=>i.tag===activeFilter);
+
+  filterInfo.textContent=`Showing ${activeFilter==='all'?'all':activeFilter.toLowerCase()} — ${visibleItems.length} piece${visibleItems.length!==1?'s':''}`;
+
+  if(visibleItems.length===0){emptyState.classList.add('visible');return;}
+  emptyState.classList.remove('visible');
+
+  visibleItems.forEach((item,vi)=>{
+    const el=document.createElement('div');
+    el.className='masonry-item';
+    el.dataset.visIdx=vi;
+
+    if(item.type==='video'){
+      const v=document.createElement('video');
+      v.src=item.src;v.muted=true;v.loop=true;v.playsInline=true;v.setAttribute('preload','none');
+      el.appendChild(v);
+      new IntersectionObserver(entries=>{
+        entries.forEach(e=>{if(e.isIntersecting) v.play().catch(()=>{});else v.pause();});
+      },{threshold:0.3}).observe(el);
+    } else {
+      const img=document.createElement('img');
+      img.src=item.src;img.alt=item.tag;img.loading='lazy';
+      el.appendChild(img);
+    }
+
+    const overlay=document.createElement('div');overlay.className='card-overlay';
+    const tag=document.createElement('span');tag.className='card-tag';tag.textContent=item.tag;
+    el.appendChild(overlay);el.appendChild(tag);
+    el.addEventListener('click',()=>{
+      currentLbItems=visibleItems;
+      openLightbox(vi,visibleItems,item.tag);
+    });
+    masonryGrid.appendChild(el);
+  });
+}
+
+// ══ RENDER PRESENTATIONS ══
+function renderPresentations(){
+  const presContent=document.getElementById('presContent');
+  presContent.innerHTML='';
+
+  presentations.forEach(deck=>{
+    const section=document.createElement('div');
+    section.className='pres-section reveal';
+
+    // Header
+    const header=document.createElement('div');
+    header.className='pres-company-header';
+    header.innerHTML=`
+      <span class="pres-company-name">${deck.company}</span>
+      <span class="pres-type-badge">${deck.type}</span>
+      <span class="pres-slide-count">${deck.slides.length} SLIDES</span>
+    `;
+    section.appendChild(header);
+
+    // Masonry grid of slides
+    const grid=document.createElement('div');
+    grid.className='pres-masonry';
+
+    deck.slides.forEach((slide,si)=>{
+      const el=document.createElement('div');
+      el.className='pres-slide';
+
+      const img=document.createElement('img');
+      img.src=slide.src;img.alt=`${deck.company} Slide ${slide.num}`;img.loading='lazy';
+      el.appendChild(img);
+
+      const numBadge=document.createElement('span');
+      numBadge.className='pres-slide-num';
+      numBadge.textContent=`${slide.num} / ${deck.slides.length}`;
+      el.appendChild(numBadge);
+
+      const overlay=document.createElement('div');overlay.className='card-overlay';
+      el.appendChild(overlay);
+
+      el.addEventListener('click',()=>{
+        // Navigate only within this company's slides
+        const slideItems=deck.slides.map(s=>({
+          type:'image',src:s.src,tag:`${deck.company} — ${deck.type}`
+        }));
+        currentLbItems=slideItems;
+        openLightbox(si,slideItems,`${deck.company} — ${deck.type}`);
+      });
+
+      grid.appendChild(el);
+    });
+
+    section.appendChild(grid);
+    presContent.appendChild(section);
+  });
+
+  // Trigger reveal
+  setTimeout(()=>{
+    document.querySelectorAll('#presContent .reveal').forEach(el=>el.classList.add('in'));
+  },50);
+}
+
+// ══ LIGHTBOX ══
+const lightbox=document.getElementById('lightbox');
+const lbImgWrap=document.getElementById('lbImgWrap');
+const lbTag=document.getElementById('lbTag');
+const lbCounter=document.getElementById('lbCounter');
+const lbClose=document.getElementById('lbClose');
+const lbBackdrop=document.getElementById('lbBackdrop');
+const lbSoundBtn=document.getElementById('lbSoundBtn');
+const lbPrev=document.getElementById('lbPrev');
+const lbNext=document.getElementById('lbNext');
+const lbLikeBtn=document.getElementById('lbLikeBtn');
+const lbLikeLabel=document.getElementById('lbLikeLabel');
+const likeToast=document.getElementById('likeToast');
+const likeToastMsg=document.getElementById('likeToastMsg');
+
+function renderLbItem(vi){
+  currentLbIdx=vi;
+  const item=currentLbItems[vi];
+  if(activeVideo){activeVideo.pause();activeVideo=null;}
+  lbSoundBtn.style.display='none';
+  lbImgWrap.innerHTML='';
+
+  if(item.type==='video'){
+    const v=document.createElement('video');
+    v.src=item.src;v.autoplay=true;v.muted=true;v.loop=true;v.playsInline=true;
+    lbImgWrap.appendChild(v);activeVideo=v;
+    lbSoundBtn.style.display='flex';lbSoundBtn.innerHTML='🔇 Sound';
+  } else {
+    const img=document.createElement('img');img.src=item.src;img.alt=item.tag||'';
+    lbImgWrap.appendChild(img);
+  }
+
+  lbTag.textContent=item.tag||'';
+  lbCounter.textContent=`${vi+1} / ${currentLbItems.length}`;
+  lbPrev.classList.toggle('hidden',vi===0);
+  lbNext.classList.toggle('hidden',vi===currentLbItems.length-1);
+  updateLikeUI(item);
+}
+
+function openLightbox(vi,items,tag){
+  currentLbItems=items;
+  renderLbItem(vi);
+  lightbox.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+  lightbox.classList.remove('open');
+  document.body.style.overflow='';
+  if(activeVideo){activeVideo.pause();activeVideo=null;}
+}
+
+lbPrev.addEventListener('click',()=>{if(currentLbIdx>0) renderLbItem(currentLbIdx-1);});
+lbNext.addEventListener('click',()=>{if(currentLbIdx<currentLbItems.length-1) renderLbItem(currentLbIdx+1);});
+lbClose.addEventListener('click',closeLightbox);
+lbBackdrop.addEventListener('click',closeLightbox);
+document.addEventListener('keydown',e=>{
+  if(!lightbox.classList.contains('open')) return;
+  if(e.key==='ArrowLeft'&&currentLbIdx>0) renderLbItem(currentLbIdx-1);
+  if(e.key==='ArrowRight'&&currentLbIdx<currentLbItems.length-1) renderLbItem(currentLbIdx+1);
+  if(e.key==='Escape') closeLightbox();
+});
+
+let touchStartX=0;
+lbImgWrap.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX;},{passive:true});
+lbImgWrap.addEventListener('touchend',e=>{
+  const diff=touchStartX-e.changedTouches[0].screenX;
+  if(Math.abs(diff)>50){
+    if(diff>0&&currentLbIdx<currentLbItems.length-1) renderLbItem(currentLbIdx+1);
+    else if(diff<0&&currentLbIdx>0) renderLbItem(currentLbIdx-1);
+  }
+});
+
+lbSoundBtn.addEventListener('click',()=>{
+  if(!activeVideo) return;
+  activeVideo.muted=!activeVideo.muted;
+  lbSoundBtn.innerHTML=activeVideo.muted?'🔇 Sound':'🔊 Sound On';
+});
+
+// ══ LIKES ══
+const getLikes=()=>JSON.parse(localStorage.getItem('favLikes')||'{}');
+const saveLikes=obj=>localStorage.setItem('favLikes',JSON.stringify(obj));
+const likeKey=src=>`src_${src}`;
+
+function updateLikeUI(item){
+  const liked=!!getLikes()[likeKey(item.src)];
+  lbLikeBtn.classList.toggle('liked',liked);
+  lbLikeLabel.textContent=liked?'Liked ❤️':'Like';
+}
+function showToast(msg){
+  likeToastMsg.textContent=msg;likeToast.classList.add('show');
+  setTimeout(()=>likeToast.classList.remove('show'),3500);
+}
+async function getLocation(){
+  try{const r=await fetch('https://ipapi.co/json/');const d=await r.json();return `${d.city||'Unknown'}, ${d.region||''}, ${d.country_name||''}`.replace(/,\s*,/g,',').trim();}
+  catch(e){return 'Unknown location';}
+}
+async function sendLikeEmail(item){
+  const location=await getLocation();
+  const time=new Date().toLocaleString('en-GB',{timeZone:'Africa/Lagos'});
+  if(!window.emailjs) return;
+  emailjs.send('service_kamu87d','lvtpqi8',{
+    to_email:'favouronasanya22@gmail.com',
+    subject:'❤️ Someone liked your design!',
+    image_name:item.src.split('/').pop(),
+    section:item.tag||'Presentation Slide',
+    location:location,time:time,
+    image_url:new URL(item.src,window.location.href).href,
+  }).catch(err=>console.warn('EmailJS:',err));
+}
+
+lbLikeBtn.addEventListener('click',async()=>{
+  const item=currentLbItems[currentLbIdx];
+  const likes=getLikes();const key=likeKey(item.src);
+  if(likes[key]){
+    delete likes[key];saveLikes(likes);updateLikeUI(item);showToast('Unliked');
+  } else {
+    likes[key]=Date.now();saveLikes(likes);updateLikeUI(item);
+    showToast('Favour has been notified! ❤️');sendLikeEmail(item);
+  }
+});
+
+// ══ SCROLL REVEAL ══
+new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('in');});
+},{threshold:.08}).observe(document.querySelector('.reveal'));
+document.querySelectorAll('.reveal').forEach(el=>{
+  new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('in');});
+  },{threshold:.08}).observe(el);
+});
+</script>
+</body>
+</html>
