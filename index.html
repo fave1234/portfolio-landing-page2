@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Favour Onasanya TL — Visual Designer</title>
+<title>Favour Onasanya TL — Brand Identity &amp; Visual Systems</title>
+<meta name="description" content="Favour Onasanya TL is a brand designer building brand identities and visual systems that demand attention. Brand identity, visual systems, UI design and creative direction — based in Nigeria, working globally.">
 <link rel="icon" type="image/jpeg" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -159,7 +160,7 @@ section,header,footer,nav{position:relative;z-index:2;}
 .hero{
   min-height:100vh;display:flex;flex-direction:column;
   align-items:center;justify-content:center;
-  text-align:center;padding:120px 24px 80px;
+  text-align:center;padding:112px 24px 72px;
 }
 .hero-avatar{
   width:80px;height:80px;border-radius:50%;
@@ -170,10 +171,12 @@ section,header,footer,nav{position:relative;z-index:2;}
 .hero-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
 .hero-avatar .fallback-icon{width:40px;height:40px;color:var(--ink-soft);display:none;}
 .hero-role{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:13px;font-weight:500;color:var(--ink-soft);
-  background:rgba(255,255,255,.08);border:1px solid var(--line);
-  padding:7px 16px;border-radius:999px;margin-bottom:36px;backdrop-filter:blur(8px);
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.8);
+  background:rgba(255,255,255,.07);border:1px solid var(--line);
+  padding:9px 18px;border-radius:999px;margin-bottom:30px;backdrop-filter:blur(8px);
 }
 .hero-role .dot{
   width:7px;height:7px;border-radius:50%;background:#22c55e;
@@ -185,16 +188,16 @@ section,header,footer,nav{position:relative;z-index:2;}
 }
 .hero-headline{
   font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;
-  font-size:clamp(2.8rem,6.5vw,5.4rem);
-  line-height:1.04;letter-spacing:-.03em;
-  color:var(--ink);max-width:18ch;margin-bottom:24px;
+  font-size:clamp(2.4rem,5.6vw,4.6rem);
+  line-height:1.06;letter-spacing:-.035em;text-wrap:balance;
+  color:var(--ink);max-width:22ch;margin-bottom:26px;
 }
 .hero-headline em{
-  font-style:italic;font-family:'Fraunces',serif;font-weight:600;
-  color:rgba(255,255,255,.65);display:block;
+  font-style:italic;font-family:'Fraunces',serif;font-weight:500;
+  color:rgba(255,255,255,.62);display:block;
 }
-.hero-sub{font-size:1rem;line-height:1.75;color:var(--ink-soft);max-width:46ch;margin-bottom:40px;}
-.hero-cta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:56px;}
+.hero-sub{font-size:1rem;line-height:1.78;color:var(--ink-soft);max-width:50ch;margin-bottom:36px;text-wrap:pretty;}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:48px;}
 .btn-dark{
   font-size:14px;font-weight:600;color:var(--ink);
   background:var(--bg-2);border:1px solid rgba(255,255,255,.14);
@@ -208,222 +211,221 @@ section,header,footer,nav{position:relative;z-index:2;}
 }
 .btn-light:hover{background:rgba(255,255,255,.85);transform:translateY(-2px);}
 
-.stat-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
-.stat-chip{
+/* SKILL PILLARS (replaces freelancer stat chips) */
+.pillar-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;align-items:center;}
+.pillar-tag{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.72);
   background:var(--glass);border:1px solid var(--line);
-  border-radius:16px;backdrop-filter:blur(12px);
-  padding:18px 26px;min-width:140px;text-align:center;
-  animation:float 6s ease-in-out infinite;
+  border-radius:999px;padding:11px 20px;
+  backdrop-filter:blur(12px);
+  transition:color .3s,border-color .3s,background .3s,transform .3s;
+  animation:float 7s ease-in-out infinite;
 }
-.stat-chip:nth-child(2){animation-delay:-2s;}
-.stat-chip:nth-child(3){animation-delay:-4s;}
-@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
-.stat-num{font-family:'Fraunces',serif;font-weight:600;font-size:1.8rem;color:var(--ink);}
-.stat-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--ink-soft);margin-top:6px;}
+.pillar-tag:nth-child(2){animation-delay:-1.8s;}
+.pillar-tag:nth-child(3){animation-delay:-3.6s;}
+.pillar-tag:nth-child(4){animation-delay:-5.2s;}
+.pillar-tag:hover{color:#fff;border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.07);transform:translateY(-3px);}
+.pillar-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.45);flex-shrink:0;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
 
-/* TICKER */
-.ticker-section{position:relative;z-index:2;}
-.ticker-wrap{width:100%;overflow:hidden;border-top:1px solid var(--line);padding:16px 0;background:var(--bg-1);}
-.ticker-wrap-2{width:100%;overflow:hidden;border-bottom:1px solid var(--line);padding:16px 0;background:var(--bg-1);}
-.ticker-track{display:flex;animation:tickerL 35s linear infinite;width:max-content;}
-.ticker-track-r{display:flex;animation:tickerR 35s linear infinite;width:max-content;}
+/* TICKER / SKILLS MARQUEE */
+.ticker-section{position:relative;z-index:2;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-1);}
+.ticker-wrap{width:100%;overflow:hidden;padding:18px 0;}
+.ticker-track{display:flex;align-items:center;width:max-content;animation:tickerL 42s linear infinite;}
 @keyframes tickerL{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-@keyframes tickerR{from{transform:translateX(-50%);}to{transform:translateX(0);}}
+.ticker-group{display:inline-flex;align-items:center;}
 .ticker-item{
-  display:inline-flex;align-items:center;gap:16px;
-  font-size:13px;font-weight:500;color:var(--ink-soft);
-  padding:0 28px;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:18px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+  padding:0 26px;white-space:nowrap;
   user-select:none;pointer-events:none;
+  transition:color .3s;
 }
-.ticker-item .sep{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.25);display:inline-block;}
+.ticker-item .sep{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.3);display:inline-block;}
+@media(prefers-reduced-motion:reduce){
+  .ticker-track{animation:none;}
+  .pillar-tag{animation:none;}
+  .hero-fade{opacity:1;transform:none;}
+}
 
-/* WORK */
-.work-section{padding:80px 0 0;overflow:hidden;}
+/* ═══════════════════════════════════════════
+   FEATURED CASE STUDIES
+   ═══════════════════════════════════════════ */
+.work-section{padding:96px 0 0;overflow:hidden;}
 .work-head{
-  display:flex;justify-content:space-between;align-items:center;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
   border-bottom:1px solid var(--line);
-  padding:0 5vw 22px;margin-bottom:40px;
+  padding:0 5vw 24px;margin-bottom:44px;
 }
 .work-head h2{
-  font-family:'Fraunces',serif;font-weight:600;font-style:italic;
-  font-size:clamp(1.6rem,3vw,2.4rem);
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
+  font-size:clamp(1.7rem,3.4vw,2.7rem);letter-spacing:-.03em;line-height:1.05;
 }
-.work-head-right{display:flex;align-items:center;gap:16px;}
-.view-all-btn{
-  display:inline-flex;align-items:center;gap:6px;
-  font-family:'JetBrains Mono',monospace;
-  font-size:12px;letter-spacing:.08em;font-weight:600;
-  color:#000;background:#fff;border:none;
-  padding:10px 20px;border-radius:999px;
-  text-decoration:none;transition:all .25s;white-space:nowrap;cursor:pointer;
+.work-head h2 em{font-style:italic;font-family:'Fraunces',serif;font-weight:500;color:rgba(255,255,255,.45);}
+.work-head-sub{
+  font-size:14px;line-height:1.65;color:var(--ink-soft);
+  max-width:40ch;margin-top:10px;
 }
-.view-all-btn:hover{background:rgba(255,255,255,.85);transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,255,255,.15);}
+.work-head-right{display:flex;align-items:center;gap:16px;flex-shrink:0;padding-bottom:4px;}
 .work-head-year{
   font-family:'JetBrains Mono',monospace;
   font-size:11px;letter-spacing:.14em;color:var(--ink-soft);
 }
-.work-columns{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:14px;padding:0 3vw;height:115vh;overflow:hidden;width:100%;
-}
-.work-col{overflow:hidden;position:relative;border-radius:14px;}
-.work-col::before,.work-col::after{
-  content:"";position:absolute;left:0;right:0;z-index:10;pointer-events:none;height:60px;
-}
-.work-col::before{top:0;background:linear-gradient(to bottom,var(--bg),transparent);}
-.work-col::after{bottom:0;background:linear-gradient(to top,var(--bg),transparent);}
-.col-track{display:flex;flex-direction:column;gap:12px;will-change:transform;}
 
-/* Cards */
-.work-card{
-  position:relative;overflow:hidden;
-  border-radius:10px;border:1px solid var(--line);
-  cursor:pointer;flex-shrink:0;
-  transition:border-color .3s,box-shadow .3s,transform .3s;
+/* CASE STUDY GRID — 1 featured card + 3 supporting studies */
+.cs-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(14px,1.6vw,20px);
+  padding:0 5vw;
 }
-.work-card:hover{border-color:rgba(255,255,255,.28);box-shadow:0 12px 40px rgba(0,0,0,.6);transform:scale(1.02);}
-.work-card img{width:100%;display:block;object-fit:cover;}
-.work-card video{width:100%;display:block;object-fit:cover;}
-.card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 50%);pointer-events:none;opacity:0;transition:opacity .3s;}
-.work-card:hover .card-overlay{opacity:1;}
-.card-tag{
-  position:absolute;left:10px;bottom:10px;z-index:2;
-  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.06em;
-  color:#fff;background:rgba(0,0,0,.45);backdrop-filter:blur(6px);
-  padding:5px 10px;border:1px solid rgba(255,255,255,.15);border-radius:999px;
-  opacity:0;transform:translateY(4px);transition:all .3s;user-select:none;
-}
-.work-card:hover .card-tag{opacity:1;transform:translateY(0);}
-.card-expand{
-  position:absolute;top:10px;right:10px;z-index:2;
-  width:28px;height:28px;border-radius:50%;
-  background:rgba(0,0,0,.5);backdrop-filter:blur(6px);
-  border:1px solid rgba(255,255,255,.2);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;transform:scale(.85);transition:all .3s;
-}
-.work-card:hover .card-expand{opacity:1;transform:scale(1);}
-.card-expand svg{width:12px;height:12px;color:#fff;}
-.card-sound{
-  position:absolute;bottom:10px;right:10px;z-index:3;
-  width:28px;height:28px;border-radius:50%;
-  background:rgba(0,0,0,.5);backdrop-filter:blur(6px);
-  border:1px solid rgba(255,255,255,.2);
-  display:flex;align-items:center;justify-content:center;color:#fff;
-}
-.card-sound svg{width:13px;height:13px;}
+.cs-grid .cs-card--wide{grid-column:1 / -1;}
 
-/* SPEED BUTTON */
-.speed-btn{
-  position:fixed;bottom:-120px;left:50%;transform:translateX(-50%);
-  z-index:200;display:flex;align-items:center;gap:10px;
-  font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;
-  color:var(--ink);background:rgba(15,15,15,.95);
-  border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(16px);
-  padding:14px 26px;border-radius:999px;
-  cursor:pointer;user-select:none;pointer-events:none;
-  transition:bottom .5s cubic-bezier(.34,1.56,.64,1),border-color .3s,box-shadow .3s;
+.cs-card{
+  position:relative;display:flex;flex-direction:column;
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+  border:1px solid var(--line);border-radius:20px;
+  overflow:hidden;text-decoration:none;color:var(--ink);
+  transition:border-color .4s,transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s;
 }
-.speed-btn.visible{bottom:32px;pointer-events:all;}
-.speed-btn:hover{border-color:rgba(255,255,255,.5);box-shadow:0 12px 40px rgba(0,0,0,.7);}
-.speed-btn svg{width:16px;height:16px;flex-shrink:0;}
+.cs-card.cs-card:hover{border-color:rgba(255,255,255,.26);transform:translateY(-4px);box-shadow:0 30px 70px rgba(0,0,0,.55);}
+.cs-card:focus-visible{outline:2px solid #fff;outline-offset:4px;}
 
-/* LIGHTBOX */
-.lightbox{
-  position:fixed;inset:0;z-index:300;
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;pointer-events:none;transition:opacity .35s;
-}
-.lightbox.open{opacity:1;pointer-events:all;}
-.lb-backdrop{
-  position:absolute;inset:0;background:rgba(0,0,0,.92);
-  backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);
-}
-.lb-content{
-  position:relative;z-index:2;max-width:min(92vw,960px);width:100%;
-  transform:scale(.94) translateY(20px);
-  transition:transform .4s cubic-bezier(.2,.8,.2,1);
-}
-.lightbox.open .lb-content{transform:scale(1) translateY(0);}
-
-/* ARROWS */
-.lb-arrow{
-  position:fixed;top:50%;transform:translateY(-50%);z-index:310;
-  width:52px;height:52px;border-radius:50%;
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);
-  backdrop-filter:blur(12px);
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;color:var(--ink);transition:all .25s;
-}
-.lb-arrow:hover{background:rgba(255,255,255,.2);transform:translateY(-50%) scale(1.08);}
-.lb-arrow.prev{left:16px;}
-.lb-arrow.next{right:16px;}
-.lb-arrow svg{width:22px;height:22px;}
-.lb-arrow.hidden{opacity:0;pointer-events:none;}
-
-.lb-img-wrap{
-  border-radius:18px;overflow:hidden;
-  border:1px solid rgba(255,255,255,.1);
-  box-shadow:0 40px 100px rgba(0,0,0,.8);
+/* Media slot — swap background-image src for real assets */
+.cs-media{
+  position:relative;width:100%;aspect-ratio:16/10;
+  overflow:hidden;border-bottom:1px solid var(--line);
   background:var(--bg-2);
-  display:flex;align-items:center;justify-content:center;max-height:80vh;
 }
-.lb-img-wrap img,.lb-img-wrap video{
-  width:100%;display:block;max-height:80vh;object-fit:contain;border-radius:18px;
+.cs-card--wide .cs-media{aspect-ratio:21/9;}
+.cs-media img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .8s cubic-bezier(.2,.8,.2,1);
 }
-.lb-meta{
-  margin-top:14px;display:flex;align-items:center;
-  justify-content:space-between;flex-wrap:wrap;gap:10px;
+.cs-card:hover .cs-media img{transform:scale(1.035);}
+.cs-media-ph{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  background:
+    radial-gradient(120% 120% at 15% 0%,rgba(255,255,255,.075),transparent 62%),
+    repeating-linear-gradient(45deg,rgba(255,255,255,.028) 0 1px,transparent 1px 12px),
+    var(--bg-2);
+  text-align:center;padding:24px;
 }
-.lb-left{display:flex;align-items:center;gap:14px;}
-.lb-tag{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;color:var(--ink-soft);}
-.lb-counter{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-mute);}
-.lb-actions{display:flex;gap:10px;align-items:center;}
+.cs-media-ph svg{width:26px;height:26px;color:rgba(255,255,255,.3);}
+.cs-media-ph span{
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(255,255,255,.34);line-height:1.8;
+}
+.cs-index{
+  position:absolute;top:14px;left:14px;z-index:2;
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;
+  color:rgba(255,255,255,.8);background:rgba(0,0,0,.45);
+  backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;padding:6px 13px;
+}
+.cs-status{
+  position:absolute;top:14px;right:14px;z-index:2;
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(255,255,255,.8);
+  background:rgba(0,0,0,.45);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 13px;
+}
+.cs-status .cs-dot{width:5px;height:5px;border-radius:50%;background:#22c55e;flex-shrink:0;}
 
-/* LIKE BUTTON */
-.lb-like-btn{
-  display:flex;align-items:center;gap:7px;
-  padding:9px 18px;border-radius:999px;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.15);
-  color:var(--ink-soft);
+.cs-body{
+  display:flex;flex-direction:column;gap:12px;
+  padding:clamp(20px,2.2vw,30px);
+  flex:1;
+}
+.cs-scope{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-soft);line-height:1.7;
+}
+.cs-body h3{
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
+  font-size:clamp(1.2rem,1.55vw,1.45rem);letter-spacing:-.025em;line-height:1.15;
+}
+.cs-card--wide .cs-body{padding:clamp(22px,2.4vw,34px);}
+.cs-card--wide .cs-body h3{font-size:clamp(1.6rem,3vw,2.3rem);letter-spacing:-.035em;}
+.cs-card--wide .cs-summary{font-size:14.5px;max-width:64ch;}
+.cs-card--wide .cs-scope{color:rgba(255,255,255,.62);}
+.cs-summary{font-size:13.5px;line-height:1.75;color:var(--ink-soft);max-width:56ch;}
+.cs-footer{
+  margin-top:auto;padding-top:18px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  border-top:1px solid var(--line);
+}
+.cs-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:600;color:var(--ink);
+}
+.cs-cta svg{width:14px;height:14px;transition:transform .3s;}
+.cs-card:hover .cs-cta svg{transform:translateX(4px);}
+.cs-year{
   font-family:'JetBrains Mono',monospace;font-size:11px;
-  cursor:pointer;transition:all .3s;user-select:none;
+  letter-spacing:.1em;color:var(--ink-mute);
 }
-.lb-like-btn svg{width:16px;height:16px;transition:all .3s;flex-shrink:0;}
-.lb-like-btn:hover{background:rgba(255,60,100,.15);border-color:rgba(255,60,100,.4);color:#ff6b8a;}
-.lb-like-btn:hover svg{stroke:#ff6b8a;}
-.lb-like-btn.liked{background:rgba(255,60,100,.18);border-color:rgba(255,60,100,.5);color:#ff6b8a;}
-.lb-like-btn.liked svg{fill:#ff6b8a;stroke:#ff6b8a;}
 
-.lb-sound-btn{
-  padding:9px 16px;border-radius:999px;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);
-  color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:11px;
-  cursor:pointer;transition:all .25s;display:none;align-items:center;gap:6px;
+/* Reserved slots for case studies 2–4 (drop content in when ready) */
+.cs-card.is-pending{
+  border-style:dashed;border-color:rgba(255,255,255,.13);
+  background:rgba(255,255,255,.015);
+  cursor:default;
 }
-.lb-sound-btn:hover{background:rgba(255,255,255,.14);}
-.lb-close{
-  width:44px;height:44px;border-radius:50%;
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;color:var(--ink);transition:all .25s;
+.cs-card.is-pending.cs-card:hover{transform:none;box-shadow:none;border-color:rgba(255,255,255,.2);}
+.cs-card.is-pending .cs-media{background:#101010;}
+.cs-card.is-pending .cs-media img{filter:grayscale(1);}
+.cs-card.is-pending .cs-media-ph span b{
+  display:block;font-weight:500;color:rgba(255,255,255,.5);letter-spacing:.14em;font-size:10px;
 }
-.lb-close:hover{background:rgba(255,255,255,.18);transform:rotate(90deg);}
-.lb-close svg{width:18px;height:18px;}
+.cs-card.is-pending .cs-scope{color:var(--ink-mute);}
+.cs-card.is-pending .cs-body h3{color:rgba(255,255,255,.62);}
+.cs-card.is-pending .cs-summary{color:var(--ink-mute);}
+.cs-card.is-pending .cs-footer{border-top-color:rgba(255,255,255,.06);}
+.cs-card.is-pending .cs-cta{color:var(--ink-mute);font-size:12px;}
+.cs-card.is-pending .cs-index{color:rgba(255,255,255,.55);}
 
-/* LIKE TOAST */
-.like-toast{
-  position:fixed;bottom:32px;left:50%;
-  transform:translateX(-50%) translateY(20px);
-  z-index:400;background:rgba(15,15,15,.96);
-  border:1px solid rgba(255,100,130,.4);border-radius:999px;
-  padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:12px;
-  color:#ff9db0;display:flex;align-items:center;gap:8px;
-  opacity:0;pointer-events:none;
-  transition:all .4s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;
+/* ARCHIVE CROSS-LINK BAND */
+.archive-band{
+  margin:56px 5vw 0;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  flex-wrap:wrap;
+  padding:26px clamp(20px,2.4vw,34px);
+  border:1px dashed rgba(255,255,255,.16);
+  border-radius:18px;
+  background:rgba(255,255,255,.02);
+  text-decoration:none;color:var(--ink);transition:all .35s;
 }
-.like-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.archive-band.archive-band:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.32);}
+.archive-band-left{display:flex;flex-direction:column;gap:7px;max-width:62ch;}
+.archive-band-label{
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink-mute);
+}
+.archive-band-title{font-size:15.5px;font-weight:500;line-height:1.6;color:rgba(255,255,255,.82);}
+.archive-band-arrow{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  flex-shrink:0;font-family:'JetBrains Mono',monospace;
+  font-size:11px;letter-spacing:.12em;color:var(--ink);
+  border:1px solid var(--line);border-radius:999px;padding:11px 20px;
+  transition:all .3s;white-space:nowrap;
+}
+.archive-band:hover .archive-band-arrow{background:#fff;color:#000;border-color:#fff;}
+.archive-band-arrow svg{width:13px;height:13px;}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.cs-card.reveal:nth-child(2){transition-delay:.08s;}
+.cs-card.reveal:nth-child(3){transition-delay:.16s;}
+.cs-card.reveal:nth-child(4){transition-delay:.24s;}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;}}
 
 /* FOOTER */
 footer{
@@ -477,20 +479,26 @@ footer{
 
 /* RESPONSIVE */
 @media(max-width:768px){
-  .ticker-track{animation:tickerL 16s linear infinite;}
-  .ticker-track-r{animation:tickerR 16s linear infinite;}
+  .ticker-track{animation:tickerL 30s linear infinite;}
+  .ticker-item{font-size:10.5px;padding:0 16px;gap:14px;letter-spacing:.13em;}
   .navbar{padding:0 20px;}
   .nav-links{display:none;}
   .nav-cta{display:none;}
   .hamburger{display:flex;}
   .hero{padding:100px 20px 60px;}
-  .hero-headline{font-size:clamp(2.2rem,8vw,3rem);}
+  .hero-headline{font-size:clamp(2.05rem,7.6vw,2.9rem);max-width:100%;}
   .hero-sub{font-size:.95rem;}
-  .stat-chip{min-width:120px;padding:14px 18px;}
-  .stat-num{font-size:1.5rem;}
-  .work-columns{grid-template-columns:repeat(2,1fr);height:90vh;gap:10px;padding:0 4vw;}
-  .work-col:nth-child(3),.work-col:nth-child(4){display:none;}
-  .speed-btn{display:none !important;}
+  .pillar-row{gap:8px;}
+  .pillar-tag{font-size:10px;padding:9px 15px;letter-spacing:.1em;}
+  .work-section{padding:64px 0 0;}
+  .work-head{flex-direction:column;align-items:flex-start;gap:18px;padding:0 6vw 20px;margin-bottom:32px;}
+  .work-head-right{flex-wrap:wrap;gap:12px;}
+  .work-head-sub{font-size:13.5px;}
+  .cs-grid{grid-template-columns:1fr;gap:16px;padding:0 5vw;}
+  .cs-grid .cs-card--wide{grid-column:auto;}
+  .cs-card--wide .cs-media,.cs-media{aspect-ratio:16/10;}
+  .archive-band{margin:40px 5vw 0;padding:22px;}
+  .archive-band-arrow{padding:10px 18px;}
   .social-dock{bottom:16px;right:16px;gap:8px;}
   .social-dock a{width:38px;height:38px;}
   .social-dock svg{width:16px;height:16px;}
@@ -498,15 +506,19 @@ footer{
   .foot-top{gap:20px;}
   .foot-photo{width:70px;height:70px;}
   .foot-headline{font-size:clamp(1.5rem,6vw,2.2rem);}
-  .lb-arrow.prev{left:8px;}
-  .lb-arrow.next{right:8px;}
-  .lb-arrow{width:42px;height:42px;}
-  .lb-arrow svg{width:18px;height:18px;}
+}
+@media(max-width:1024px){
+  .cs-grid{grid-template-columns:1fr;gap:16px;}
+  .cs-grid .cs-card--wide{grid-column:auto;}
+  .cs-card--wide .cs-media,.cs-media{aspect-ratio:16/10;}
 }
 @media(max-width:480px){
-  .stat-row{gap:10px;}
-  .stat-chip{min-width:100px;padding:12px 14px;}
-  .work-columns{gap:8px;padding:0 3vw;}
+  .pillar-row{gap:7px;}
+  .pillar-tag{font-size:9.5px;padding:8px 12px;gap:7px;}
+  .pillar-dot{width:4px;height:4px;}
+  .cs-grid{gap:12px;}
+  .cs-body{gap:10px;}
+  .archive-band{flex-direction:column;align-items:flex-start;}
   .hero-cta{gap:10px;}
   .btn-dark,.btn-light{padding:12px 22px;font-size:13px;}
 }
@@ -517,12 +529,12 @@ footer{
 
 <div class="mobile-overlay" id="mobileOverlay"></div>
 <div class="mobile-menu" id="mobileMenu">
-  <a class="mobile-nav-item" href="work.html">Work</a>
-  <a class="mobile-nav-item" href="#services" id="mobileServices">Services</a>
+  <a class="mobile-nav-item" href="#work">Case Studies</a>
+  <a class="mobile-nav-item" href="archive/">Visual Archive</a>
   <a class="mobile-nav-item" href="about.html">About</a>
   <a class="mobile-nav-item" id="mobileContact" href="#contact">Contact</a>
-  <a class="mobile-nav-item" href="work.html">View All Work →</a>
-  <button class="mobile-menu-cta" id="mobileBookBtn">📅 Book a Call</button>
+  <a class="mobile-nav-item" href="work/jannas-bowls/">Janna's Bowls ↗</a>
+  <button type="button" class="mobile-menu-cta" id="mobileBookBtn">📅 Book a Call</button>
 </div>
 
 <nav class="navbar">
@@ -536,16 +548,16 @@ footer{
     Favour Onasanya TL
   </a>
   <ul class="nav-links">
-    <li><a href="work.html">Work</a></li>
-    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Case Studies</a></li>
+    <li><a href="archive/">Archive</a></li>
     <li><a href="about.html">About</a></li>
     <li><a id="contactNavLink" href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <button class="nav-cta" id="navBookBtn">Book a Call</button>
-    <div class="hamburger" id="hamburger" aria-label="Menu">
+    <button type="button" class="nav-cta" id="navBookBtn">Book a Call</button>
+    <button type="button" class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
-    </div>
+    </button>
   </div>
 </nav>
 
@@ -568,99 +580,174 @@ footer{
       <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/>
     </svg>
   </div>
-  <div class="hero-role hero-fade hero-fade-delay-1"><span class="dot"></span>Visual Designer</div>
+  <div class="hero-role hero-fade hero-fade-delay-1"><span class="dot"></span>Brand Designer</div>
   <h1 class="hero-headline hero-fade hero-fade-delay-2">
-    Visual work with enough presence to make people <em>stop and stare.</em>
+    Building brand identities and visual systems that <em>demand attention.</em>
   </h1>
   <p class="hero-sub hero-fade hero-fade-delay-3">
-    Favour brings brands to life through design, vision, and creative excellence.<br>
-    Based in Ijebu Ode, Nigeria — working with clients everywhere.
+    I help businesses build cohesive brand identities, visual systems, and digital
+    experiences that drive growth. Based in Nigeria — working globally.
   </p>
   <div class="hero-cta hero-fade hero-fade-delay-4">
-    <a class="btn-dark" href="#work">See My Work</a>
-    <button class="btn-light" id="heroBookBtn">Book a Call</button>
+    <a class="btn-dark" href="#work">View Selected Work</a>
+    <button type="button" class="btn-light" id="heroBookBtn">Book a Call</button>
   </div>
-  <div class="stat-row hero-fade hero-fade-delay-5">
-    <div class="stat-chip"><div class="stat-num">100+</div><div class="stat-label">CLIENTS SERVED</div></div>
-    <div class="stat-chip"><div class="stat-num">20%</div><div class="stat-label">AVG. BRAND GROWTH</div></div>
-    <div class="stat-chip"><div class="stat-num">5 yrs</div><div class="stat-label">IN DESIGN</div></div>
+  <section class="pillar-row-wrap" aria-label="Core capabilities">
+  <ul class="pillar-row hero-fade hero-fade-delay-5">
+    <li class="pillar-tag"><span class="pillar-dot"></span>Brand Identity</li>
+    <li class="pillar-tag"><span class="pillar-dot"></span>Visual Systems</li>
+    <li class="pillar-tag"><span class="pillar-dot"></span>UI Design</li>
+    <li class="pillar-tag"><span class="pillar-dot"></span>Art Direction</li>
+  </ul>
+  </section>
+</section>
+
+<!-- SKILLS MARQUEE — senior brand capabilities only -->
+<section class="ticker-section" id="services">
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <!-- group duplicated for a seamless 50% loop -->
+      <span class="ticker-group">
+        <span class="ticker-item">Brand Identity<span class="sep"></span></span>
+        <span class="ticker-item">Visual Systems<span class="sep"></span></span>
+        <span class="ticker-item">Creative Direction<span class="sep"></span></span>
+        <span class="ticker-item">UI Design<span class="sep"></span></span>
+        <span class="ticker-item">Brand Guidelines<span class="sep"></span></span>
+        <span class="ticker-item">Packaging Design<span class="sep"></span></span>
+        <span class="ticker-item">AI-Assisted Workflows<span class="sep"></span></span>
+      </span>
+      <span class="ticker-group" aria-hidden="true">
+        <span class="ticker-item">Brand Identity<span class="sep"></span></span>
+        <span class="ticker-item">Visual Systems<span class="sep"></span></span>
+        <span class="ticker-item">Creative Direction<span class="sep"></span></span>
+        <span class="ticker-item">UI Design<span class="sep"></span></span>
+        <span class="ticker-item">Brand Guidelines<span class="sep"></span></span>
+        <span class="ticker-item">Packaging Design<span class="sep"></span></span>
+        <span class="ticker-item">AI-Assisted Workflows<span class="sep"></span></span>
+      </span>
+    </div>
   </div>
 </section>
 
-<div class="ticker-section" id="services">
-  <div class="ticker-wrap">
-    <div class="ticker-track">
-      <span class="ticker-item">Brand Identity<span class="sep"></span></span>
-      <span class="ticker-item">Social Media Design<span class="sep"></span></span>
-      <span class="ticker-item">Print & Packaging<span class="sep"></span></span>
-      <span class="ticker-item">Website Design<span class="sep"></span></span>
-      <span class="ticker-item">UI/UX Design<span class="sep"></span></span>
-      <span class="ticker-item">Video Editing<span class="sep"></span></span>
-      <span class="ticker-item">Copywriting<span class="sep"></span></span>
-      <span class="ticker-item">Pitch Decks<span class="sep"></span></span>
-      <span class="ticker-item">Creative Strategy<span class="sep"></span></span>
-      <span class="ticker-item">Visual Branding<span class="sep"></span></span>
-      <span class="ticker-item">Brand Identity<span class="sep"></span></span>
-      <span class="ticker-item">Social Media Design<span class="sep"></span></span>
-      <span class="ticker-item">Print & Packaging<span class="sep"></span></span>
-      <span class="ticker-item">Website Design<span class="sep"></span></span>
-      <span class="ticker-item">UI/UX Design<span class="sep"></span></span>
-      <span class="ticker-item">Video Editing<span class="sep"></span></span>
-      <span class="ticker-item">Copywriting<span class="sep"></span></span>
-      <span class="ticker-item">Pitch Decks<span class="sep"></span></span>
-      <span class="ticker-item">Creative Strategy<span class="sep"></span></span>
-      <span class="ticker-item">Visual Branding<span class="sep"></span></span>
-    </div>
-  </div>
-  <div class="ticker-wrap-2">
-    <div class="ticker-track-r">
-      <span class="ticker-item">Visual Branding<span class="sep"></span></span>
-      <span class="ticker-item">Creative Strategy<span class="sep"></span></span>
-      <span class="ticker-item">Pitch Decks<span class="sep"></span></span>
-      <span class="ticker-item">Copywriting<span class="sep"></span></span>
-      <span class="ticker-item">Video Editing<span class="sep"></span></span>
-      <span class="ticker-item">UI/UX Design<span class="sep"></span></span>
-      <span class="ticker-item">Website Design<span class="sep"></span></span>
-      <span class="ticker-item">Print & Packaging<span class="sep"></span></span>
-      <span class="ticker-item">Social Media Design<span class="sep"></span></span>
-      <span class="ticker-item">Brand Identity<span class="sep"></span></span>
-      <span class="ticker-item">Visual Branding<span class="sep"></span></span>
-      <span class="ticker-item">Creative Strategy<span class="sep"></span></span>
-      <span class="ticker-item">Pitch Decks<span class="sep"></span></span>
-      <span class="ticker-item">Copywriting<span class="sep"></span></span>
-      <span class="ticker-item">Video Editing<span class="sep"></span></span>
-      <span class="ticker-item">UI/UX Design<span class="sep"></span></span>
-      <span class="ticker-item">Website Design<span class="sep"></span></span>
-      <span class="ticker-item">Print & Packaging<span class="sep"></span></span>
-      <span class="ticker-item">Social Media Design<span class="sep"></span></span>
-      <span class="ticker-item">Brand Identity<span class="sep"></span></span>
-    </div>
-  </div>
-</div>
-
+<!-- ═══════════════════════════════════════════
+     SELECTED CASE STUDIES
+     Card 1 → /work/jannas-bowls/ (live case study)
+     Cards 2–4 → reserved slots: copy the .cs-card markup, remove
+     .is-pending and point the <a href> at a new case study page.
+     ═══════════════════════════════════════════ -->
 <section class="work-section" id="work">
   <div class="work-head">
-    <h2>The Catalogue</h2>
+    <div class="work-head-left">
+      <h2>Selected <em>Case Studies</em></h2>
+      <p class="work-head-sub">Strategic identity systems, digital experiences, and creative direction.</p>
+    </div>
     <div class="work-head-right">
-      <a class="view-all-btn" href="work.html">View All Work →</a>
       <span class="work-head-year">2022 — 2026</span>
     </div>
   </div>
-  <div class="work-columns" id="workColumns">
-    <div class="work-col" id="col1"><div class="col-track" id="track1"></div></div>
-    <div class="work-col" id="col2"><div class="col-track" id="track2"></div></div>
-    <div class="work-col" id="col3"><div class="col-track" id="track3"></div></div>
-    <div class="work-col" id="col4"><div class="col-track" id="track4"></div></div>
-  </div>
-</section>
 
-<div class="speed-btn" id="speedBtn">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <polygon points="13 19 22 12 13 5 13 19"/>
-    <polygon points="2 19 11 12 2 5 2 19"/>
-  </svg>
-  HOVER TO SPEED UP
-</div>
+  <div class="cs-grid">
+
+    <!-- ── CASE STUDY 01 — JANNA'S BOWLS ── -->
+    <a class="cs-card cs-card--wide reveal" href="work/jannas-bowls/" aria-label="View case study: Janna's Bowls">
+      <div class="cs-media">
+        <img src="images/case-studies/jannas-hero.jpg" alt="Janna's Bowls brand identity — packaging system on charcoal" loading="lazy">
+        <span class="cs-index">01 / FEATURED</span>
+        <span class="cs-status"><span class="cs-dot"></span>Case Study</span>
+      </div>
+      <div class="cs-body">
+        <p class="cs-scope">Brand Identity · Naming Strategy &amp; Packaging System</p>
+        <h3>Janna's Bowls</h3>
+        <p class="cs-summary">Rebranding a fast-growing culinary brand with a modern, scalable visual identity and brand architecture built for future sub-brands.</p>
+        <div class="cs-footer">
+          <span class="cs-cta">View Case Study
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+          <span class="cs-year">2026</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- ── CASE STUDY 02 — RESERVED SLOT ── -->
+    <div class="cs-card is-pending reveal">
+      <div class="cs-media">
+        <div class="cs-media-ph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15.5l-5-5L5 21"/>
+          </svg>
+          <span>Reserved Slot 02<br><b>Next case study</b></span>
+        </div>
+        <span class="cs-index">02</span>
+      </div>
+      <div class="cs-body">
+        <p class="cs-scope">Visual Identity · Brand Guidelines</p>
+        <h3>Identity System</h3>
+        <p class="cs-summary">Slot reserved for your next full identity build.</p>
+        <div class="cs-footer">
+          <span class="cs-cta">Reserved Slot</span>
+          <span class="cs-year">2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CASE STUDY 03 — RESERVED SLOT ── -->
+    <div class="cs-card is-pending reveal">
+      <div class="cs-media">
+        <div class="cs-media-ph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15.5l-5-5L5 21"/>
+          </svg>
+          <span>Reserved Slot 03<br><b>Next case study</b></span>
+        </div>
+        <span class="cs-index">03</span>
+      </div>
+      <div class="cs-body">
+        <p class="cs-scope">Creative Direction · UI Design</p>
+        <h3>Digital Experience</h3>
+        <p class="cs-summary">Slot reserved for a product, UI or campaign system.</p>
+        <div class="cs-footer">
+          <span class="cs-cta">Reserved Slot</span>
+          <span class="cs-year">2025</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CASE STUDY 04 — RESERVED SLOT ── -->
+    <div class="cs-card is-pending reveal">
+      <div class="cs-media">
+        <div class="cs-media-ph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15.5l-5-5L5 21"/>
+          </svg>
+          <span>Reserved Slot 04<br><b>Next case study</b></span>
+        </div>
+        <span class="cs-index">04</span>
+      </div>
+      <div class="cs-body">
+        <p class="cs-scope">Packaging Design · Art Direction</p>
+        <h3>Packaging &amp; Retail</h3>
+        <p class="cs-summary">Slot reserved for packaging or merchandise identity work.</p>
+        <div class="cs-footer">
+          <span class="cs-cta">Reserved Slot</span>
+          <span class="cs-year">2025</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECONDARY LINK → VISUAL ARCHIVE -->
+  <a class="archive-band reveal" id="archive-cta" href="archive/">
+    <div class="archive-band-left">
+      <span class="archive-band-label">Standalone Work</span>
+      <span class="archive-band-title">Looking for standalone visual designs and social campaigns? Browse the Visual Archive →</span>
+    </div>
+    <span class="archive-band-arrow">
+      VISUAL ARCHIVE
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </span>
+  </a>
+</section>
 
 <footer id="contact">
   <div class="foot-top">
@@ -672,10 +759,11 @@ footer{
     </div>
     <div class="foot-headline">Let's make something <em>worth a second scroll.</em></div>
   </div>
-  <button class="foot-cta" id="footerBookBtn">📅 Book a Call — Let's Work Together</button>
+  <button type="button" class="foot-cta" id="footerBookBtn">📅 Book a Call — Let's Work Together</button>
   <div class="foot-meta">
+    <a href="archive/">Visual Archive</a>
     <a href="mailto:favouronasanya22@gmail.com">favouronasanya22@gmail.com</a>
-    <a href="tel:+2348062283254">+234 806 228 3254</a>
+    <a href="tel:+2348062283254">+234&nbsp;806&nbsp;228&nbsp;3254</a>
     <span>REMOTE / NIGERIA</span>
     <div class="foot-social">
       <a class="fs-wa" href="https://wa.link/wd8bjt" target="_blank" rel="noopener" aria-label="WhatsApp">
@@ -690,55 +778,13 @@ footer{
     </div>
   </div>
   <div class="foot-bottom">
-    <span>© 2025 FAVOUR ONASANYA TL. ALL RIGHTS RESERVED.</span>
+    <span>© 2026 FAVOUR ONASANYA TL. ALL RIGHTS RESERVED.</span>
     <a href="Favour_Onasanya_CV.pdf" download>DOWNLOAD RÉSUMÉ ↓</a>
   </div>
 </footer>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <div class="lb-backdrop" id="lbBackdrop"></div>
-  <button class="lb-arrow prev" id="lbPrev" aria-label="Previous">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-  </button>
-  <button class="lb-arrow next" id="lbNext" aria-label="Next">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-  </button>
-  <div class="lb-content">
-    <div class="lb-img-wrap" id="lbImgWrap"></div>
-    <div class="lb-meta">
-      <div class="lb-left">
-        <span class="lb-tag" id="lbTag"></span>
-        <span class="lb-counter" id="lbCounter"></span>
-      </div>
-      <div class="lb-actions">
-        <button class="lb-like-btn" id="lbLikeBtn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg>
-          <span id="lbLikeLabel">Like</span>
-        </button>
-        <button class="lb-sound-btn" id="lbSoundBtn">🔇 Sound</button>
-        <button class="lb-close" id="lbClose" aria-label="Close">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- LIKE TOAST -->
-<div class="like-toast" id="likeToast">❤️ <span id="likeToastMsg">Liked!</span></div>
-
-<!-- EmailJS -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 <script>
-// EmailJS init — replace with your NEW keys after regenerating
-emailjs.init('RxzqG0eteRDTIrVGp');
-
 // ══ FALLBACKS ══
 function setupFallback(id){
   const img=document.getElementById(id);
@@ -777,7 +823,10 @@ const mobileMenu=document.getElementById('mobileMenu');
 const mobileOverlay=document.getElementById('mobileOverlay');
 function openMenu(){hamburger.classList.add('open');mobileMenu.classList.add('open');mobileOverlay.classList.add('open');document.body.style.overflow='hidden';}
 function closeMenu(){hamburger.classList.remove('open');mobileMenu.classList.remove('open');mobileOverlay.classList.remove('open');document.body.style.overflow='';}
-hamburger.addEventListener('click',()=>mobileMenu.classList.contains('open')?closeMenu():openMenu());
+function syncMenuA11y(){hamburger.setAttribute('aria-expanded',mobileMenu.classList.contains('open')?'true':'false');}
+hamburger.addEventListener('click',()=>{mobileMenu.classList.contains('open')?closeMenu():openMenu();syncMenuA11y();});
+hamburger.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();mobileMenu.classList.contains('open')?closeMenu():openMenu();syncMenuA11y();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mobileMenu.classList.contains('open')){closeMenu();syncMenuA11y();}});
 mobileOverlay.addEventListener('click',closeMenu);
 document.querySelectorAll('.mobile-nav-item').forEach(item=>item.addEventListener('click',closeMenu));
 document.getElementById('mobileContact').addEventListener('click',e=>{
@@ -796,359 +845,18 @@ document.getElementById('heroBookBtn').addEventListener('click',openCalendly);
 document.getElementById('footerBookBtn').addEventListener('click',openCalendly);
 document.getElementById('mobileBookBtn').addEventListener('click',()=>{closeMenu();setTimeout(openCalendly,300);});
 
-// ══ ALL CARDS DATA ══
-const SM='images/works/Social Media/';
-const PR='images/works/Prints/';
-const LB='images/works/LinkedIn/';
-const RA='images/works/Random/';
-const VID='Videos/';
-
-// Master list — ALL designs
-const masterList=[
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-1.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-2.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-3.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-4.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-5.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-6.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-7.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-8.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-9.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-10.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-11.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-12.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-13.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-14.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-15.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-16.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-18.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-19.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-20.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-21.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-22.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-23.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-24.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-25.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-26.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-27.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-28.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-29.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-30.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-31.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-32.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-33.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-34.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-35.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-36.webp`},
-  {tag:'SOCIAL MEDIA',type:'image',src:`${SM}sm-37.webp`},
-  {tag:'PRINT DESIGN',type:'image',src:`${PR}print-1.webp`},
-  {tag:'PRINT DESIGN',type:'image',src:`${PR}print-2.webp`},
-  {tag:'PRINT DESIGN',type:'image',src:`${PR}print-3.webp`},
-  {tag:'PRINT DESIGN',type:'image',src:`${PR}print-4.webp`},
-  {tag:'PRINT DESIGN',type:'image',src:`${PR}print-5.webp`},
-  {tag:'PRINT DESIGN',type:'image',src:`${PR}print-6.webp`},
-  {tag:'PRINT DESIGN',type:'image',src:`${PR}print-7.webp`},
-  {tag:'PRINT DESIGN',type:'image',src:`${PR}print-8.webp`},
-  {tag:'PRINT DESIGN',type:'image',src:`${PR}print-9.webp`},
-  {tag:'PRINT DESIGN',type:'image',src:`${PR}print-10.webp`},
-  {tag:'PRINT DESIGN',type:'image',src:`${PR}print-11.webp`},
-  {tag:'PRINT DESIGN',type:'image',src:`${PR}print-12.webp`},
-  {tag:'PRINT DESIGN',type:'image',src:`${PR}print-13.webp`},
-  {tag:'PRINT DESIGN',type:'image',src:`${PR}print-14.webp`},
-  {tag:'PRINT DESIGN',type:'image',src:`${PR}print-15.webp`},
-  {tag:'PRINT DESIGN',type:'image',src:`${PR}print-16.webp`},
-  {tag:'PRINT DESIGN',type:'image',src:`${PR}print-17.webp`},
-  {tag:'LINKEDIN BANNER',type:'image',src:`${LB}Lb-1.webp`},
-  {tag:'LINKEDIN BANNER',type:'image',src:`${LB}Lb-2.webp`},
-  {tag:'CREATIVE FLYER',type:'image',src:`${RA}ra-1.webp`},
-  {tag:'CREATIVE FLYER',type:'image',src:`${RA}ra-2.webp`},
-  {tag:'CREATIVE FLYER',type:'image',src:`${RA}ra-3.webp`},
-  {tag:'CREATIVE FLYER',type:'image',src:`${RA}ra-4.webp`},
-  {tag:'CREATIVE FLYER',type:'image',src:`${RA}ra-5.webp`},
-  {tag:'VIDEO REEL',type:'video',src:`${VID}0108.webm`},
-  {tag:'VIDEO REEL',type:'video',src:`${VID}0122-1.webm`},
-  {tag:'VIDEO REEL',type:'video',src:`${VID}0414.webm`},
-  {tag:'VIDEO REEL',type:'video',src:`${VID}1009.webm`},
-];
-
-// Shuffle helper
-function shuffle(arr){
-  const a=[...arr];
-  for(let i=a.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [a[i],a[j]]=[a[j],a[i]];
-  }
-  return a;
+// ══ SCROLL REVEAL FOR SECTION CONTENT ══
+const revealEls=document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){
+  const revealIO=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('in');revealIO.unobserve(e.target);}
+    });
+  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  revealEls.forEach(el=>revealIO.observe(el));
+}else{
+  revealEls.forEach(el=>el.classList.add('in'));
 }
-
-// Distribute evenly across 4 columns
-function distributeToColumns(items,numCols){
-  const cols=Array.from({length:numCols},()=>[]);
-  const shuffled=shuffle(items);
-  shuffled.forEach((item,i)=>cols[i%numCols].push(item));
-  return cols;
-}
-
-const colData=distributeToColumns(masterList,4);
-
-// Build card DOM
-function makeCard(data,globalIdx){
-  const card=document.createElement('div');
-  card.className='work-card';
-  card.dataset.tag=data.tag;
-  card.dataset.type=data.type;
-  card.dataset.src=data.src;
-  card.dataset.globalIdx=globalIdx;
-
-  if(data.type==='video'){
-    const vid=document.createElement('video');
-    vid.src=data.src;
-    vid.muted=true;vid.loop=true;vid.playsInline=true;
-    vid.setAttribute('preload','none');
-    card.appendChild(vid);
-    // Autoplay video when visible
-    const vo=new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting) vid.play().catch(()=>{});
-        else vid.pause();
-      });
-    },{threshold:0.3});
-    vo.observe(card);
-    const snd=document.createElement('div');
-    snd.className='card-sound';
-    snd.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-      <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
-    </svg>`;
-    card.appendChild(snd);
-  } else {
-    const img=document.createElement('img');
-    img.src=data.src;img.alt=data.tag;img.loading='lazy';
-    card.appendChild(img);
-  }
-
-  const overlay=document.createElement('div');overlay.className='card-overlay';
-  const tag=document.createElement('span');tag.className='card-tag';tag.textContent=data.tag;
-  const exp=document.createElement('div');exp.className='card-expand';
-  exp.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
-    <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
-  </svg>`;
-  card.appendChild(overlay);card.appendChild(tag);card.appendChild(exp);
-  return card;
-}
-
-// Populate columns
-[0,1,2,3].forEach(ci=>{
-  const track=document.getElementById(`track${ci+1}`);
-  const col=colData[ci];
-  col.forEach(d=>{
-    const gi=masterList.indexOf(d);
-    track.appendChild(makeCard(d,gi));
-  });
-  // Duplicate for infinite scroll
-  col.forEach(d=>{
-    const gi=masterList.indexOf(d);
-    track.appendChild(makeCard(d,gi));
-  });
-});
-
-// ══ SCROLL ENGINE — different speeds per column ══
-// Col speeds: slow, medium-slow, medium-fast, fast
-const COL_SPEEDS=[0.35, 0.55, 0.75, 0.95];
-const SPEED_FAST_MULT=5;
-const isMobile=()=>window.innerWidth<=768;
-
-const colState=[
-  {id:'track1',pos:0,hovered:false,speed:COL_SPEEDS[0]},
-  {id:'track2',pos:0,hovered:false,speed:COL_SPEEDS[1]},
-  {id:'track3',pos:0,hovered:false,speed:COL_SPEEDS[2]},
-  {id:'track4',pos:0,hovered:false,speed:COL_SPEEDS[3]},
-];
-let globalPaused=false;
-let speedBoosted=false;
-
-function animate(){
-  colState.forEach(s=>{
-    const t=document.getElementById(s.id);
-    if(!t||globalPaused) return;
-    let sp=s.speed;
-    if(!isMobile()&&speedBoosted) sp=s.speed*SPEED_FAST_MULT;
-    else if(!isMobile()&&s.hovered) sp=s.speed*0.15;
-    s.pos+=sp;
-    const half=t.scrollHeight/2;
-    if(s.pos>=half) s.pos=0;
-    t.style.transform=`translateY(-${s.pos}px)`;
-  });
-  requestAnimationFrame(animate);
-}
-
-[1,2,3,4].forEach((n,i)=>{
-  const col=document.getElementById(`col${n}`);
-  col.addEventListener('mouseenter',()=>{if(!isMobile()) colState[i].hovered=true;});
-  col.addEventListener('mouseleave',()=>{colState[i].hovered=false;});
-});
-animate();
-
-// ══ SPEED BUTTON ══
-const speedBtn=document.getElementById('speedBtn');
-const workSection=document.getElementById('work');
-new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting&&!isMobile()) speedBtn.classList.add('visible');
-    else speedBtn.classList.remove('visible');
-  });
-},{threshold:0.05}).observe(workSection);
-speedBtn.addEventListener('mouseenter',()=>{speedBoosted=true;});
-speedBtn.addEventListener('mouseleave',()=>{speedBoosted=false;});
-window.addEventListener('resize',()=>{if(isMobile()) speedBtn.classList.remove('visible');});
-
-// ══ LIKES ══
-const getLikes=()=>JSON.parse(localStorage.getItem('favLikes')||'{}');
-const saveLikes=obj=>localStorage.setItem('favLikes',JSON.stringify(obj));
-const likeKey=(idx)=>`idx_${idx}`;
-
-const lbLikeBtn=document.getElementById('lbLikeBtn');
-const lbLikeLabel=document.getElementById('lbLikeLabel');
-const likeToast=document.getElementById('likeToast');
-const likeToastMsg=document.getElementById('likeToastMsg');
-
-function updateLikeUI(idx){
-  const liked=!!getLikes()[likeKey(idx)];
-  lbLikeBtn.classList.toggle('liked',liked);
-  lbLikeLabel.textContent=liked?'Liked ❤️':'Like';
-}
-
-function showToast(msg){
-  likeToastMsg.textContent=msg;
-  likeToast.classList.add('show');
-  setTimeout(()=>likeToast.classList.remove('show'),3500);
-}
-
-async function getLocation(){
-  try{
-    const r=await fetch('https://ipapi.co/json/');
-    const d=await r.json();
-    return `${d.city||'Unknown'}, ${d.region||''}, ${d.country_name||''}`.replace(/,\s*,/g,',').trim();
-  }catch(e){return 'Unknown location';}
-}
-
-async function sendLikeEmail(idx){
-  const item=masterList[idx];
-  const location=await getLocation();
-  const imgName=item.src.split('/').pop();
-  const time=new Date().toLocaleString('en-GB',{timeZone:'Africa/Lagos'});
-  emailjs.send('service_kamu87d','lvtpqi8',{
-    to_email:'favouronasanya22@gmail.com',
-    subject:'❤️ Someone liked your design!',
-    image_name:imgName,
-    section:item.tag,
-    location:location,
-    time:time,
-    image_url:window.location.origin+'/'+item.src,
-  }).catch(err=>console.warn('EmailJS:',err));
-}
-
-lbLikeBtn.addEventListener('click',async()=>{
-  const likes=getLikes();
-  const key=likeKey(currentIdx);
-  if(likes[key]){
-    delete likes[key];saveLikes(likes);
-    updateLikeUI(currentIdx);showToast('Unliked');
-  } else {
-    likes[key]=Date.now();saveLikes(likes);
-    updateLikeUI(currentIdx);
-    showToast('Favour has been notified! ❤️');
-    sendLikeEmail(currentIdx);
-  }
-});
-
-// ══ LIGHTBOX ══
-const lightbox=document.getElementById('lightbox');
-const lbImgWrap=document.getElementById('lbImgWrap');
-const lbTag=document.getElementById('lbTag');
-const lbCounter=document.getElementById('lbCounter');
-const lbClose=document.getElementById('lbClose');
-const lbBackdrop=document.getElementById('lbBackdrop');
-const lbSoundBtn=document.getElementById('lbSoundBtn');
-const lbPrev=document.getElementById('lbPrev');
-const lbNext=document.getElementById('lbNext');
-let activeVideo=null;
-let currentIdx=0;
-
-function renderLightboxItem(idx){
-  currentIdx=idx;
-  const item=masterList[idx];
-  if(activeVideo){activeVideo.pause();activeVideo=null;}
-  lbSoundBtn.style.display='none';
-  lbImgWrap.innerHTML='';
-
-  if(item.type==='video'){
-    const vid=document.createElement('video');
-    vid.src=item.src;vid.autoplay=true;vid.muted=true;vid.loop=true;vid.playsInline=true;
-    lbImgWrap.appendChild(vid);
-    activeVideo=vid;
-    lbSoundBtn.style.display='flex';
-    lbSoundBtn.innerHTML='🔇 Sound';
-  } else {
-    const img=document.createElement('img');
-    img.src=item.src;img.alt=item.tag;
-    lbImgWrap.appendChild(img);
-  }
-
-  lbTag.textContent=item.tag;
-  lbCounter.textContent=`${idx+1} / ${masterList.length}`;
-  lbPrev.classList.toggle('hidden',idx===0);
-  lbNext.classList.toggle('hidden',idx===masterList.length-1);
-  updateLikeUI(idx);
-}
-
-function openLightbox(globalIdx){
-  globalPaused=true;
-  renderLightboxItem(globalIdx);
-  lightbox.classList.add('open');
-  document.body.style.overflow='hidden';
-}
-
-function closeLightbox(){
-  lightbox.classList.remove('open');
-  document.body.style.overflow='';
-  if(activeVideo){activeVideo.pause();activeVideo=null;}
-  setTimeout(()=>{globalPaused=false;},350);
-}
-
-lbPrev.addEventListener('click',()=>{if(currentIdx>0) renderLightboxItem(currentIdx-1);});
-lbNext.addEventListener('click',()=>{if(currentIdx<masterList.length-1) renderLightboxItem(currentIdx+1);});
-
-document.addEventListener('keydown',e=>{
-  if(!lightbox.classList.contains('open')) return;
-  if(e.key==='ArrowLeft'&&currentIdx>0) renderLightboxItem(currentIdx-1);
-  if(e.key==='ArrowRight'&&currentIdx<masterList.length-1) renderLightboxItem(currentIdx+1);
-  if(e.key==='Escape') closeLightbox();
-});
-
-let touchStartX=0;
-lbImgWrap.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX;},{passive:true});
-lbImgWrap.addEventListener('touchend',e=>{
-  const diff=touchStartX-e.changedTouches[0].screenX;
-  if(Math.abs(diff)>50){
-    if(diff>0&&currentIdx<masterList.length-1) renderLightboxItem(currentIdx+1);
-    else if(diff<0&&currentIdx>0) renderLightboxItem(currentIdx-1);
-  }
-});
-
-lbSoundBtn.addEventListener('click',()=>{
-  if(!activeVideo) return;
-  activeVideo.muted=!activeVideo.muted;
-  lbSoundBtn.innerHTML=activeVideo.muted?'🔇 Sound':'🔊 Sound On';
-});
-
-document.getElementById('workColumns').addEventListener('click',e=>{
-  const card=e.target.closest('.work-card');
-  if(card) openLightbox(parseInt(card.dataset.globalIdx));
-});
-lbClose.addEventListener('click',closeLightbox);
-lbBackdrop.addEventListener('click',closeLightbox);
 </script>
 </body>
 </html>
