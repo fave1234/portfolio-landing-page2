@@ -21,13 +21,6 @@ html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden;}
 ::selection{background:#fff;color:#000;}
 
-.bg-grid{
-  position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
-  background-size:64px 64px;
-}
 .page-wrap{position:relative;z-index:2;padding:32px 5vw 80px;}
 
 /* BACK */
@@ -259,7 +252,6 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overfl
 </style>
 </head>
 <body>
-<div class="bg-grid"></div>
 <div class="page-wrap">
 
   <a class="back-btn" href="index.html">

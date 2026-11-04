@@ -21,13 +21,6 @@ html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden;}
 ::selection{background:#fff;color:#000;}
 
-.bg-grid{
-  position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
-  background-size:64px 64px;
-}
 section,header,footer,nav{position:relative;z-index:2;}
 
 .hero-fade{
@@ -525,8 +518,6 @@ footer{
 </style>
 </head>
 <body>
-<div class="bg-grid"></div>
-
 <div class="mobile-overlay" id="mobileOverlay"></div>
 <div class="mobile-menu" id="mobileMenu">
   <a class="mobile-nav-item" href="#work">Case Studies</a>

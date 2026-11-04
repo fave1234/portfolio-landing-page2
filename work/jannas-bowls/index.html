@@ -26,13 +26,6 @@ html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 ::selection{background:#fff;color:#000;}
 img{max-width:100%;}
-.bg-grid{
-  position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
-  background-size:64px 64px;
-}
 .wrap{position:relative;z-index:2;}
 
 /* ── TOP BAR ─────────────────────────────── */
@@ -220,23 +213,71 @@ img{max-width:100%;}
 .arch-item h4{font-size:13.5px;font-weight:600;margin-bottom:5px;}
 .arch-item p{font-size:12px;line-height:1.6;color:var(--ink-mute);}
 
-/* ── GALLERY SLOTS ───────────────────────── */
-.gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:8px;}
-.gallery-grid .g-wide{grid-column:1 / -1;}
-.g-slot{
-  position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;
-  border:1px solid var(--line);background:var(--bg-2);
+/* ── 06 · FULL-BLEED ASYMMETRIC GALLERY ──── */
+/* The gallery breaks out of the .sec max-width shell so tiles run
+   edge-to-edge. Ten slots on a 12-column grid: full-bleed rows for the
+   opening, packaging and closing shots, paired and three-up blocks between. */
+.gallery-sec{position:relative;z-index:2;padding-top:clamp(56px,9vw,110px);scroll-margin-top:80px;}
+.gallery-sec .sec{padding-top:0;}
+
+.cs-gallery{
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:clamp(12px,1.1vw,20px);
+  width:100%;
+  margin:clamp(28px,4vw,52px) 0 0;
+  padding:0;
 }
-.g-slot.g-wide{aspect-ratio:21/9;}
-.g-slot img{width:100%;height:100%;object-fit:cover;display:block;}
-.g-slot .slot-ph-label{font-size:9.5px;}
-.g-caption{
-  position:absolute;left:12px;bottom:12px;z-index:3;
-  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;
-  text-transform:uppercase;color:rgba(255,255,255,.7);
+.g-item{
+  position:relative;display:block;margin:0;min-width:0;
+  overflow:hidden;background:var(--bg-2);
+  border:1px solid var(--line);
+  border-radius:clamp(10px,.9vw,16px);
+}
+.g-item img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .9s cubic-bezier(.2,.8,.2,1);
+}
+.g-item:hover img{transform:scale(1.03);}
+
+/* asymmetric rhythm — spans + ratios */
+.g-hero{grid-column:span 12;aspect-ratio:21/9;}
+.g-compare{grid-column:span 7;aspect-ratio:16/10;}
+.g-process{grid-column:span 5;aspect-ratio:16/10;}
+.g-word-dark{grid-column:span 4;aspect-ratio:4/5;}
+.g-word-light{grid-column:span 4;aspect-ratio:4/5;}
+.g-palette{grid-column:span 4;aspect-ratio:4/5;}
+.g-packaging{grid-column:span 12;aspect-ratio:21/9;}
+.g-apparel{grid-column:span 6;aspect-ratio:4/3;}
+.g-bags{grid-column:span 6;aspect-ratio:4/3;}
+.g-closing{grid-column:span 12;aspect-ratio:21/9;}
+
+/* caption pill — over the image, fades up on hover */
+.g-cap{
+  position:absolute;left:14px;bottom:14px;z-index:3;
+  max-width:calc(100% - 28px);
+  font-family:'JetBrains Mono',monospace;
+  font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;line-height:1.6;
+  color:rgba(255,255,255,.72);
+  background:rgba(0,0,0,.55);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.14);border-radius:999px;
+  padding:6px 13px;
+  transition:color .3s,background .3s,border-color .3s;
+}
+.g-item:hover .g-cap{color:#fff;background:rgba(0,0,0,.72);border-color:rgba(255,255,255,.26);}
+/* slot numbers sit opposite the caption */
+.g-num{
+  position:absolute;top:12px;right:12px;z-index:3;
+  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;
+  color:rgba(255,255,255,.6);
   background:rgba(0,0,0,.5);backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:5px 12px;
+  border:1px solid rgba(255,255,255,.12);border-radius:999px;
+  padding:4px 10px;
 }
+.g-item .slot-ph{padding:18px;}
+.g-item .slot-ph svg{width:22px;height:22px;}
+.g-item .slot-ph-label{font-size:9px;letter-spacing:.14em;}
+.g-item .slot-ph-label b{font-size:9.5px;}
 
 /* ── RESULTS ─────────────────────────────── */
 .result-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:26px;}
@@ -296,8 +337,20 @@ img{max-width:100%;}
 /* ── RESPONSIVE ──────────────────────────── */
 @media(max-width:1024px){
   .swatch-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  /* gallery: soften the asymmetry so tall tiles don't crowd */
+  .g-word-dark,.g-word-light,.g-palette{aspect-ratio:4/5;}
+  .g-compare{grid-column:span 6;}
+  .g-process{grid-column:span 6;}
 }
 @media(max-width:820px){
+  /* gallery: 2-up asymmetric block, full-bleed retained */
+  .cs-gallery{grid-template-columns:repeat(6,minmax(0,1fr));}
+  .g-hero,.g-packaging,.g-closing{grid-column:span 6;aspect-ratio:16/9;}
+  .g-compare,.g-apparel,.g-bags{grid-column:span 4;aspect-ratio:4/3;}
+  .g-process,.g-palette{grid-column:span 2;aspect-ratio:3/4;}
+  .g-word-dark,.g-word-light{grid-column:span 3;aspect-ratio:4/5;}
+  .g-cap{left:10px;bottom:10px;font-size:8.5px;padding:5px 10px;letter-spacing:.08em;}
+  .g-num{top:9px;right:9px;font-size:8px;padding:3px 8px;}
   .sec{grid-template-columns:1fr;gap:26px;}
   .sec-head{position:static;}
   .cs-facts{grid-template-columns:1fr;}
@@ -308,9 +361,17 @@ img{max-width:100%;}
   .topbar-sep{display:none;}
 }
 @media(max-width:600px){
-  .swatch-grid,.arch-list,.result-grid,.gallery-grid{grid-template-columns:1fr;}
-  .gallery-grid .g-wide{grid-column:auto;}
-  .g-slot,.g-slot.g-wide{aspect-ratio:16/10;}
+  /* gallery: single column, still edge-to-edge */
+  .cs-gallery{grid-template-columns:1fr;gap:12px;}
+  .g-item,.g-hero,.g-compare,.g-process,.g-word-dark,.g-word-light,
+  .g-palette,.g-packaging,.g-apparel,.g-bags,.g-closing{
+    grid-column:1 / -1;aspect-ratio:4/3;
+  }
+  .g-hero,.g-packaging,.g-closing{aspect-ratio:16/10;}
+  .g-word-dark,.g-word-light{aspect-ratio:4/5;}
+  .g-item{border-radius:10px;}
+  .g-cap{font-size:8.5px;}
+  .swatch-grid,.arch-list,.result-grid{grid-template-columns:1fr;}
   .cs-next-actions{width:100%;}
   .btn-solid,.btn-ghost{flex:1;justify-content:center;}
   .cs-title{font-size:clamp(2.7rem,13vw,4rem);}
@@ -318,7 +379,6 @@ img{max-width:100%;}
 </style>
 </head>
 <body>
-<div class="bg-grid"></div>
 <div class="progress" id="progress"></div>
 
 <div class="wrap">
@@ -502,38 +562,94 @@ img{max-width:100%;}
     </div>
   </section>
 
-  <!-- ══ 06 · VISUAL SYSTEM GALLERY ══ -->
-  <section class="sec" id="gallery">
-    <div class="sec-head reveal">
-      <span class="sec-num">06 — VISUAL SYSTEM</span>
-      <h2>Identity in <em>application.</em></h2>
-    </div>
-    <div class="sec-body reveal">
-      <div class="gallery-grid">
-        <!-- Image slots — swap each src for your own high-res export -->
-        <div class="g-slot g-wide">
-          <img src="../../images/case-studies/jannas-lockup.jpg" alt="Janna's Bowls master brand lockup" loading="lazy">
-          <span class="g-caption">Master Wordmark Lockup</span>
-        </div>
-        <div class="g-slot">
-          <img src="../../images/case-studies/jannas-packaging-01.jpg" alt="Janna's Bowls takeaway bowl packaging" loading="lazy">
-          <span class="g-caption">Packaging System</span>
-        </div>
-        <div class="g-slot">
-          <img src="../../images/case-studies/jannas-packaging-02.jpg" alt="Janna's Bowls delivery packaging set" loading="lazy">
-          <span class="g-caption">Bowl &amp; Delivery Packaging</span>
-        </div>
-        <div class="g-slot">
-          <img src="../../images/case-studies/jannas-merch.jpg" alt="Janna's Bowls apron, tote and mug merchandise" loading="lazy">
-          <span class="g-caption">Merch &amp; Uniform Mockups</span>
-        </div>
-        <div class="g-slot">
-          <img src="../../images/case-studies/jannas-monogram.jpg" alt="Janna's Bowls monogram seal applications" loading="lazy">
-          <span class="g-caption">"J's" Monogram Applications</span>
-        </div>
+  <!-- ══ 06 · FULL-BLEED ASYMMETRIC GALLERY ══ -->
+  <!-- 10 slots. Swap each src for your own export; keep the .g-* span
+       class on the figure so the asymmetric rhythm holds. -->
+  <div class="gallery-sec" id="gallery">
+    <div class="sec">
+      <div class="sec-head reveal">
+        <span class="sec-num">06 — VISUAL SYSTEM</span>
+        <h2>Identity in <em>application.</em></h2>
+      </div>
+      <div class="sec-body reveal">
+        <p>The full system in the wild — from the wordmark and colour logic to packaging, collateral and the room it lives in.</p>
       </div>
     </div>
-  </section>
+
+    <div class="cs-gallery">
+
+      <!-- 01 · opening image — full width -->
+      <figure class="g-item g-hero">
+        <img src="../../images/case-studies/jannas-hero.jpg" alt="Janna's Bowls identity applied — kraft bowls with burnt orange lids on charcoal" loading="lazy">
+        <span class="g-num">01</span>
+        <figcaption class="g-cap">The system, opening frame</figcaption>
+      </figure>
+
+      <!-- 02 · old vs new logo comparison -->
+      <figure class="g-item g-compare">
+        <img src="../../images/case-studies/jannas-logo-compare.jpg" alt="Old Janna's Treats emblem beside the new Janna's Bowls wordmark" loading="lazy">
+        <span class="g-num">02</span>
+        <figcaption class="g-cap">Old vs new — from badge to wordmark</figcaption>
+      </figure>
+
+      <!-- 03 · logo sketches / process -->
+      <figure class="g-item g-process">
+        <img src="../../images/case-studies/jannas-process.jpg" alt="Pencil sketches exploring letterforms and monogram variants" loading="lazy">
+        <span class="g-num">03</span>
+        <figcaption class="g-cap">Process — letterform studies</figcaption>
+      </figure>
+
+      <!-- 04 · final wordmark on dark -->
+      <figure class="g-item g-word-dark">
+        <img src="../../images/case-studies/jannas-wordmark-dark.jpg" alt="Final Janna's Bowls wordmark in burnt orange foil on cream, on dark surface" loading="lazy">
+        <span class="g-num">04</span>
+        <figcaption class="g-cap">Wordmark — dark application</figcaption>
+      </figure>
+
+      <!-- 05 · final wordmark on light / colour variations -->
+      <figure class="g-item g-word-light">
+        <img src="../../images/case-studies/jannas-wordmark-light.jpg" alt="Janna's Bowls wordmark in charcoal on warm cream paper" loading="lazy">
+        <span class="g-num">05</span>
+        <figcaption class="g-cap">Wordmark — light application</figcaption>
+      </figure>
+
+      <!-- 06 · brand colour palette application -->
+      <figure class="g-item g-palette">
+        <img src="../../images/case-studies/jannas-palette.jpg" alt="Burnt orange red, warm cream and dark charcoal colour swatch cards" loading="lazy">
+        <span class="g-num">06</span>
+        <figcaption class="g-cap">Colour palette in print</figcaption>
+      </figure>
+
+      <!-- 07 · packaging / bowl mockup — full width -->
+      <figure class="g-item g-packaging">
+        <img src="../../images/case-studies/jannas-packaging-02.jpg" alt="Janna's Bowls delivery packaging — cream kraft bowls and boxes" loading="lazy">
+        <span class="g-num">07</span>
+        <figcaption class="g-cap">Packaging system — bowl &amp; delivery</figcaption>
+      </figure>
+
+      <!-- 08 · apparel & merch -->
+      <figure class="g-item g-apparel">
+        <img src="../../images/case-studies/jannas-merch.jpg" alt="Janna's Bowls apron, tote bag and mug merchandise mockup" loading="lazy">
+        <span class="g-num">08</span>
+        <figcaption class="g-cap">Apparel &amp; merch</figcaption>
+      </figure>
+
+      <!-- 09 · bags + collateral -->
+      <figure class="g-item g-bags">
+        <img src="../../images/case-studies/jannas-bags.jpg" alt="Janna's Bowls branded paper bags, folder and business cards" loading="lazy">
+        <span class="g-num">09</span>
+        <figcaption class="g-cap">Bags &amp; collateral</figcaption>
+      </figure>
+
+      <!-- 10 · wide closing lifestyle image -->
+      <figure class="g-item g-closing">
+        <img src="../../images/case-studies/jannas-closing.jpg" alt="Janna's Bowls in situ — warm restaurant counter with packaging ready for service" loading="lazy">
+        <span class="g-num">10</span>
+        <figcaption class="g-cap">In the room — service counter</figcaption>
+      </figure>
+
+    </div>
+  </div>
 
   <!-- ══ NEXT ══ -->
   <section class="cs-next">
