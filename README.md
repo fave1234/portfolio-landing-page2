@@ -34,14 +34,16 @@ Pages, Netlify, Vercel and any static server without extra config.
 - **Case study cards** — `index.html`, `.cs-grid`. Card 1 links to
   `/work/jannas-bowls/`; cards 2–4 are reserved slots (`.is-pending`) ready for
   new studies.
-- **Case study images** — see `images/case-studies/README.md` for the slot map and
-  swap instructions.
+- **Case study images** — the Janna's Bowls page uses a full-bleed 10-slot
+  asymmetrical gallery. See `images/case-studies/README.md` for the slot map,
+  span/ratio classes and swap instructions.
 - **Archive gallery** — `archive/index.html`, `allItems` / `presentations` data
   arrays near the bottom of the file.
 
 ## Notes
 
 - Dark theme tokens live in `:root` in each page (`--bg`, `--ink`, `--line`, …).
+- Backgrounds are solid dark — there is no repeating grid pattern.
 - Motion respects `prefers-reduced-motion`.
 - The contact CTA buttons use Calendly; the archive lightbox uses EmailJS for
   like notifications.

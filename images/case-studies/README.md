@@ -1,58 +1,70 @@
 # Case study image slots
 
-> **Status:** placeholder brand visuals are already generated and wired in
-> (`jannas-hero.jpg`, `jannas-lockup.jpg`, `jannas-packaging-01.jpg`,
-> `jannas-packaging-02.jpg`, `jannas-merch.jpg`, `jannas-monogram.jpg`).
-> Replace them with your own high-resolution exports whenever you're ready —
-> keep the same filenames and nothing else needs to change.
-
-Drop high-resolution assets in this folder and update the `src` in `work/jannas-bowls/index.html`.
+> **Status:** placeholder brand visuals are generated and wired in. Replace them
+> with your own high-resolution exports whenever you're ready — keep the same
+> filenames and nothing else needs to change.
 
 ## Janna's Bowls — `/work/jannas-bowls/`
 
-| Slot                      | Current file                              | Ratio | Location in page |
-|---------------------------|-------------------------------------------|-------|------------------|
-| Hero image                | `jannas-hero.jpg`                        | 16:9  | `header.cs-hero` → `.cs-hero-media` |
-| Master wordmark lockup    | `jannas-lockup.jpg`                      | 21:9  | `#gallery` → first `.g-slot.g-wide` |
-| Packaging system          | `jannas-packaging-01.jpg`                | 4:3   | `#gallery` → `.g-slot` 2 |
-| Bowl & delivery packaging | `jannas-packaging-02.jpg`                | 4:3   | `#gallery` → `.g-slot` 3 |
-| Merch & uniform mockups   | `jannas-merch.jpg`                       | 4:3   | `#gallery` → `.g-slot` 4 |
-| "J's" monogram applications | `jannas-monogram.jpg`                  | 4:3   | `#gallery` → `.g-slot` 5 |
+The case study uses a **full-bleed asymmetrical gallery of exactly 10 slots**.
+Slot order, span and ratio are set by the `.g-*` class on each `<figure>`.
 
-### How to swap a slot
+| # | Slot | Current file | Class | Desktop span | Ratio |
+|---|------|--------------|-------|--------------|-------|
+| 01 | Hero / full-width opening | `jannas-hero.jpg` | `.g-hero` | 12 / 12 | 21:9 |
+| 02 | Old vs new logo comparison | `jannas-logo-compare.jpg` | `.g-compare` | 7 / 12 | 16:10 |
+| 03 | Logo sketches / process | `jannas-process.jpg` | `.g-process` | 5 / 12 | 16:10 |
+| 04 | Final wordmark on dark | `jannas-wordmark-dark.jpg` | `.g-word-dark` | 4 / 12 | 4:5 |
+| 05 | Final wordmark on light / colour variations | `jannas-wordmark-light.jpg` | `.g-word-light` | 4 / 12 | 4:5 |
+| 06 | Brand colour palette application | `jannas-palette.jpg` | `.g-palette` | 4 / 12 | 4:5 |
+| 07 | Packaging / bowl mockup (full width) | `jannas-packaging-02.jpg` | `.g-packaging` | 12 / 12 | 21:9 |
+| 08 | Apparel & merch flat-lay | `jannas-merch.jpg` | `.g-apparel` | 6 / 12 | 4:3 |
+| 09 | Bags + collateral | `jannas-bags.jpg` | `.g-bags` | 6 / 12 | 4:3 |
+| 10 | Wide closing lifestyle / environmental | `jannas-closing.jpg` | `.g-closing` | 12 / 12 | 21:9 |
 
-1. Save the asset here (e.g. `images/case-studies/jannas-hero.webp`).
-2. In `work/jannas-bowls/index.html`, replace the whole placeholder block:
+`jannas-lockup.jpg`, `jannas-packaging-01.jpg` and `jannas-monogram.jpg` are
+still in the folder and free to swap into any slot.
+
+### How to swap an image
+
+Replace the file, or point the `src` at something else:
 
 ```html
-<div class="slot-ph">
-  <svg ...>...</svg>
-  <span class="slot-ph-label">Hero Image — 16:9<b>images/case-studies/jannas-hero.webp</b></span>
-</div>
+<figure class="g-item g-apparel">
+  <img src="../../images/case-studies/my-new-shot.jpg" alt="Describe the shot">
+  <span class="g-num">08</span>
+  <figcaption class="g-cap">Apparel &amp; merch</figcaption>
+</figure>
 ```
 
-with:
+- Keep the **`.g-*` class** — it controls grid span and aspect ratio.
+- All images use `object-fit: cover`, so any source ratio will fill the frame
+  without distortion. Export close to the slot ratio to avoid cropping.
+- `loading="lazy"` is set on every gallery image.
 
-```html
-<img src="../../images/case-studies/jannas-hero.webp" alt="Janna's Bowls identity hero">
-```
+### Layout behaviour
 
-The page already handles broken paths: if an `<img>` fails to load it is
-removed and the striped placeholder becomes visible again, so the layout never
-collapses.
+| Breakpoint | Grid | Behaviour |
+|------------|------|-----------|
+| Desktop | 12 columns | Full asymmetric rhythm (table above) |
+| ≤ 1024px | 12 columns | Paired spans even out; tall tiles keep 4:5 |
+| ≤ 820px | 6 columns | 2-up blocks — 6, 4+2, 3+3 |
+| ≤ 600px | 1 column | Single column, still edge-to-edge |
+
+The gallery sits **outside** the `.sec` max-width shell, so tiles run from the
+left viewport edge to the right. `body { overflow-x: hidden }` guards against
+horizontal scroll.
+
+### Recommended export sizes
+
+- Full-width (21:9): 2560 × 1097px
+- 16:10 slots: 1800 × 1125px
+- 4:3 slots: 1600 × 1200px
+- 4:5 portrait slots: 1200 × 1500px
+
+WebP at quality 80–85 keeps the page fast.
 
 ## Homepage card
 
-`index.html` → `.cs-card--wide` → `.cs-media` uses the same pattern. Swap the
-`.cs-media-ph` block for:
-
-```html
-<img src="images/case-studies/jannas-hero.webp" alt="Janna's Bowls brand identity">
-```
-
-## Recommended sizing
-
-- Hero: 2400 × 1350 px
-- Wide gallery: 2400 × 1030 px
-- Gallery slots: 1600 × 1200 px
-- Export as WebP (quality 80–85) to keep the page fast.
+`index.html` → `.cs-card--wide` → `.cs-media` uses `jannas-hero.jpg`. Swap the
+`<img src>` there too if you change the hero.
