@@ -83,10 +83,11 @@ Same full-bleed asymmetrical system as Janna's Bowls, with Frootify brand accent
 | 09 | Social templates | `frootify-social-templates.jpg` | `.g-social` | 6 / 12 | 4:3 |
 | 10 | Closing wide | `frootify-closing-wide.jpg` | `.g-closing` | 12 / 12 | 21:9 |
 
-**Figma links:** the two buttons in the hero (`.figma-row`) currently point at `#`.
-Swap the `href` on `.figma-btn--primary` / `.figma-btn--secondary` in
-`work/frootify-ramadan/index.html`, and remove the "Prototype links — coming soon"
-note (`.figma-note`) once they're live.
+**Figma links:** the two prototype buttons in the hero (`.figma-row`) are live and
+open in a new tab. To point them elsewhere, update the `href` on
+`.figma-btn--primary` (desktop) / `.figma-btn--secondary` (mobile) in
+`work/frootify-ramadan/index.html`. Keep `target="_blank"` and
+`rel="noopener noreferrer"`.
 
 ## Homepage card
 
