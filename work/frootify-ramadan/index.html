@@ -298,21 +298,33 @@ img{max-width:100%;}
   white-space:nowrap;
 }
 .figma-btn svg{width:15px;height:15px;flex-shrink:0;}
+/* external-link glyph sits at the end and nudges on hover */
+.figma-btn .figma-btn-ext{
+  width:12px;height:12px;margin-left:-2px;
+  opacity:.7;transition:opacity .25s,transform .25s;
+}
+.figma-btn:hover .figma-btn-ext{opacity:1;transform:translate(1px,-1px);}
 .figma-btn--primary{
   color:#0a0a0a;background:var(--frootify-cream);
   border:1px solid var(--frootify-cream);
+  box-shadow:0 2px 10px rgba(0,0,0,.28);
 }
-.figma-btn--primary:hover{background:#fff;transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,246,232,.16);}
+.figma-btn--primary:hover{
+  background:#fff;border-color:#fff;transform:translateY(-2px);
+  box-shadow:0 12px 32px rgba(255,246,232,.22);
+}
+.figma-btn--primary:focus-visible,
+.figma-btn--secondary:focus-visible{
+  outline:2px solid var(--frootify-gold);outline-offset:3px;
+}
 .figma-btn--secondary{
   color:var(--ink);background:var(--bg-2);
   border:1px solid rgba(255,255,255,.18);
 }
-.figma-btn--secondary:hover{border-color:rgba(255,255,255,.4);transform:translateY(-2px);}
-.figma-note{
-  font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--ink-mute);
-  margin-top:14px;
+.figma-btn--secondary:hover{
+  border-color:rgba(255,255,255,.42);background:#1d1d1d;transform:translateY(-2px);
 }
+.figma-btn:active{transform:translateY(0);}
 
 /* ── RESULTS ─────────────────────────────── */
 .result-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:26px;}
@@ -395,6 +407,8 @@ img{max-width:100%;}
   .cs-hero-media{aspect-ratio:4/3;border-radius:16px;}
   .topbar-case{display:none;}
   .topbar-sep{display:none;}
+  .figma-row{gap:10px;}
+  .figma-btn{padding:13px 20px;font-size:13px;}
 }
 @media(max-width:600px){
   /* gallery: single column, still edge-to-edge */
@@ -409,8 +423,12 @@ img{max-width:100%;}
   .g-cap{font-size:8.5px;}
   .swatch-grid,.arch-list,.result-grid{grid-template-columns:1fr;}
   .cs-next-actions{width:100%;}
-  .figma-row{width:100%;}
-  .figma-btn{flex:1;justify-content:center;padding:13px 16px;font-size:12.5px;}
+  .figma-row{width:100%;flex-direction:column;gap:10px;}
+  .figma-btn{
+    position:relative;width:100%;justify-content:center;
+    padding:14px 44px 14px 18px;font-size:13px;
+  }
+  .figma-btn .figma-btn-ext{position:absolute;right:18px;margin-left:0;}
   .btn-solid,.btn-ghost{flex:1;justify-content:center;}
   .cs-title{font-size:clamp(2.7rem,13vw,4rem);}
 }
@@ -457,20 +475,33 @@ img{max-width:100%;}
       </dl>
 
       <div class="figma-row">
-        <a class="figma-btn figma-btn--primary" href="#" aria-label="View desktop Figma prototype">
+        <a class="figma-btn figma-btn--primary"
+           href="https://www.figma.com/proto/6GywnpoiCCM9tNO4rVqVLG/New-Frootify-website?node-id=1456-7622&amp;t=vpFNLmvcGeXRV07Z-8&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;page-id=1450%3A6018&amp;hide-ui=1"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="View Desktop Prototype (opens Figma in a new tab)">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M8.5 2h3.5v6H8.5a3 3 0 0 1 0-6zM12 2h3.5a3 3 0 0 1 0 6H12V2zM12 9h3.5a3 3 0 1 1-3.5 3V9zM8.5 9H12v6H8.5a3 3 0 0 1 0-6zM8.5 16H12v3a3 3 0 1 1-3.5-3z"/>
           </svg>
-          View Desktop Figma
+          <span>View Desktop Prototype</span>
+          <svg class="figma-btn-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
         </a>
-        <a class="figma-btn figma-btn--secondary" href="#" aria-label="View mobile Figma prototype">
+        <a class="figma-btn figma-btn--secondary"
+           href="https://www.figma.com/proto/6GywnpoiCCM9tNO4rVqVLG/New-Frootify-website?node-id=1540-10801&amp;t=BcbR47R3X1fPzt8V-8&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;page-id=1450%3A6018&amp;hide-ui=1"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="View Mobile Prototype (opens Figma in a new tab)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
             <rect x="7" y="2" width="10" height="20" rx="2.5"/><line x1="10.5" y1="18.5" x2="13.5" y2="18.5"/>
           </svg>
-          View Mobile Figma
+          <span>View Mobile Prototype</span>
+          <svg class="figma-btn-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
         </a>
       </div>
-      <p class="figma-note">Prototype links — coming soon</p>
     </div>
 
     <!-- HERO IMAGE SLOT -->
