@@ -10,7 +10,8 @@ with any static host.
 | Route | File | Purpose |
 |-------|------|---------|
 | `/` | `index.html` | Landing page — hero positioning, skills marquee, **Selected Case Studies** (4 cards), contact footer |
-| `/work/jannas-bowls/` | `work/jannas-bowls/index.html` | Janna's Bowls case study — overview, challenge, strategy & naming, colour + typography, results, image slots |
+| `/work/jannas-bowls/` | `work/jannas-bowls/index.html` | Janna's Bowls case study — overview, challenge, strategy & naming, colour + typography, results, 10-slot gallery |
+| `/work/frootify-ramadan/` | `work/frootify-ramadan/index.html` | Frootify Ramadan case study — overview, challenge, art direction, deliverables, result, Figma CTAs, 10-slot gallery |
 | `/archive/` | `archive/index.html` | **Visual Archive** — standalone designs, social campaigns, presentations (2022 – 2026) with filters + lightbox |
 | `/about.html` | `about.html` | Bio, experience timeline, skills, presentations, contact |
 | `/work.html` | `work.html` | Legacy URL — redirects to `/archive/` |
@@ -34,8 +35,8 @@ Pages, Netlify, Vercel and any static server without extra config.
 - **Case study cards** — `index.html`, `.cs-grid`. Card 1 links to
   `/work/jannas-bowls/`; cards 2–4 are reserved slots (`.is-pending`) ready for
   new studies.
-- **Case study images** — the Janna's Bowls page uses a full-bleed 10-slot
-  asymmetrical gallery. See `images/case-studies/README.md` for the slot map,
+- **Case study images** — both case study pages use a full-bleed 10-slot
+  asymmetrical gallery. See `images/case-studies/README.md` for the slot maps,
   span/ratio classes and swap instructions.
 - **Archive gallery** — `archive/index.html`, `allItems` / `presentations` data
   arrays near the bottom of the file.

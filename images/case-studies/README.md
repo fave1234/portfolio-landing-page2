@@ -64,7 +64,31 @@ horizontal scroll.
 
 WebP at quality 80–85 keeps the page fast.
 
+
+## Frootify Ramadan — `/work/frootify-ramadan/`
+
+Same full-bleed asymmetrical system as Janna's Bowls, with Frootify brand accents
+(green / orange / lantern gold).
+
+| # | Slot | Current file | Class | Desktop span | Ratio |
+|---|------|--------------|-------|--------------|-------|
+| 01 | Hero desktop | `frootify-hero-desktop.jpg` | `.g-hero` | 12 / 12 | 21:9 |
+| 02 | Devices mockup | `frootify-devices-mockup.jpg` | `.g-devices` | 7 / 12 | 16:10 |
+| 03 | Packaging pouch | `frootify-packaging-pouch.jpg` | `.g-pouch` | 5 / 12 | 16:10 |
+| 04 | Why you'll love it | `frootify-why-love-it.jpg` | `.g-why` | 4 / 12 | 4:5 |
+| 05 | Papiano Kutoria | `frootify-papiano-kutoria.jpg` | `.g-papiano` | 4 / 12 | 4:5 |
+| 06 | Tapioca Melodia | `frootify-tapioca-melodia.jpg` | `.g-tapioca` | 4 / 12 | 4:5 |
+| 07 | Pre-order form (full width) | `frootify-preorder-form.jpg` | `.g-preorder` | 12 / 12 | 21:9 |
+| 08 | Ramadan atmosphere | `frootify-ramadan-atmosphere.jpg` | `.g-atmosphere` | 6 / 12 | 4:3 |
+| 09 | Social templates | `frootify-social-templates.jpg` | `.g-social` | 6 / 12 | 4:3 |
+| 10 | Closing wide | `frootify-closing-wide.jpg` | `.g-closing` | 12 / 12 | 21:9 |
+
+**Figma links:** the two buttons in the hero (`.figma-row`) currently point at `#`.
+Swap the `href` on `.figma-btn--primary` / `.figma-btn--secondary` in
+`work/frootify-ramadan/index.html`, and remove the "Prototype links — coming soon"
+note (`.figma-note`) once they're live.
+
 ## Homepage card
 
-`index.html` → `.cs-card--wide` → `.cs-media` uses `jannas-hero.jpg`. Swap the
-`<img src>` there too if you change the hero.
+`index.html` → `.cs-grid`. Card 01 uses `jannas-hero.jpg`, card 02 uses
+`frootify-hero-desktop.jpg`. Swap those `<img src>` values if you change either hero.
